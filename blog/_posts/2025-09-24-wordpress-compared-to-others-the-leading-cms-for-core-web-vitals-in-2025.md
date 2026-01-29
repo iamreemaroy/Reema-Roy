@@ -1,7 +1,7 @@
 ---
 title: "WordPress Compared to Others: The Leading CMS for Core Web Vitals in 2025"
 date: 2025-09-24T17:29:00.000+05:30
-thumbnail: /assets/uploads/blog/wordpress-compared-to-others-the-leading-cms-for-core-web-vitals-in-2025.png
+thumbnail: /assets/blog/img/wordpress-compared-to-others-the-leading-cms-for-core-web-vitals-in-2025.png
 slug: wordpress-vs-others-leading-cms-core-web-vitals-2025
 meta_title: "WordPress vs Other CMS: Leading Core Web Vitals Performance in 2025"
 meta_description: >
