@@ -5,11 +5,6 @@ baseurl: ""
 
 permalink: /blog/:slug/
 
-collections:
-  posts:
-    output: true
-    permalink: /blog/:slug/
-
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
