@@ -1,10 +1,5 @@
 ---
 title: "Main Domain vs Subdomain vs Separate Domain: Which is Best for Your Website?"
-slug: main-domain-vs-subdomain-vs-separate-domain
-date: 2025-08-25T15:38:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/main-domain-vs-subdomain-vs-separate-domain-which-is-best-for-your-website.png
-meta_title: "Main Domain vs Subdomain vs Separate Domain: Which is Best for Your Website?"
 meta_description: Should you host new features on your main domain, a subdomain,
   or a separate domain? Discover the pros, cons, and best practices to make the
   right decision for SEO, branding, and scalability.
@@ -16,6 +11,11 @@ meta_keywords:
   - brand strategy domains
   - hosting features on subdomain
   - domain management tips
+author: Reema Roy
+date: 2025-08-25T15:38:00.000+05:30
+thumbnail: /assets/blog/img/main-domain-vs-subdomain-vs-separate-domain-which-is-best-for-your-website.png
+slug: main-domain-vs-subdomain-vs-separate-domain
+meta_title: "Main Domain vs Subdomain vs Separate Domain: Which is Best for Your Website?"
 ---
 When a website expands, businesses often add new features—such as blogs, online stores, forums, learning platforms, or digital products. At this stage, an important question arises:
 
