@@ -3,7 +3,7 @@ description: IT, websites, SEO, and growth — by Reema Roy.
 url: "https://www.reemaroy.com"
 baseurl: ""
 
-permalink: /blog/:slug/
+permalink: /blog/:title/
 
 plugins:
   - jekyll-seo-tag
