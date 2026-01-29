@@ -69,3 +69,4 @@ collections:
             widget: "text"
             required: false
             editor_components: []
+
