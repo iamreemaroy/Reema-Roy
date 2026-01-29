@@ -1,11 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: iamreemaroy/Reema-Roy
   branch: main
-  identity_url: https://reema-roy-cms.netlify.app/.netlify/identity
-  gateway_url: https://reema-roy-cms.netlify.app/.netlify/git
-
-site_url: https://reema-roy-cms.netlify.app
-display_url: https://reema-roy-cms.netlify.app
 
 media_folder: "assets/blog/img"
 public_folder: "/assets/blog/img"
