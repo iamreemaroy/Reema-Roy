@@ -1,10 +1,5 @@
 ---
 title: "WordPress vs Everyone Else: The Real Story on Core Web Vitals"
-date: 2025-09-17T15:26:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/wordpress-vs-other-cms-core-web-vitals-performance-compared-2025-.png
-slug: wordpress-vs-other-cms-core-web-vitals
-meta_title: "WordPress vs Other CMS: Core Web Vitals Performance Compared (2025)"
 meta_description: See how WordPress stacks up against Wix, Duda, Squarespace &
   others in Google’s Core Web Vitals. Why WordPress lags, and how to optimize
   for speed.
@@ -19,6 +14,11 @@ meta_keywords:
   - improve wordpress core web vitals
   - cms with best user experience
   - wordpress vs squarespace speed test
+author: Reema Roy
+date: 2025-09-17T15:26:00.000+05:30
+thumbnail: /assets/blog/img/wordpress-vs-other-cms-core-web-vitals-performance-compared-2025-.png
+slug: wordpress-vs-other-cms-core-web-vitals
+meta_title: "WordPress vs Other CMS: Core Web Vitals Performance Compared (2025)"
 ---
 If you care about website performance — real speed, smoothness, responsiveness — then you’ve probably heard a lot lately about **Core Web Vitals (CWV)**. These are a set of metrics from Google intended to measure how users experience your site: not just whether it loads, but how stable it is, how quickly it becomes interactive, how visually smooth the loading feels.
 
