@@ -7,8 +7,8 @@ backend:
 site_url: https://reema-roy-cms.netlify.app
 display_url: https://reema-roy-cms.netlify.app
 
-media_folder: "assets/uploads/blog"
-public_folder: "/assets/uploads/blog"
+media_folder: "assets/blog/img"
+public_folder: "/assets/blog/img"
 
 publish_mode: simple
 
