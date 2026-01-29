@@ -1,10 +1,5 @@
 ---
 title: Web Development Made Simple
-slug: web-development-made-simple
-date: 2025-08-26T15:30:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/what-is-web-development-.png
-meta_title: Web Development Made Simple | Front-End & Back-End Basics Explained
 meta_description: >
   Learn web development in simple steps. Understand front-end (HTML, CSS,
   JavaScript), back-end (Node.js, Python, databases), and how APIs connect them.
@@ -26,6 +21,11 @@ meta_keywords:
   - MySQL
   - learn web development
   - web development for beginners
+author: Reema Roy
+date: 2025-08-26T15:30:00.000+05:30
+thumbnail: /assets/blog/img/what-is-web-development-.png
+slug: web-development-made-simple
+meta_title: Web Development Made Simple | Front-End & Back-End Basics Explained
 ---
 Web development might sound complex, but at its core, it’s just about building and maintaining websites. Whether you’re scrolling through an e-commerce store, watching a video, or reading a blog, every click and interaction is powered by web development.
 
