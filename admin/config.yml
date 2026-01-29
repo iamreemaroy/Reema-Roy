@@ -1,0 +1,72 @@
+# ✅ Blog Management Tab
+backend:
+  name: git-gateway
+  branch: main
+  identity_url: https://bizznist-blogs.netlify.app/.netlify/identity
+  gateway_url: https://bizznist-blogs.netlify.app/.netlify/git
+
+site_url: https://bizznist-blogs.netlify.app
+display_url: https://bizznist-blogs.netlify.app
+
+media_folder: "assets/uploads/blog"
+public_folder: "/assets/uploads/blog"
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Blog"
+    folder: "blog/_posts"
+    create: true
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Custom URL Slug", name: "slug", widget: "string" }
+      - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+      - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+      - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
+
+  # ✅ NEW Ad Management Tab
+  - name: "ads"
+    label: "Ad Management"
+    files:
+      - label: "Ad Slots"
+        name: "ads"
+        file: "content/data/ads.json"
+        format: "json"
+        fields:
+          - label: "Ad Blocks"
+            name: "ad_blocks"
+            widget: "list"
+            summary: "{{fields.slot_id}}"
+            fields:
+              - { label: "Ad Slot ID (e.g. ad-slot, ad-footer)", name: "slot_id", widget: "string" }
+              - { label: "Ad Code (HTML or Script)", name: "code", widget: "text" }
+
+  # ✅ Global Script Injects (HTML-based)
+  - name: "global-scripts"
+    label: "Global Script Includes"
+    files:
+      - label: "Head Scripts"
+        name: "head-scripts"
+        file: "assets/includes/head-includes.html"
+        fields:
+          - label: "Head Code"
+            name: "body"
+            widget: "text"
+            required: false
+            editor_components: []
+
+      - label: "Body Scripts"
+        name: "body-scripts"
+        file: "assets/includes/body-includes.html"
+        fields:
+          - label: "Body Code"
+            name: "body"
+            widget: "text"
+            required: false
+            editor_components: []
