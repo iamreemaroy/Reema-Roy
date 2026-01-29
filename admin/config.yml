@@ -1,12 +1,11 @@
-# ✅ Blog Management Tab
 backend:
   name: git-gateway
   branch: main
-  identity_url: https://bizznist-blogs.netlify.app/.netlify/identity
-  gateway_url: https://bizznist-blogs.netlify.app/.netlify/git
+  identity_url: https://reema-blogs.netlify.app/.netlify/identity
+  gateway_url: https://reema-blogs.netlify.app/.netlify/git
 
-site_url: https://bizznist-blogs.netlify.app
-display_url: https://bizznist-blogs.netlify.app
+site_url: https://reema-blogs.netlify.app
+display_url: https://reema-blogs.netlify.app
 
 media_folder: "assets/uploads/blog"
 public_folder: "/assets/uploads/blog"
