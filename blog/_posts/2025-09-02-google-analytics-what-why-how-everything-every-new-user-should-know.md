@@ -1,15 +1,15 @@
 ---
 title: "Google Analytics - What, Why & How : Everything Every New User Should Know"
-slug: google-analytics-beginners-guide
-date: 2025-09-02T18:29:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/google-analytics.png
-meta_title: "Google Analytics 101: What, Why & How for Beginners (GA4 Guide)"
 meta_description: Learn Google Analytics from scratch. Understand what it is,
   how it works, and why it matters. Step-by-step GA4 setup & tips for beginners.
 meta_keywords:
   - Google Analytics  Google Analytics GA4  Google Analytics for beginners  GA4
     setup guide  Website analytics tool  Google Analytics tutorial
+author: Reema Roy
+date: 2025-09-02T18:29:00.000+05:30
+thumbnail: /assets/blog/img/google-analytics.png
+slug: google-analytics-beginners-guide
+meta_title: "Google Analytics 101: What, Why & How for Beginners (GA4 Guide)"
 ---
 ## Introduction
 
