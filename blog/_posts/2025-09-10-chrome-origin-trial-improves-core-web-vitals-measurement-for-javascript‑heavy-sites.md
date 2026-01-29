@@ -1,12 +1,6 @@
 ---
 title: Chrome Origin Trial Improves Core Web Vitals Measurement for
   JavaScript‑Heavy Sites
-date: 2025-08-04T12:27:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/copilot_20250910_123150.png
-slug: chrome-core-web-vitals-spa-tracking
-meta_title: Google Chrome Origin Trial Fixes Core Web Vitals Tracking for
-  JavaScript-Heavy & SPA Sites | BizzNist
 meta_description: Discover how Google Chrome's new origin trial helps track Core
   Web Vitals like LCP, CLS, and INP for JavaScript-heavy and SPA websites. Learn
   how to enable it and why it matters for SEO and user experience.
@@ -21,6 +15,12 @@ meta_keywords:
   - SPA performance optimization
   - Google web vitals update
   - single-page application SEO
+author: Reema Roy
+date: 2025-08-04T12:27:00.000+05:30
+thumbnail: /assets/blog/img/soft-navigation-api-in-chrome.png
+slug: chrome-core-web-vitals-spa-tracking
+meta_title: Google Chrome Origin Trial Fixes Core Web Vitals Tracking for
+  JavaScript-Heavy & SPA Sites | BizzNist
 ---
 ## Introduction
 
