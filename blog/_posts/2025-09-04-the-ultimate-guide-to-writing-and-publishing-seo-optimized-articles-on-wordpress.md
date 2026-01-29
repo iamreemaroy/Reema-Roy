@@ -1,11 +1,6 @@
 ---
 title: The Ultimate Guide to Writing and Publishing SEO-Optimized Articles on
   WordPress
-date: 2025-09-04T17:00:00.000+05:30
-author: Reema Roy
-thumbnail: /assets/uploads/blog/writing-seo-friendly-articles.png
-slug: /seo-optimized-article-writing-in-wordpress
-meta_title: How to Write & Publish SEO-Optimized Articles in WordPress (Step-by-Step Guide)
 meta_description: Learn how to write and publish SEO-optimized articles in
   WordPress. From keyword research to structuring, publishing, and
   promotion—boost traffic & rankings.
@@ -20,6 +15,11 @@ meta_keywords:
   - WordPress blogging tips
   - SEO article publishing
   - WordPress SEO optimization
+author: Reema Roy
+date: 2025-09-04T17:00:00.000+05:30
+thumbnail: /assets/blog/img/writing-seo-friendly-articles.png
+slug: /seo-optimized-article-writing-in-wordpress
+meta_title: How to Write & Publish SEO-Optimized Articles in WordPress (Step-by-Step Guide)
 ---
 This guide walks you through the process of writing and publishing SEO-optimized articles using WordPress. From researching keywords to structuring your content and promoting it on social media, you’ll learn how to create articles that rank higher in search results and attract more traffic. Follow these steps to boost your website’s visibility and growth.
 
