@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    {% if page.title %}
+      {{ page.title }} | Reema Roy
+    {% else %}
+      Reema Roy
+    {% endif %}
+  </title>
+
+  {% seo %}
+
+  <!-- Favicons -->
+  <link href="{{ '/assets/img/favicon.png' | relative_url }}" rel="icon">
+  <link href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Ubuntu:wght@400;500;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/bootstrap-icons/bootstrap-icons.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/aos/aos.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/glightbox/css/glightbox.min.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/swiper/swiper-bundle.min.css' | relative_url }}" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet">
 </head>
+
 <body>
 
+  {% include header.html %}
+
   {{ content }}
+
+  {% include footer.html %}
+
+  <!-- Vendor JS -->
+  <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/vendor/aos/aos.js' | relative_url }}"></script>
+  <script src="{{ '/assets/vendor/glightbox/js/glightbox.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/vendor/swiper/swiper-bundle.min.js' | relative_url }}"></script>
+
+  <!-- Main JS -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
 </body>
 </html>
