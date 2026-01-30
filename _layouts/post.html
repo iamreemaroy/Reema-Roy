@@ -40,10 +40,6 @@ layout: default
           {% endif %}
 
           <div class="content mt-5">
-            <p class=" mb-3">
-              Published on {{ page.date | date: "%B %d, %Y" }}
-            </p>
-
             {{ content }}
           </div>
 
@@ -62,13 +58,11 @@ layout: default
               <p>{{ page.date | date: "%d %B %Y" }}</p>
             </div>
 
-            {% if page.author %}
             <div class="info-item">
               <i class="bi bi-person"></i>
               <h5>Author</h5>
-              <p>{{ page.author }}</p>
+              <p>Reema Roy</p>
             </div>
-            {% endif %}
           </div>
 
           <!-- RELATED POSTS -->
