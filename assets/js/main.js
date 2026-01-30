@@ -1,11 +1,3 @@
-/**
-* Template Name: SnapFolio
-* Template URL: https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/
-* Updated: Jul 21 2025 with Bootstrap v5.3.7
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -58,13 +50,16 @@
   /**
    * Scroll top button
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  const scrollTop = document.querySelector('.scroll-top');
 
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
-  }
+function toggleScrollTop() {
+  if (!scrollTop) return;
+  window.scrollY > 100
+    ? scrollTop.classList.add('active')
+    : scrollTop.classList.remove('active');
+}
+
+if (scrollTop) {
   scrollTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({
@@ -72,9 +67,10 @@
       behavior: 'smooth'
     });
   });
+}
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+window.addEventListener('load', toggleScrollTop);
+document.addEventListener('scroll', toggleScrollTop);
 
   /**
    * Animation on scroll function and init
