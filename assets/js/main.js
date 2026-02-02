@@ -13,8 +13,8 @@ function loadHTML(id, file, callback) {
 }
 
 // IMPORTANT: paths updated for _includes folder
-loadHTML("header-placeholder", "includes/header.html", initHeader);
-loadHTML("footer-placeholder", "includes/footer.html");
+loadHTML("header-placeholder", "/_includes/header.html", initHeader);
+loadHTML("footer-placeholder", "/_includes/footer.html");
 
 (function () {
   "use strict";
