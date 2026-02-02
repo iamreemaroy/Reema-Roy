@@ -1,7 +1,3 @@
-/**
- * Load Header & Footer from _includes
- * (GitHub Pages compatible)
- */
 function loadHTML(id, file, callback) {
   fetch(file)
     .then(response => {
