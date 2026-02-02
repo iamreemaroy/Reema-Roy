@@ -7,8 +7,8 @@
       .catch(error => console.error('Error loading', file, error));
   }
 
-  loadHTML("header-placeholder", "/header.html");
-  loadHTML("footer-placeholder", "/footer.html");
+  loadHTML("header-placeholder", "_includes/header.html");
+  loadHTML("footer-placeholder", "_includes/footer.html");
 
 
 (function() {
