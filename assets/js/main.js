@@ -1,64 +1,77 @@
-function loadHTML(id, file, callback) {
-  fetch(file)
-    .then(response => {
-      if (!response.ok) throw new Error(file + ' not found');
-      return response.text();
-    })
-    .then(data => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = data;
-      if (callback) callback();
-    })
-    .catch(error => console.error('Error loading:', error));
+/* =====================================================
+   HEADER & FOOTER LOADER (GitHub Pages Safe)
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  function loadHTML(id, file, callback) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error(file + " not found");
+        return response.text();
+      })
+      .then(data => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = data;
+        if (callback) callback();
+      })
+      .catch(error => console.error("Error loading:", error));
+  }
+
+  // IMPORTANT: relative paths (NO leading slash)
+  loadHTML("header-placeholder", "header.html", initHeader);
+  loadHTML("footer-placeholder", "footer.html");
+
+});
+
+
+/* =====================================================
+   HEADER INITIALIZATION (AFTER header.html LOADS)
+===================================================== */
+
+function initHeader() {
+  const headerToggleBtn = document.querySelector('.header-toggle');
+  const header = document.querySelector('#header');
+
+  if (!headerToggleBtn || !header) return;
+
+  function headerToggle() {
+    header.classList.toggle('header-show');
+    headerToggleBtn.classList.toggle('bi-list');
+    headerToggleBtn.classList.toggle('bi-x');
+  }
+
+  headerToggleBtn.addEventListener('click', headerToggle);
+
+  // Close menu on nav click
+  document.querySelectorAll('#navmenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (header.classList.contains('header-show')) {
+        headerToggle();
+      }
+    });
+  });
+
+  // Mobile dropdowns
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', function (e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
+  });
 }
 
-// IMPORTANT: paths updated for _includes folder
-loadHTML("header-placeholder", "/header.html");
-loadHTML("footer-placeholder", "/footer.html");
+
+/* =====================================================
+   MAIN SITE SCRIPTS
+===================================================== */
 
 (function () {
   "use strict";
 
-  /**
-   * Init Header AFTER header.html loads
-   */
-  function initHeader() {
-    const headerToggleBtn = document.querySelector('.header-toggle');
-    const header = document.querySelector('#header');
-
-    if (!headerToggleBtn || !header) return;
-
-    function headerToggle() {
-      header.classList.toggle('header-show');
-      headerToggleBtn.classList.toggle('bi-list');
-      headerToggleBtn.classList.toggle('bi-x');
-    }
-
-    headerToggleBtn.addEventListener('click', headerToggle);
-
-    // Close menu on nav click
-    document.querySelectorAll('#navmenu a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (header.classList.contains('header-show')) {
-          headerToggle();
-        }
-      });
-    });
-
-    // Mobile dropdowns
-    document.querySelectorAll('.navmenu .toggle-dropdown').forEach(dropdown => {
-      dropdown.addEventListener('click', function (e) {
-        e.preventDefault();
-        this.parentNode.classList.toggle('active');
-        this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-        e.stopImmediatePropagation();
-      });
-    });
-  }
-
-  /**
-   * Preloader
-   */
+  /* ---------- Preloader ---------- */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -66,9 +79,7 @@ loadHTML("footer-placeholder", "/footer.html");
     });
   }
 
-  /**
-   * Scroll Top Button
-   */
+  /* ---------- Scroll Top Button ---------- */
   const scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -88,9 +99,7 @@ loadHTML("footer-placeholder", "/footer.html");
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * AOS
-   */
+  /* ---------- AOS ---------- */
   function aosInit() {
     if (typeof AOS !== "undefined") {
       AOS.init({
@@ -103,9 +112,7 @@ loadHTML("footer-placeholder", "/footer.html");
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Typed.js
-   */
+  /* ---------- Typed.js ---------- */
   const typedEl = document.querySelector('.typed');
   if (typedEl && typeof Typed !== "undefined") {
     let strings = typedEl.getAttribute('data-typed-items').split(',');
@@ -118,65 +125,62 @@ loadHTML("footer-placeholder", "/footer.html");
     });
   }
 
-  /**
-   * PureCounter
-   */
+  /* ---------- PureCounter ---------- */
   if (typeof PureCounter !== "undefined") {
     new PureCounter();
   }
 
-  /**
-   * Skills animation
-   */
+  /* ---------- Skills Animation ---------- */
   document.querySelectorAll('.skills-animation').forEach(item => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function () {
-        item.querySelectorAll('.progress .progress-bar').forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
-    });
+    if (typeof Waypoint !== "undefined") {
+      new Waypoint({
+        element: item,
+        offset: '80%',
+        handler: function () {
+          item.querySelectorAll('.progress .progress-bar').forEach(el => {
+            el.style.width = el.getAttribute('aria-valuenow') + '%';
+          });
+        }
+      });
+    }
   });
 
-  /**
-   * GLightbox
-   */
+  /* ---------- GLightbox ---------- */
   if (typeof GLightbox !== "undefined") {
     GLightbox({ selector: '.glightbox' });
   }
 
-  /**
-   * Isotope
-   */
+  /* ---------- Isotope ---------- */
   document.querySelectorAll('.isotope-layout').forEach(isotopeItem => {
     let layout = isotopeItem.getAttribute('data-layout') || 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') || '*';
     let sort = isotopeItem.getAttribute('data-sort') || 'original-order';
 
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), () => {
-      let iso = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
+    if (
+      typeof imagesLoaded !== "undefined" &&
+      typeof Isotope !== "undefined"
+    ) {
+      imagesLoaded(isotopeItem.querySelector('.isotope-container'), () => {
+        let iso = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort
+        });
 
-      isotopeItem.querySelectorAll('.isotope-filters li').forEach(btn => {
-        btn.addEventListener('click', function () {
-          isotopeItem.querySelector('.filter-active')?.classList.remove('filter-active');
-          this.classList.add('filter-active');
-          iso.arrange({ filter: this.getAttribute('data-filter') });
-          aosInit();
+        isotopeItem.querySelectorAll('.isotope-filters li').forEach(btn => {
+          btn.addEventListener('click', function () {
+            isotopeItem.querySelector('.filter-active')?.classList.remove('filter-active');
+            this.classList.add('filter-active');
+            iso.arrange({ filter: this.getAttribute('data-filter') });
+            aosInit();
+          });
         });
       });
-    });
+    }
   });
 
-  /**
-   * Swiper
-   */
+  /* ---------- Swiper ---------- */
   function initSwiper() {
     document.querySelectorAll('.init-swiper').forEach(swiperEl => {
       let config = JSON.parse(
@@ -187,9 +191,7 @@ loadHTML("footer-placeholder", "/footer.html");
   }
   window.addEventListener('load', initSwiper);
 
-  /**
-   * Scroll to hash on page load
-   */
+  /* ---------- Scroll to Hash ---------- */
   window.addEventListener('load', () => {
     if (window.location.hash) {
       const section = document.querySelector(window.location.hash);
@@ -204,17 +206,20 @@ loadHTML("footer-placeholder", "/footer.html");
     }
   });
 
-  /**
-   * Scrollspy
-   */
+  /* ---------- Scrollspy ---------- */
   const navLinks = document.querySelectorAll('.navmenu a');
+
   function navmenuScrollspy() {
     navLinks.forEach(link => {
       if (!link.hash) return;
       const section = document.querySelector(link.hash);
       if (!section) return;
-      const pos = window.scrollY + 200;
-      if (pos >= section.offsetTop && pos <= section.offsetTop + section.offsetHeight) {
+
+      const position = window.scrollY + 200;
+      if (
+        position >= section.offsetTop &&
+        position <= section.offsetTop + section.offsetHeight
+      ) {
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       }
