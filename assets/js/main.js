@@ -13,7 +13,7 @@ function loadHTML(id, file, callback) {
 }
 
 // IMPORTANT: paths updated for _includes folder
-loadHTML("header-placeholder", "/header.html", initHeader);
+loadHTML("header-placeholder", "/header.html");
 loadHTML("footer-placeholder", "/footer.html");
 
 (function () {
