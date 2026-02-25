@@ -1,9 +1,14 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5CJWPF4PDJ"></script>
-<script>
+// Load GA4 script dynamically
+(function () {
+  var script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtag/js?id=G-5CJWPF4PDJ";
+  document.head.appendChild(script);
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.gtag = gtag;
 
-  gtag('config', 'G-5CJWPF4PDJ');
-</script>
+  gtag("js", new Date());
+  gtag("config", "G-5CJWPF4PDJ");
+})();
