@@ -1,28 +1,27 @@
 /* =====================================================
-   HEADER & FOOTER LOADER (GitHub Pages Safe)
+   LOAD HEADER & FOOTER COMPONENTS
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+function loadComponent(url, placeholderId, callback = null) {
+  fetch(url)
+    .then(response => response.text())
+    .then(data => {
+      const placeholder = document.getElementById(placeholderId);
+      if (placeholder) {
+        placeholder.innerHTML = data;
 
-  function loadHTML(id, file, callback) {
-    fetch(file)
-      .then(response => {
-        if (!response.ok) throw new Error(file + " not found");
-        return response.text();
-      })
-      .then(data => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = data;
+        // Run callback AFTER component loads
         if (callback) callback();
-      })
-      .catch(error => console.error("Error loading:", error));
-  }
+      }
+    })
+    .catch(error => console.error(`Error loading ${url}:`, error));
+}
 
-  // IMPORTANT: relative paths (NO leading slash)
-  loadHTML("header-placeholder", "header.html", initHeader);
-  loadHTML("footer-placeholder", "footer.html");
+/* Load Header and initialize it */
+loadComponent('/_include/header.html', 'header-placeholder', initHeader);
 
-});
+/* Load Footer */
+loadComponent('/_include/footer.html', 'footer-placeholder');
 
 
 /* =====================================================
@@ -43,7 +42,7 @@ function initHeader() {
 
   headerToggleBtn.addEventListener('click', headerToggle);
 
-  // Close menu on nav click
+  // Close menu on nav click (mobile)
   document.querySelectorAll('#navmenu a').forEach(link => {
     link.addEventListener('click', () => {
       if (header.classList.contains('header-show')) {
@@ -156,10 +155,7 @@ function initHeader() {
     let filter = isotopeItem.getAttribute('data-default-filter') || '*';
     let sort = isotopeItem.getAttribute('data-sort') || 'original-order';
 
-    if (
-      typeof imagesLoaded !== "undefined" &&
-      typeof Isotope !== "undefined"
-    ) {
+    if (typeof imagesLoaded !== "undefined" && typeof Isotope !== "undefined") {
       imagesLoaded(isotopeItem.querySelector('.isotope-container'), () => {
         let iso = new Isotope(isotopeItem.querySelector('.isotope-container'), {
           itemSelector: '.isotope-item',
@@ -205,28 +201,5 @@ function initHeader() {
       }
     }
   });
-
-  /* ---------- Scrollspy ---------- */
-  const navLinks = document.querySelectorAll('.navmenu a');
-
-  function navmenuScrollspy() {
-    navLinks.forEach(link => {
-      if (!link.hash) return;
-      const section = document.querySelector(link.hash);
-      if (!section) return;
-
-      const position = window.scrollY + 200;
-      if (
-        position >= section.offsetTop &&
-        position <= section.offsetTop + section.offsetHeight
-      ) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
 
 })();
