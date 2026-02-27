@@ -18,10 +18,10 @@ function loadComponent(url, placeholderId, callback = null) {
 }
 
 /* Load Header and initialize it */
-loadComponent('/_include/header.html', 'header-placeholder', initHeader);
+loadComponent('/header.html', 'header-placeholder', initHeader);
 
 /* Load Footer */
-loadComponent('/_include/footer.html', 'footer-placeholder');
+loadComponent('/footer.html', 'footer-placeholder');
 
 
 /* =====================================================
