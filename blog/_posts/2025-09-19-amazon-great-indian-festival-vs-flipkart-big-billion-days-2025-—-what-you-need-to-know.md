@@ -18,7 +18,7 @@ meta_keywords:
   - Amazon Flipkart smartphone deals
 author: Reema Roy
 date: 2025-09-19T14:48:00.000+05:30
-thumbnail: /assets/blog/img/amazon-great-indian-festival-vs-flipkart-big-billion-days-2025-what-you-need-to-know.png
+thumbnail: /assets/blog/img/amazon-great-indian-festival-vs-flipkart-big-billion-days-2025-what-you-need-to-know.webp
 slug: amazon-great-indian-festival-2025-vs-flipkart-big-billion-days
 meta_title: "Amazon Great Indian Festival 2025 vs Flipkart Big Billion Days
   2025: Dates, Deals & Offers"
