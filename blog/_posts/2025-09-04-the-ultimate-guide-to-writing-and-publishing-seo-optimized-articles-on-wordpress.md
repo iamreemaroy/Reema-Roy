@@ -17,7 +17,7 @@ meta_keywords:
   - WordPress SEO optimization
 author: Reema Roy
 date: 2025-09-04T17:00:00.000+05:30
-thumbnail: /assets/blog/img/writing-seo-friendly-articles.png
+thumbnail: /assets/blog/img/writing-seo-friendly-articles.webp
 slug: /seo-optimized-article-writing-in-wordpress
 meta_title: How to Write & Publish SEO-Optimized Articles in WordPress (Step-by-Step Guide)
 ---
