@@ -15,7 +15,7 @@ meta_keywords:
   - WordPress social media automation
 author: Reema Roy
 date: 2025-09-04T17:21:00.000+05:30
-thumbnail: /assets/blog/img/auto-social-posting-wordpress-2025.png
+thumbnail: /assets/blog/img/auto-social-posting-wordpress-2025.webp
 slug: wordpress-auto-social-posting-jetpack-guide-2025
 meta_title: Auto Social Posting in WordPress (2025) | Jetpack Guide & Best Plugins
 ---
