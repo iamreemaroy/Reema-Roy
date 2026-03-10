@@ -54,13 +54,11 @@ body {
   font-family: var(--default-font);
 }
 
-/* Smooth scroll 
 @media (min-width: 1200px) {
   body {
-    padding-left: 280px; /* width of sidebar header */
+    padding-left: 280px; 
   }
 }
-*/
 
 a {
   color: var(--accent-color);
