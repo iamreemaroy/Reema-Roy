@@ -23,7 +23,7 @@ meta_keywords:
   - web development for beginners
 author: Reema Roy
 date: 2025-08-26T15:30:00.000+05:30
-thumbnail: /assets/blog/img/what-is-web-development-.png
+thumbnail: /assets/blog/img/what-is-web-development-.webp
 slug: web-development-made-simple
 meta_title: Web Development Made Simple | Front-End & Back-End Basics Explained
 ---
