@@ -7,7 +7,7 @@ meta_keywords:
     setup guide  Website analytics tool  Google Analytics tutorial
 author: Reema Roy
 date: 2025-09-02T18:29:00.000+05:30
-thumbnail: /assets/blog/img/google-analytics.png
+thumbnail: /assets/blog/img/google-analytics.webp
 slug: google-analytics-beginners-guide
 meta_title: "Google Analytics 101: What, Why & How for Beginners (GA4 Guide)"
 ---
