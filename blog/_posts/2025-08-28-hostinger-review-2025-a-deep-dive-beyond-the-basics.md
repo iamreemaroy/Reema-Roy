@@ -16,7 +16,7 @@ meta_keywords:
   - Hostinger vs other hosting providers
 author: Reema Roy
 date: 2025-08-28T11:59:00.000+05:30
-thumbnail: /assets/blog/img/hostinger-review-2025-a-deep-dive-beyond-the-basics.png
+thumbnail: /assets/blog/img/hostinger-review-2025-a-deep-dive-beyond-the-basics.webp
 slug: hostinger-review-2025-affordable-web-hosting
 meta_title: "Hostinger Review 2025: Best Affordable Web Hosting for Beginners?"
 ---
