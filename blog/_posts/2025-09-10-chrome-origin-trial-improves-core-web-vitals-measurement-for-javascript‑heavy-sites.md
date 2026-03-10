@@ -17,7 +17,7 @@ meta_keywords:
   - single-page application SEO
 author: Reema Roy
 date: 2025-08-04T12:27:00.000+05:30
-thumbnail: /assets/blog/img/soft-navigation-api-in-chrome.png
+thumbnail: /assets/blog/img/soft-navigation-api-in-chrome.webp
 slug: chrome-core-web-vitals-spa-tracking
 meta_title: Google Chrome Origin Trial Fixes Core Web Vitals Tracking for
   JavaScript-Heavy & SPA Sites | BizzNist
