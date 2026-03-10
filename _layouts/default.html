@@ -25,7 +25,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
   <meta property="og:site_name" content="Reema Roy Blog">
-  <meta property="og:image" content="{{ page.image | default: '/assets/img/profile/profile-2.webp' | absolute_url }}">
+  <meta property="og:image" content="{{ page.thumbnail | default: page.image | default: '/assets/img/profile/profile-2.webp' | absolute_url }}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -74,7 +74,7 @@
          "url": "{{ '/assets/img/profile/profile-2.webp' | absolute_url }}"
        }
      },
-     "datePublished": "{{ page.date }}",
+     "datePublished": "{{ page.date | date_to_xmlschema }}"
      "mainEntityOfPage": {
        "@type": "WebPage",
        "@id": "{{ page.url | absolute_url }}"
@@ -104,6 +104,17 @@
 
   <!-- Main JS -->
   <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+
+  <!-- ✅ AUTO LAZY LOAD ALL IMAGES -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll("img").forEach(function(img) {
+        if (!img.hasAttribute("loading")) {
+          img.setAttribute("loading","lazy");
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
