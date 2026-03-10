@@ -1,3 +1,4 @@
+
 ---
 title: "Hostinger Review 2025: A Deep Dive - Beyond the Basics"
 meta_description: Looking for budget-friendly hosting? Read our in-depth
