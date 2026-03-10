@@ -17,7 +17,6 @@ layout: default
       </nav>
     </div>
   </div>
-  <!-- End Page Title -->
 
   <!-- Blog Details Section -->
   <section class="service-details section">
@@ -33,7 +32,14 @@ layout: default
           <div class="service-details-slider swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="{{ page.thumbnail | relative_url }}" class="img-fluid" alt="{{ page.title }}">
+                <img 
+                  src="{{ page.thumbnail | relative_url }}" 
+                  class="img-fluid"
+                  alt="{{ page.title }}"
+                  loading="lazy"
+                  decoding="async"
+                >
+
               </div>
             </div>
           </div>
@@ -68,19 +74,31 @@ layout: default
           <!-- RELATED POSTS -->
           <div class="related-services mt-5">
             <h4>Related Articles</h4>
+            {% assign maxRelated = 4 %}
+            {% assign minCommonTags = 1 %}
+            {% assign maxRelatedCounter = 0 %}
 
-            {% for post in site.posts limit:12 %}
+            {% for post in site.posts %}
               {% if post.url != page.url %}
-              <div class="service-item">
-                <i class="bi bi-file-text"></i>
-                <h5>
-                  <a href="{{ post.url | relative_url }}">
-                    {{ post.title }}
-                  </a>
-                </h5>
-              </div>
+                {% if post.categories contains page.categories[0] %}
+
+                {% if maxRelatedCounter < maxRelated %}
+                <div class="service-item">
+                  <i class="bi bi-file-text"></i>
+                  <h5>
+                    <a href="{{ post.url | relative_url }}">
+                      {{ post.title }}
+                    </a>
+                  </h5>
+                </div>
+
+                {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+                {% endif %}
+
+                {% endif %}
               {% endif %}
             {% endfor %}
+
           </div>
 
         </div>
@@ -90,6 +108,5 @@ layout: default
     </div>
 
   </section>
-  <!-- End Blog Details Section -->
 
 </main>
