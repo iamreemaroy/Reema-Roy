@@ -16,7 +16,7 @@ meta_keywords:
   - wordpress vs squarespace speed test
 author: Reema Roy
 date: 2025-09-17T15:26:00.000+05:30
-thumbnail: /assets/blog/img/wordpress-vs-other-cms-core-web-vitals-performance-compared-2025-.png
+thumbnail: /assets/blog/img/wordpress-vs-other-cms-core-web-vitals-performance-compared-2025-.webp
 slug: wordpress-vs-other-cms-core-web-vitals
 meta_title: "WordPress vs Other CMS: Core Web Vitals Performance Compared (2025)"
 ---
