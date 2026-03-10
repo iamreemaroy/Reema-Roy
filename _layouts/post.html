@@ -64,11 +64,22 @@ layout: default
               <p>{{ page.date | date: "%d %B %Y" }}</p>
             </div>
 
+            <!-- ⭐ NEW: Reading Time -->
+              {% assign words = content | number_of_words %}
+              {% assign reading_time = words | divided_by: 200 | plus: 1 %}
+              
+            <div class="info-item">
+              <i class="bi bi-clock"></i>
+              <h5>Reading Time</h5>
+              <p>{{ reading_time }} min read</p>
+            </div>
+
             <div class="info-item">
               <i class="bi bi-person"></i>
               <h5>Author</h5>
               <p>Reema Roy</p>
             </div>
+            
           </div>
 
           <!-- RELATED POSTS -->
