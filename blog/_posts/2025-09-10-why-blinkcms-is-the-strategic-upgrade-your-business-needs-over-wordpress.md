@@ -1,4 +1,3 @@
-
 ---
 title: Why BlinkCMS is the Strategic Upgrade Your Business Needs Over WordPress
 meta_description: Confused between WordPress and BlinkCMS? Discover how BlinkCMS
