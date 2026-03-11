@@ -20,9 +20,7 @@ category: "${category}"
 
 ${desc}
 `;
-
 let path=`deals/${category}/${slug}.md`;
-
 await fetch("https://api.github.com/repos/iamreemaroy/Reema-Roy/contents/"+path,{
 method:"PUT",
 headers:{
@@ -34,7 +32,5 @@ message:"New deal: "+title,
 content:btoa(content)
 })
 });
-
 alert("Deal Published!");
-
 }
