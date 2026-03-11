@@ -1,4 +1,3 @@
-
 ---
 title: "Google Analytics - What, Why & How : Everything Every New User Should Know"
 meta_description: Learn Google Analytics from scratch. Understand what it is,
