@@ -24,7 +24,9 @@ image: ${image}
 ${desc}
 `;
 
-let path=`resources/_products/${slug}.md`;
+let category=document.getElementById("category").value;
+
+let path=`deals/${category}/${slug}.md`;
 
 await fetch("https://api.github.com/repos/iamreemaroy/Reema-Roy/contents/"+path,{
 method:"PUT",
