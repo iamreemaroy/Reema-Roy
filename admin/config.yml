@@ -2,8 +2,6 @@ backend:
   name: github
   repo: iamreemaroy/Reema-Roy
   branch: main
-  base_url: https://decap-cms-oauth.netlify.app
-  auth_endpoint: auth
 
 media_folder: "assets/blog/img"
 public_folder: "/assets/blog/img"
