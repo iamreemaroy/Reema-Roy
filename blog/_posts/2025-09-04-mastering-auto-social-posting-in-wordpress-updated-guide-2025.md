@@ -1,4 +1,3 @@
-
 ---
 title: "Mastering Auto Social Posting in WordPress: Updated Guide (2025)"
 meta_description: Learn how to automate social media sharing in WordPress with
