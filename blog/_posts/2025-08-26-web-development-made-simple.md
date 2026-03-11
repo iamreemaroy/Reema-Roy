@@ -1,4 +1,3 @@
-
 ---
 title: Web Development Made Simple
 meta_description: >
