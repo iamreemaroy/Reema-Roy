@@ -8,23 +8,21 @@ let platform=document.getElementById("platform").value;
 let link=document.getElementById("link").value;
 let desc=document.getElementById("description").value;
 let image=document.getElementById("image").value;
+let category=document.getElementById("category").value;
 
-let date=new Date().toISOString().slice(0,10);
-
-let slug=title.toLowerCase().replace(/\s+/g,'-');
+let slug=title.toLowerCase().replace(/[^\w ]+/g,"").replace(/ +/g,"-");
 
 let content=`---
-title: ${title}
-price: ${price}
-platform: ${platform}
-link: ${link}
-image: ${image}
+title: "${title}"
+price: "${price}"
+platform: "${platform}"
+link: "${link}"
+image: "${image}"
+category: "${category}"
 ---
 
 ${desc}
 `;
-
-let category=document.getElementById("category").value;
 
 let path=`deals/${category}/${slug}.md`;
 
@@ -35,11 +33,11 @@ headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-message:"New product",
+message:"New deal: "+title,
 content:btoa(content)
 })
 });
 
-alert("Published!");
+alert("Deal Published!");
 
 }
