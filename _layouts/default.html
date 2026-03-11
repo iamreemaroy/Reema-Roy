@@ -56,6 +56,42 @@
   <!-- Google Analytics -->
   <script src="{{ 'assets/js/tracking.js' | relative_url }}"></script>
 
+  <script type="application/ld+json">
+    {
+     "@context": "https://schema.org",
+     "@type": "BlogPosting",
+     "headline": "{{ page.title }}",
+     "description": "{{ page.description }}",
+     "author": {
+       "@type": "Person",
+       "name": "Reema Roy"
+     },
+     "publisher": {
+       "@type": "Organization",
+       "name": "Reema Roy",
+       "logo": {
+         "@type": "ImageObject",
+         "url": "{{ '/assets/img/profile/profile-2.webp' | absolute_url }}"
+       }
+     },
+       "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "{{ page.url | absolute_url }}"
+     }
+    }
+  </script>
+
+   <!-- ✅ AUTO LAZY LOAD ALL IMAGES -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll("img").forEach(function(img) {
+        if (!img.hasAttribute("loading")) {
+          img.setAttribute("loading","lazy");
+        }
+      });
+    });
+  </script>
   
 </head>
 
