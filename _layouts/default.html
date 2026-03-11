@@ -74,10 +74,10 @@
          "url": "{{ '/assets/img/profile/profile-2.webp' | absolute_url }}"
        }
      },
-     "datePublished": "{{ page.date | date_to_xmlschema }}"
-     "mainEntityOfPage": {
-       "@type": "WebPage",
-       "@id": "{{ page.url | absolute_url }}"
+       "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "{{ page.url | absolute_url }}"
      }
     }
   </script>
