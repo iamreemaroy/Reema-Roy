@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: iamreemaroy/Reema-Roy
   branch: main
   auth_type: implicit
@@ -26,6 +26,24 @@ collections:
       - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
       - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
       - { label: "Meta Keywords", name: "meta_keywords", widget: "list", required: false }
+
+
+  - name: "products"
+    label: "Affiliate Products"
+    folder: "resources/_products"
+    create: true
+    extension: "md"
+    slug: "{{slug}}"
+
+    fields:
+      - {label: "Product Name", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Affiliate Link", name: "link", widget: "string"}
+      - {label: "Platform", name: "platform", widget: "string"}
+      - {label: "Description", name: "body", widget: "markdown"}
+
+      
 
   # ✅ NEW Ad Management Tab
   - name: "ads"
