@@ -1,4 +1,3 @@
-
 ---
 title: The Ultimate Guide to Writing and Publishing SEO-Optimized Articles on
   WordPress
