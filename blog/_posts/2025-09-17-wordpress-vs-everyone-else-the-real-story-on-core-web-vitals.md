@@ -1,4 +1,3 @@
-
 ---
 title: "WordPress vs Everyone Else: The Real Story on Core Web Vitals"
 meta_description: See how WordPress stacks up against Wix, Duda, Squarespace &
