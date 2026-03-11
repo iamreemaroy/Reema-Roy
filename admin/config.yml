@@ -2,7 +2,7 @@ backend:
   name: github
   repo: iamreemaroy/Reema-Roy
   branch: main
-  base_url: https://auth.decapcms.org
+  base_url: https://YOUR-WORKER.workers.dev
   auth_endpoint: auth
 
 media_folder: "assets/blog/img"
