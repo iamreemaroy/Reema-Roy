@@ -112,47 +112,6 @@
         padding-left: 20px;
       }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-      }
-
-      .card {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #eee;
-      }
-
-      .card img {
-        width: 100%;
-        height: 200px;
-        object-fit: contain;
-      }
-
-      .card h3 {
-        font-size: 16px;
-        height: 50px;
-        overflow: hidden;
-      }
-
-      .price {
-        font-weight: bold;
-        font-size: 18px;
-        margin-top: 10px;
-      }
-
-      .btn {
-        display: block;
-        margin-top: 10px;
-        background: black;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        border-radius: 6px;
-        text-decoration: none;
-      }
     </style>
 
   </head>
@@ -188,7 +147,7 @@
       <!-- PRODUCT GRID -->
       <div class="content">
         <h1>Latest Deals</h1>
-        <div class="grid" id="deals"></div>
+        <div class="row stats-wrapper" id="deals"></div>
       </div>
     </div>
     <script>
@@ -200,38 +159,66 @@
       }
 
       function renderDeals(deals) {
-        let html = "";
-        deals.forEach(d => {
-          html += `
 
+let html="";
 
-          <div class="card">
-            <img src="${d.image}">
-              <h3>${d.title}</h3>
-              <div class="price">${d.price || ""}</div>
-              <a class="btn" href="${d.link}" target="_blank">
+deals.forEach(d=>{
+
+html+=`
+
+<div class="stats-item" data-aos="zoom-in">
+
+<div class="icon-wrapper">
+
+<img src="${d.image}" 
+class="img-fluid rounded" 
+style="background:white;height:200px;object-fit:contain;width:100%;">
+
+</div>
+
+<h3 style="margin-top:10px">${d.title}</h3>
+
+<h5 style="
+background:#595656;
+border-radius:5px;
+display:inline-block;
+padding:4px 10px;
+color:white;
+margin-top:5px;
+">
+
+${d.price || ""}
+
+</h5>
+
+<p style="margin-top:10px">
+
+<a href="${d.link}" 
+target="_blank" 
+class="primary-cta"
+style="
+background:var(--accent-color);
+color:var(--contrast-color);
+border-radius:5px;
+padding:8px 15px;
+text-decoration:none;
+">
+
 View Deal
+
 </a>
-            </div>
+
+</p>
+
+</div>
 
 `;
-        });
-        document.getElementById("deals").innerHTML = html;
-      }
 
-      function applyFilters() {
-        let search = document.getElementById("search").value.toLowerCase();
-        let category = document.getElementById("category").value;
-        let maxPrice = document.getElementById("price").value;
-        let filtered = allDeals.filter(d => {
-          let matchTitle = d.title.toLowerCase().includes(search);
-          let matchCategory = !category || d.category === category;
-          let matchPrice = !maxPrice || parseInt(d.price.replace(/[^0-9]/g, '')) <= maxPrice;
-          return matchTitle && matchCategory && matchPrice;
-        });
-        renderDeals(filtered);
-      }
-      loadDeals();
+});
+
+document.getElementById("deals").innerHTML=html;
+
+}
     </script>
 
     </main>
