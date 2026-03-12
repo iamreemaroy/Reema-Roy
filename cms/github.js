@@ -14,34 +14,33 @@ let link=document.getElementById("link").value;
 let image=document.getElementById("image").value;
 let category=document.getElementById("category").value;
 
-if(!title){
-alert("Title missing");
-return;
-}
-
-let newDeal={
-title:title,
-price:price,
-platform:platform,
-link:link,
-image:image,
-category:category
-};
-
 let repo="iamreemaroy/Reema-Roy";
 
-let response = await fetch(
-`https://api.github.com/repos/${repo}/data/deals.json`
+let newDeal={
+title,
+price,
+platform,
+link,
+image,
+category
+};
+
+let res=await fetch(
+`https://api.github.com/repos/${repo}/contents/data/deals.json`,
+{
+headers:{
+Authorization:"token "+token,
+Accept:"application/vnd.github+json"
+}
+}
 );
 
-let file = await response.json();
+let file=await res.json();
 
-let deals = [];
+let deals=[];
 
 if(file.content){
-
-deals = JSON.parse(atob(file.content));
-
+deals=JSON.parse(atob(file.content));
 }
 
 deals.push(newDeal);
@@ -49,25 +48,25 @@ deals.push(newDeal);
 let updated=btoa(JSON.stringify(deals,null,2));
 
 await fetch(
-`https://api.github.com/repos/${repo}/data/deals.json`,
+`https://api.github.com/repos/${repo}/contents/data/deals.json`,
 {
-
 method:"PUT",
 
 headers:{
-"Authorization":"token "+token,
+Authorization:"token "+token,
+Accept:"application/vnd.github+json",
 "Content-Type":"application/json"
 },
 
 body:JSON.stringify({
-message:"New deal: "+title,
+message:"New deal "+title,
 content:updated,
 sha:file.sha
 })
 
 });
 
-alert("Deal published successfully");
+alert("Deal published successfully!");
 
 location.reload();
 
