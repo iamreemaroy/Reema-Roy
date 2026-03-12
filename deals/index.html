@@ -1,237 +1,260 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- PRIMARY SEO -->
+    <title>Best Tech & Fashion Deals (Amazon + Myntra) | Reema Roy</title>
+    <meta name="description" content="Discover the best tech gadgets, developer tools, fashion picks and curated Amazon and Myntra deals recommended by Reema Roy. Updated regularly with trusted product recommendations.">
+    <meta name="author" content="Reema Roy">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://www.reemaroy.com/deals">
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Best Tech & Fashion Deals | Reema Roy">
+    <meta property="og:description" content="Explore curated Amazon and Myntra deals on tech gadgets, fashion products, developer tools and productivity essentials recommended by Reema Roy.">
+    <meta property="og:url" content="https://www.reemaroy.com/deals">
+    <meta property="og:image" content="https://www.reemaroy.com/assets/img/profile/profile-2.webp">
+    <meta property="og:site_name" content="Reema Roy">
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Best Amazon & Myntra Deals | Reema Roy">
+    <meta name="twitter:description" content="Handpicked tech, fashion and productivity tools recommended by Reema Roy. Discover top Amazon and Myntra deals.">
+    <meta name="twitter:image" content="https://www.reemaroy.com/assets/img/profile/profile-2.webp">
+    <!-- FAVICONS -->
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Ubuntu:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- VENDOR CSS -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- MAIN CSS -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <!-- SCHEMA MARKUP (SEO BOOST) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Recommended Products and Deals",
+        "description": "Curated list of recommended tech gadgets, developer tools and fashion deals from Amazon and Myntra selected by Reema Roy.",
+        "url": "https://www.reemaroy.com/deals",
+        "numberOfItems": 10,
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Tech Deals"
+        }, {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Fashion Deals"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Developer Tools"
+        }],
+        "author": {
+          "@type": "Person",
+          "name": "Reema Roy",
+          "url": "https://www.reemaroy.com"
+        }
+      }
+    </script>
+    <script src="/assets/js/tracking.js"></script>
 
-<head>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 0;
+        background: #f5f5f5;
+      }
 
-<title>Latest Deals | Reema Roy</title>
+      .container {
+        display: flex;
+        max-width: 1400px;
+        margin: auto;
+        padding: 20px;
+      }
 
-<style>
+      /* FILTER SIDEBAR */
+      .sidebar {
+        width: 260px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        height: fit-content;
+      }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f5f5f5;
-}
+      .sidebar h3 {
+        margin-top: 0;
+      }
 
-.container{
-display:flex;
-max-width:1400px;
-margin:auto;
-padding:20px;
-}
+      .filter-group {
+        margin-bottom: 20px;
+      }
 
-/* FILTER SIDEBAR */
+      .filter-group input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
 
-.sidebar{
-width:260px;
-background:white;
-padding:20px;
-border-radius:10px;
-height:fit-content;
-}
+      /* DEAL GRID */
+      .content {
+        flex: 1;
+        padding-left: 20px;
+      }
 
-.sidebar h3{
-margin-top:0;
-}
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
 
-.filter-group{
-margin-bottom:20px;
-}
+      .card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #eee;
+      }
 
-.filter-group input{
-width:100%;
-padding:8px;
-margin-top:5px;
-}
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+      }
 
-/* DEAL GRID */
+      .card h3 {
+        font-size: 16px;
+        height: 50px;
+        overflow: hidden;
+      }
 
-.content{
-flex:1;
-padding-left:20px;
-}
+      .price {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 10px;
+      }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:20px;
-}
+      .btn {
+        display: block;
+        margin-top: 10px;
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+        text-decoration: none;
+      }
+    </style>
 
-.card{
-background:white;
-padding:15px;
-border-radius:10px;
-border:1px solid #eee;
-}
+  </head>
+  
+  <body class="index-page">
+    <div id="header-placeholder"></div>
 
-.card img{
-width:100%;
-height:200px;
-object-fit:contain;
-}
+    <main class="main">
+    <div class="container">
+      <!-- FILTER SIDEBAR -->
+      <div class="sidebar">
+        <h3>Filter</h3>
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" id="search" placeholder="Search product">
+        </div>
+        <div class="filter-group">
+          <label>Category</label>
+          <select id="category">
+            <option value="">All</option>
+            <option>Electronics</option>
+            <option>Home Kitchen</option>
+            <option>Fashion</option>
+            <option>Beauty</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Max Price</label>
+          <input type="number" id="price">
+        </div>
+        <button onclick="applyFilters()">Apply</button>
+      </div>
+      <!-- PRODUCT GRID -->
+      <div class="content">
+        <h1>Latest Deals</h1>
+        <div class="grid" id="deals"></div>
+      </div>
+    </div>
+    <script>
+      let allDeals = [];
+      async function loadDeals() {
+        let res = await fetch("/data/deals.json");
+        allDeals = await res.json();
+        renderDeals(allDeals);
+      }
 
-.card h3{
-font-size:16px;
-height:50px;
-overflow:hidden;
-}
-
-.price{
-font-weight:bold;
-font-size:18px;
-margin-top:10px;
-}
-
-.btn{
-display:block;
-margin-top:10px;
-background:black;
-color:white;
-text-align:center;
-padding:10px;
-border-radius:6px;
-text-decoration:none;
-}
-
-</style>
-
-</head>
-
-<body>
-
-  <div id="header-placeholder"></div>
-
-<div class="container">
-
-<!-- FILTER SIDEBAR -->
-
-<div class="sidebar">
-
-<h3>Filter</h3>
-
-<div class="filter-group">
-
-<label>Search</label>
-<input type="text" id="search" placeholder="Search product">
-
-</div>
-
-<div class="filter-group">
-
-<label>Category</label>
-
-<select id="category">
-
-<option value="">All</option>
-<option>Electronics</option>
-<option>Home Kitchen</option>
-<option>Fashion</option>
-<option>Beauty</option>
-
-</select>
-
-</div>
-
-<div class="filter-group">
-
-<label>Max Price</label>
-<input type="number" id="price">
-
-</div>
-
-<button onclick="applyFilters()">Apply</button>
-
-</div>
+      function renderDeals(deals) {
+        let html = "";
+        deals.forEach(d => {
+          html += `
 
 
-<!-- PRODUCT GRID -->
-
-<div class="content">
-
-<h1>Latest Deals</h1>
-
-<div class="grid" id="deals"></div>
-
-</div>
-
-</div>
-
-<script>
-
-let allDeals=[];
-
-async function loadDeals(){
-
-let res=await fetch("/data/deals.json");
-
-allDeals=await res.json();
-
-renderDeals(allDeals);
-
-}
-
-function renderDeals(deals){
-
-let html="";
-
-deals.forEach(d=>{
-
-html+=`
-
-<div class="card">
-
-<img src="${d.image}">
-
-<h3>${d.title}</h3>
-
-<div class="price">${d.price || ""}</div>
-
-<a class="btn" href="${d.link}" target="_blank">
+          <div class="card">
+            <img src="${d.image}">
+              <h3>${d.title}</h3>
+              <div class="price">${d.price || ""}</div>
+              <a class="btn" href="${d.link}" target="_blank">
 View Deal
 </a>
-
-</div>
+            </div>
 
 `;
+        });
+        document.getElementById("deals").innerHTML = html;
+      }
 
-});
+      function applyFilters() {
+        let search = document.getElementById("search").value.toLowerCase();
+        let category = document.getElementById("category").value;
+        let maxPrice = document.getElementById("price").value;
+        let filtered = allDeals.filter(d => {
+          let matchTitle = d.title.toLowerCase().includes(search);
+          let matchCategory = !category || d.category === category;
+          let matchPrice = !maxPrice || parseInt(d.price.replace(/[^0-9]/g, '')) <= maxPrice;
+          return matchTitle && matchCategory && matchPrice;
+        });
+        renderDeals(filtered);
+      }
+      loadDeals();
+    </script>
 
-document.getElementById("deals").innerHTML=html;
-
-}
-
-function applyFilters(){
-
-let search=document.getElementById("search").value.toLowerCase();
-
-let category=document.getElementById("category").value;
-
-let maxPrice=document.getElementById("price").value;
-
-let filtered=allDeals.filter(d=>{
-
-let matchTitle=d.title.toLowerCase().includes(search);
-
-let matchCategory=!category || d.category===category;
-
-let matchPrice=!maxPrice || parseInt(d.price.replace(/[^0-9]/g,''))<=maxPrice;
-
-return matchTitle && matchCategory && matchPrice;
-
-});
-
-renderDeals(filtered);
-
-}
-
-loadDeals();
-
-</script>
+    </main>
 
     <div id="footer-placeholder"></div>
-
-
-</body>
-  
-
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/php-email-form/validate.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Main JS File -->
+    <script src="/assets/js/main.js" defer></script>
+  </body>
 </html>
