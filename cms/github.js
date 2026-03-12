@@ -31,7 +31,7 @@ category:category
 let repo="iamreemaroy/Reema-Roy";
 
 let response = await fetch(
-`https://api.github.com/repos/${repo}/contents/data/deals.json`
+`https://api.github.com/repos/${repo}/data/deals.json`
 );
 
 let file = await response.json();
@@ -49,7 +49,7 @@ deals.push(newDeal);
 let updated=btoa(JSON.stringify(deals,null,2));
 
 await fetch(
-`https://api.github.com/repos/${repo}/contents/data/deals.json`,
+`https://api.github.com/repos/${repo}/data/deals.json`,
 {
 
 method:"PUT",
