@@ -7,12 +7,22 @@ alert("Token required");
 return;
 }
 
-let title=document.getElementById("title").value;
-let price=document.getElementById("price").value;
-let platform=document.getElementById("platform").value;
-let link=document.getElementById("link").value;
-let image=document.getElementById("image").value;
-let category=document.getElementById("category").value;
+let title=document.getElementById("title").value.trim();
+
+let rawPrice=document.getElementById("price").value;
+let price=parseInt(rawPrice.replace(/[^0-9]/g,'')) || 0;
+
+let platform=document.getElementById("platform").value.trim();
+let link=document.getElementById("link").value.trim();
+
+let image=document.getElementById("image").value || "";
+
+// Fix Amazon image quality
+if(image.includes("amazon")){
+image=image.replace(/_SL\d+_/,"_SL2000_");
+}
+
+let category=document.getElementById("category").value.toLowerCase().trim();
 
 let repo="iamreemaroy/Reema-Roy";
 
@@ -67,7 +77,5 @@ sha:file.sha
 });
 
 alert("Deal published successfully!");
-
 location.reload();
-
 }
