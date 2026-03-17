@@ -32,6 +32,10 @@ alert("Token required");
 return;
 }
 
+if(localStorage.getItem("github_token")){
+document.querySelector("[onclick='loginGithub()']").style.display="none";
+}  
+
 let title=document.getElementById("title").value.trim();
 
 let rawPrice=document.getElementById("price").value;
