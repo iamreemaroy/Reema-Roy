@@ -1,3 +1,16 @@
+function loginGithub(){
+  let token=prompt("Enter GitHub Token (only once)");
+  if(token){
+  localStorage.setItem("github_token",token);
+  alert("Logged in successfully!");
+  }
+}
+
+function logoutGithub(){
+  localStorage.removeItem("github_token");
+  alert("Logged out!");
+}
+
 async function publish(){
 
 let token = prompt("Enter GitHub Token");
