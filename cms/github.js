@@ -84,10 +84,12 @@ let file=await res.json();
 
 let deals=[];
 
-if(file.content){
-deals=JSON.parse(atob(file.content));
+try {
+  deals = file.content ? JSON.parse(atob(file.content)) : [];
+} catch (e) {
+  deals = [];
 }
-
+  
 deals.push(newDeal);
 
 let updated=btoa(JSON.stringify(deals,null,2));
