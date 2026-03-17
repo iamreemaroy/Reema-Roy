@@ -1,3 +1,10 @@
+window.onload = function(){
+  let token = localStorage.getItem("github_token");
+  if(token){
+  console.log("Already logged in");
+  }
+}
+
 function loginGithub(){
   let existing = localStorage.getItem("github_token");
   if(existing){
