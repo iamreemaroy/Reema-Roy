@@ -285,7 +285,7 @@ margin-top:10px;
   html+=`
   <div class="deal-card">
   <div class="deal-img">
-  <img src="${d.image || '/assets/img/no-image.png'}" loading="lazy">
+  <img src="${d.image && d.image.startsWith('http') ? d.image : '/assets/img/no-image.png'}" loading="lazy">
   </div>
   
   <div class="deal-title">
