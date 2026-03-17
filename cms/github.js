@@ -41,6 +41,12 @@ let title=document.getElementById("title").value.trim();
 let rawPrice=document.getElementById("price").value;
 let price=parseInt(rawPrice.replace(/[^0-9]/g,'')) || 0;
 
+// ❌ BLOCK publish if price missing
+if(!rawPrice || price === 0){
+alert("⚠️ Price is required to publish deal");
+return;
+}
+
 let platform=document.getElementById("platform").value.trim();
 let link=document.getElementById("link").value.trim();
 
