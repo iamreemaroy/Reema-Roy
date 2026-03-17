@@ -1,14 +1,14 @@
 function loginGithub(){
-  let token=prompt("Enter GitHub Token (only once)");
-  if(token){
-  localStorage.setItem("github_token",token);
-  alert("Logged in successfully!");
-  }
+  let existing = localStorage.getItem("github_token");
+  if(existing){
+  alert("Already logged in ✅");
+  return;
 }
-
-function logoutGithub(){
-  localStorage.removeItem("github_token");
-  alert("Logged out!");
+  let token = prompt("Enter GitHub Token (one-time setup)");
+  if(token){
+  localStorage.setItem("github_token", token);
+  alert("Login successful 🎉");
+  }
 }
 
 async function publish(){
