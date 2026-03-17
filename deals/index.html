@@ -98,13 +98,13 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .deal-img{
-
 height:160px;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
+background:#111;
+border-radius:8px;
+padding:10px;
 }
 
 .deal-img img{
@@ -279,32 +279,46 @@ margin-top:10px;
 }
 
   function renderDeals(deals){
-  let html="";
-  deals.reverse().forEach(d=>{
-  let priceNumber=parseInt((d.price || "0").replace(/[^0-9]/g,''));
-  html+=`
-  <div class="deal-card">
-  <div class="deal-img">
-  <img src="${d.image && d.image.startsWith('http') ? d.image : '/assets/img/no-image.png'}" loading="lazy">
-  </div>
-  
-  <div class="deal-title">
-  ${d.title}
-  </div>
-  
-  <div class="deal-price">
-  ₹${priceNumber.toLocaleString()}
-  </div>
-  
-    <a href="${d.link}" target="_blank" class="deal-btn">
-    View Deal
-    </a>
-  </div>
-  
-  `;
-  });
-  document.getElementById("deals").innerHTML=html;
-  }
+
+let html="";
+
+deals.reverse().forEach(d=>{
+
+let priceNumber=parseInt((d.price || "0").replace(/[^0-9]/g,''));
+
+let image=(d.image || "").replace(/_SL\d+_/,"_SL2000_");
+
+html+=`
+
+<div class="deal-card">
+
+<div class="deal-img">
+
+<img src="${image || '/assets/img/no-image.png'}" loading="lazy">
+
+</div>
+
+<div class="deal-title">
+${d.title || "Product"}
+</div>
+
+<div class="deal-price">
+₹${priceNumber.toLocaleString()}
+</div>
+
+<a href="${d.link}" target="_blank" class="deal-btn">
+View Deal
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("deals").innerHTML=html;
+
+}
 
   function applyFilters(){
   let search=document.getElementById("search").value.toLowerCase();
@@ -321,7 +335,8 @@ margin-top:10px;
   let title=(d.title || "").toLowerCase();
   let price=parseInt((d.price || "0").replace(/[^0-9]/g,''));
   let matchTitle=title.includes(search);
-  let matchCategory=!category || d.category===category;
+  let matchCategory = !category || 
+    (d.category || "").toLowerCase().trim() === category.toLowerCase().trim();
   let matchPrice=price>=min && price<=max;
   return matchTitle && matchCategory && matchPrice;
   });
