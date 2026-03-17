@@ -1,39 +1,36 @@
 async function fetchProduct() {
-
   let url = document.getElementById("link").value;
-
   if (!url) {
     alert("Paste affiliate link first");
     return;
   }
-
   try {
-
     let api = "https://api.microlink.io/?url=" + encodeURIComponent(url);
-
     let response = await fetch(api);
     let data = await response.json();
-
     if (data.status === "success") {
-
       document.getElementById("title").value = data.data.title || "";
       document.getElementById("description").value = data.data.description || "";
-      document.getElementById("image").value = data.data.image?.url || "";
-
+      let image = data.data.image?.url || "";
+      // 🔥 Fix blur image
+      if (image.includes("amazon")) {
+        image = image.replace(/_SL\d+_/,"_SL2000_");
+      }
+      // fallback
+      if (!image) {
+        image = "/assets/img/no-image.png";
+      }
+      document.getElementById("image").value = image;
       if (url.includes("amazon")) {
         document.getElementById("platform").value = "Amazon";
       }
-
       if (url.includes("myntra")) {
         document.getElementById("platform").value = "Myntra";
       }
-
     }
-
   } catch (e) {
     alert("Unable to fetch product automatically. Fill details manually.");
   }
-
 }
 
 function preview() {
