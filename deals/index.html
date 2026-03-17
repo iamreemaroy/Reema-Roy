@@ -108,10 +108,10 @@ justify-content:center;
 }
 
 .deal-img img{
-
-max-height:150px;
-max-width:100%;
+width:100%;
+height:180px;
 object-fit:contain;
+image-rendering:auto;
 
 }
 
@@ -271,90 +271,62 @@ margin-top:10px;
 
 
 <script>
-
-let allDeals=[];
-
-async function loadDeals(){
-
-let res=await fetch("/data/deals.json");
-
-allDeals=await res.json();
-
-renderDeals(allDeals);
-
+  let allDeals=[];
+  async function loadDeals(){
+  let res=await fetch("/data/deals.json");
+  allDeals=await res.json();
+  renderDeals(allDeals);
 }
 
+  function renderDeals(deals){
+  let html="";
+  deals.reverse().forEach(d=>{
+  let priceNumber=parseInt((d.price || "0").replace(/[^0-9]/g,''));
+  html+=`
+  <div class="deal-card">
+  <div class="deal-img">
+  <img src="${d.image || '/assets/img/no-image.png'}" loading="lazy">
+  </div>
+  
+  <div class="deal-title">
+  ${d.title}
+  </div>
+  
+  <div class="deal-price">
+  ₹${priceNumber.toLocaleString()}
+  </div>
+  
+    <a href="${d.link}" target="_blank" class="deal-btn">
+    View Deal
+    </a>
+  </div>
+  
+  `;
+  });
+  document.getElementById("deals").innerHTML=html;
+  }
 
-function renderDeals(deals){
-
-let html="";
-
-deals.reverse().forEach(d=>{
-
-html+=`
-
-<div class="deal-card">
-
-<div class="deal-img">
-
-<img src="${d.image || '/assets/img/placeholder.webp'}">
-
-</div>
-
-<div class="deal-title">
-
-${d.title || "Product"}
-
-</div>
-
-<div class="deal-price">
-
-${d.price || ""}
-
-</div>
-
-<a href="${d.link}" target="_blank" class="deal-btn">
-
-View Deal
-
-</a>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("deals").innerHTML=html;
-
-}
-
-
-
-function applyFilters(){
-
-let search=document.getElementById("search").value.toLowerCase();
-
-let category=document.getElementById("category").value;
-
-let maxPrice=document.getElementById("price").value;
-
-let filtered=allDeals.filter(d=>{
-
-let matchTitle=d.title.toLowerCase().includes(search);
-
-let matchCategory=!category || d.category===category;
-
-let matchPrice=!maxPrice || parseInt((d.price || "0").replace(/[^0-9]/g,''))<=maxPrice;
-
-return matchTitle && matchCategory && matchPrice;
-
-});
-
-renderDeals(filtered);
-
-}
-
+  function applyFilters(){
+  let search=document.getElementById("search").value.toLowerCase();
+  let category=document.getElementById("category").value;
+  let priceRange=document.getElementById("priceRange").value;
+  let min=0;
+  let max=999999;
+  if(priceRange){
+  let parts=priceRange.split("-");
+  min=parseInt(parts[0]);
+  max=parseInt(parts[1]);
+  }
+  let filtered=allDeals.filter(d=>{
+  let title=(d.title || "").toLowerCase();
+  let price=parseInt((d.price || "0").replace(/[^0-9]/g,''));
+  let matchTitle=title.includes(search);
+  let matchCategory=!category || d.category===category;
+  let matchPrice=price>=min && price<=max;
+  return matchTitle && matchCategory && matchPrice;
+  });
+  renderDeals(filtered);
+  }
 
 loadDeals();
 
