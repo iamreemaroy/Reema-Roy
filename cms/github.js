@@ -13,7 +13,12 @@ function logoutGithub(){
 
 async function publish(){
 
-let token = prompt("Enter GitHub Token");
+let token = localStorage.getItem("github_token");
+
+if(!token){
+alert("Please login first");
+return;
+}
 
 if(!token){
 alert("Token required");
