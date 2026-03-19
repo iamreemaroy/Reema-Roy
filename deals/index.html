@@ -14,7 +14,7 @@
 <link href="/assets/css/main.css" rel="stylesheet">
 
 <style>
-
+/* (your same CSS unchanged) */
 .deals-layout{
 display:flex;
 gap:40px;
@@ -76,19 +76,14 @@ gap:30px;
 }  
 
 .deal-card{
-
 width:260px;
 height:340px;
-
 background:#1b1b1b;
 border-radius:12px;
-
 padding:18px;
-
 display:flex;
 flex-direction:column;
 justify-content:space-between;
-
 transition:0.2s;
 }
 
@@ -110,8 +105,6 @@ padding:10px;
 width:100%;
 height:180px;
 object-fit:contain;
-image-rendering:auto;
-
 }
 
 .deal-title{
@@ -120,8 +113,7 @@ font-weight:600;
 color:white;
 margin-top:8px;
 height:40px;
-overflow:visible;
-text-align: center;
+text-align:center;
 }
 
 .deal-price{
@@ -129,63 +121,18 @@ font-size:18px;
 font-weight:700;
 color:#ff6600;
 margin-top:6px;
-text-align: center;
+text-align:center;
 }
 
 .deal-btn{
-
 background:#ff6600;
 color:white;
-
 text-align:center;
-
 padding:8px;
 border-radius:6px;
-
 text-decoration:none;
-
-margin-top:10px;
-
-}  
-.stats-wrapper{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-gap:30px;
-}
-
-.stats-item{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.05);
-text-align:center;
-}
-
-.stats-item img{
-height:200px;
-object-fit:contain;
-width:100%;
-}
-
-.price-badge{
-background:#595656;
-color:white;
-padding:5px 10px;
-border-radius:5px;
-display:inline-block;
-margin-top:5px;
-}
-
-.view-btn{
-background:var(--accent-color);
-color:var(--contrast-color);
-padding:8px 15px;
-border-radius:5px;
-text-decoration:none;
-display:inline-block;
 margin-top:10px;
 }
-
 </style>
 
 </head>
@@ -219,29 +166,25 @@ margin-top:10px;
 <label>Category</label>
 <select id="category">
 <option value="">All</option>
-  <option value="beauty-skincare">Beauty & Skincare</option>
-  <option value="daily-essentials">Daily Essentials</option>
-  <option value="electronics">Electronics</option>
-  <option value="fashion">Fashion</option>
-  <option value="home-kitchen">Home & Kitchen</option>
-  <option value="lifestyle">Lifestyle</option>
+<option value="beauty-skincare">Beauty & Skincare</option>
+<option value="daily-essentials">Daily Essentials</option>
+<option value="electronics">Electronics</option>
+<option value="fashion">Fashion</option>
+<option value="home-kitchen">Home & Kitchen</option>
+<option value="lifestyle">Lifestyle</option>
 </select>
 </div>
 
 <div class="filter-group">
 <label>Price Range</label>
-
 <select id="priceRange">
-
 <option value="">All</option>
 <option value="0-1000">₹0 - ₹1000</option>
 <option value="1000-5000">₹1000 - ₹5000</option>
 <option value="5000-10000">₹5000 - ₹10000</option>
 <option value="10000-20000">₹10000 - ₹20000</option>
 <option value="20000-999999">₹20000+</option>
-
 </select>
-
 </div>
 
 <button onclick="applyFilters()">Apply Filter</button>
@@ -249,11 +192,8 @@ margin-top:10px;
 </div>
 
 <!-- DEALS GRID -->
-
 <div class="deals-content">
-
 <div class="deals-grid" id="deals"></div>
-
 </div>
 
 </div>
@@ -264,35 +204,48 @@ margin-top:10px;
 
 <div id="footer-placeholder"></div>
 
-  <script>
+<script>
 
 let allDeals=[];
 
-// ✅ Load deals + apply URL filters
+// LOAD DEALS
 async function loadDeals(){
 
 let res=await fetch("/data/deals.json");
 allDeals=await res.json();
 
-syncFiltersUI();   // load filters from URL
-filterDeals();     // apply filters
+// ✅ SEO META (FIXED)
+if(allDeals.length > 0){
+  let first = allDeals[0];
 
+  document.title = "Latest Deals on Amazon & Myntra | Reema Roy";
+
+  let metaDesc = document.querySelector("meta[name='description']");
+  if (!metaDesc) {
+    metaDesc = document.createElement("meta");
+    metaDesc.name = "description";
+    document.head.appendChild(metaDesc);
+  }
+
+  metaDesc.content = first.description || "Best curated deals on Amazon & Myntra. Save more daily.";
+}
+
+syncFiltersUI();
+filterDeals();
 }
 
 
-// ✅ Render Deals
+// RENDER DEALS
 function renderDeals(deals){
 
 let html="";
 
-deals.reverse().forEach(d=>{
+deals.slice().reverse().forEach(d=>{
 
 let priceNumber=parseInt((d.price || "0").toString().replace(/[^0-9]/g,'')) || 0;
-
 let image=(d.image || "").replace(/_SL\d+_/,"_SL2000_");
 
 html+=`
-
 <div class="deal-card">
 
 <div class="deal-img">
@@ -312,7 +265,6 @@ View Deal
 </a>
 
 </div>
-
 `;
 
 });
@@ -322,14 +274,13 @@ document.getElementById("deals").innerHTML=html;
 }
 
 
-// ✅ Apply Filters (UPDATE URL)
+// APPLY FILTERS
 function applyFilters(){
 
 let search=document.getElementById("search").value;
 let category=document.getElementById("category").value;
 let priceRange=document.getElementById("priceRange").value;
 
-// update URL
 let params=new URLSearchParams();
 
 if(search) params.set("search",search);
@@ -338,13 +289,11 @@ if(priceRange) params.set("price",priceRange);
 
 history.replaceState(null,"","?"+params.toString());
 
-// apply filter
 filterDeals();
-
 }
 
 
-// ✅ Filter Logic (READ FROM URL)
+// FILTER LOGIC
 function filterDeals(){
 
 let urlParams=new URLSearchParams(window.location.search);
@@ -379,11 +328,10 @@ return matchTitle && matchCategory && matchPrice;
 });
 
 renderDeals(filtered);
-
 }
 
 
-// ✅ Sync UI from URL (IMPORTANT UX)
+// SYNC UI
 function syncFiltersUI(){
 
 let params=new URLSearchParams(window.location.search);
@@ -395,7 +343,7 @@ document.getElementById("priceRange").value=params.get("price") || "";
 }
 
 
-// 🚀 INIT
+// INIT
 loadDeals();
 
 </script>
@@ -405,5 +353,4 @@ loadDeals();
 <script src="/assets/js/main.js"></script>
 
 </body>
-
 </html>
