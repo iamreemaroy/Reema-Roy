@@ -2,15 +2,32 @@ const allowedUser = "iamreemaroy";
 async function checkUser() {
   let token = localStorage.getItem("github_token");
   if (!token) {
-    document.body.innerHTML = "<h2 style='text-align:center'>Login Required</h2>";
+    document.body.innerHTML = `
+      <div style="text-align:center;margin-top:100px;">
+        <h2>Login Required</h2>
+        <button onclick="loginGithub()" style="padding:10px 20px;background:black;color:white;border:none;border-radius:6px;">
+          Login with GitHub
+        </button>
+      </div>
+    `;
     return;
   }
-  let res = await fetch("https://api.github.com/user", {
-    headers: { Authorization: "token " + token }
-  });
-  let data = await res.json();
-  if (data.login !== allowedUser) {
-    document.body.innerHTML = "<h2 style='text-align:center'>Access Denied</h2>";
+  try {
+    let res = await fetch("https://api.github.com/user", {
+      headers: { Authorization: "token " + token }
+    });
+    let data = await res.json();
+    if (data.login !== allowedUser) {
+      document.body.innerHTML = `
+        <div style="text-align:center;margin-top:100px;">
+          <h2>Access Denied</h2>
+          <button onclick="logoutGithub()">Logout</button>
+        </div>
+      `;
+    }
+  } catch (e) {
+    localStorage.removeItem("github_token");
+    location.reload();
   }
 }
 checkUser();
