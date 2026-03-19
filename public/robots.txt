@@ -3,7 +3,7 @@
 User-agent: *
 Allow: /
 Allow: /deals/?category=
-Disallow: /cms/*
+Disallow: /cms/
 Disallow: /*?search=
 Disallow: /search/*
 Disallow: /search?*
