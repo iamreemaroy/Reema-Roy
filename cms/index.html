@@ -36,24 +36,19 @@
     <body>
 
       <h1>Deals CMS</h1>
+      <div style="margin-bottom:20px;">
+        <button onclick="loginGithub()" style="background:black;color:white;">
+          Login with GitHub
+        </button>
       
-      <!-- ✅ ADD HERE -->
-      <button onclick="loginGithub()" style="background:black;color:white;">
-      Login with GitHub
-      </button>
-      
-      <button onclick="logoutGithub()" style="margin-left:10px;">
-      Logout
-      </button>
-      
-      <br><br>
+        <button onclick="logoutGithub()" style="margin-left:10px;">
+          Logout
+        </button>
+      </div>
       
       <label>Affiliate Link</label>
-      <input id="link">
-      <button onclick="fetchProduct()">Auto Fetch Product</button>
+      <input id="link" placeholder="Paste Amazon / Myntra link here">
       
-      <label>Affiliate Link</label>
-      <input id="link">
       <button onclick="fetchProduct()">Auto Fetch Product</button>
       
       <br><br>
