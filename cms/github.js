@@ -32,17 +32,13 @@ async function publish(){
 let token = localStorage.getItem("github_token");
 
 if(!token){
-alert("Please login first");
-return;
-}
-
-if(!token){
-alert("Token required");
-return;
+  alert("Please login first");
+  return;
 }
 
 if(localStorage.getItem("github_token")){
-document.querySelector("[onclick='loginGithub()']").style.display="none";
+let btn = document.querySelector("[onclick='loginGithub()']");
+if(btn) btn.style.display = "none";
 }  
 
 let title=document.getElementById("title").value.trim();
