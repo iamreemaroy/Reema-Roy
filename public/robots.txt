@@ -2,6 +2,7 @@
 # robots.txt for https://www.reemaroy.com
 User-agent: *
 Allow: /
+Allow: /blog/
 Allow: /deals/?category=
 Disallow: /cms/
 Disallow: /*?search=
