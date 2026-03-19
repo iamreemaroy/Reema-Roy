@@ -1,8 +1,16 @@
+
+
 window.onload = function(){
   let token = localStorage.getItem("github_token");
   if(token){
   console.log("Already logged in");
   }
+}
+
+function logoutGithub(){
+  localStorage.removeItem("github_token");
+  alert("Logged out successfully");
+  location.reload();
 }
 
 function loginGithub(){
