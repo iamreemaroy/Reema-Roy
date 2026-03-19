@@ -9,8 +9,10 @@ window.onload = function(){
 
 function logoutGithub(){
   localStorage.removeItem("github_token");
-  alert("Logged out successfully");
-  location.reload();
+  document.body.innerHTML = "<h2 style='text-align:center'>Logged out</h2>";
+  setTimeout(()=>{
+    location.reload();
+  },1000);
 }
 
 function loginGithub(){
