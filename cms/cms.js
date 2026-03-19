@@ -1,3 +1,20 @@
+const allowedUser = "iamreemaroy";
+async function checkUser() {
+  let token = localStorage.getItem("github_token");
+  if (!token) {
+    document.body.innerHTML = "<h2 style='text-align:center'>Login Required</h2>";
+    return;
+  }
+  let res = await fetch("https://api.github.com/user", {
+    headers: { Authorization: "token " + token }
+  });
+  let data = await res.json();
+  if (data.login !== allowedUser) {
+    document.body.innerHTML = "<h2 style='text-align:center'>Access Denied</h2>";
+  }
+}
+checkUser();
+
 async function fetchProduct() {
   let url = document.getElementById("link").value;
   if (!url) {
