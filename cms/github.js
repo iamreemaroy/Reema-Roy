@@ -1,12 +1,3 @@
-function loginGithub(){
-  let token = prompt("Enter GitHub Token");
-  
-  if(token){
-    localStorage.setItem("github_token", token);
-    location.reload();
-  }
-}
-
 window.onload = function(){
   let token = localStorage.getItem("github_token");
   if(token){
@@ -25,13 +16,14 @@ function logoutGithub(){
 function loginGithub(){
   let existing = localStorage.getItem("github_token");
   if(existing){
-  alert("Already logged in ✅");
-  return;
-}
+    alert("Already logged in ✅");
+    return;
+  }
   let token = prompt("Enter GitHub Token (one-time setup)");
   if(token){
-  localStorage.setItem("github_token", token);
-  alert("Login successful 🎉");
+    localStorage.setItem("github_token", token);
+    alert("Login successful 🎉");
+    location.reload(); // IMPORTANT add this
   }
 }
 
