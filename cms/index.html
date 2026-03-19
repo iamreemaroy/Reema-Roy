@@ -114,8 +114,14 @@
       
       <br>
       
-      <button onclick="preview()">Preview</button>
-      <button onclick="publish()">Publish</button>
+      
+      <div style="margin-top:20px;">
+        <button onclick="preview()" class="secondary-btn">Preview</button>
+        <button onclick="publish(if(!price){
+          alert("Price is required");
+          return;
+          })" class="primary-btn">Publish</button>
+    </div>
       
       <div id="preview"></div>
       
