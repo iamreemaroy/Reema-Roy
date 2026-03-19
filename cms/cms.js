@@ -44,7 +44,9 @@ async function fetchProduct() {
     let data = await response.json();
     if (data.status === "success") {
       document.getElementById("title").value = data.data.title || "";
-      document.getElementById("description").value = data.data.description || "";
+      let desc = data.data.description || "";
+        desc = desc.substring(0, 160);
+        document.getElementById("description").value = desc;
       let image = data.data.image?.url || "";
       // 🔥 Fix blur image
       if (image.includes("amazon")) {
