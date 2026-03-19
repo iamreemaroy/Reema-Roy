@@ -1,4 +1,11 @@
-
+function loginGithub(){
+  let token = prompt("Enter GitHub Token");
+  
+  if(token){
+    localStorage.setItem("github_token", token);
+    location.reload();
+  }
+}
 
 window.onload = function(){
   let token = localStorage.getItem("github_token");
