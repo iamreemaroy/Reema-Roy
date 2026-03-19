@@ -343,9 +343,32 @@ document.getElementById("priceRange").value=params.get("price") || "";
 }
 
 
+// Item Schema
+function addItemListSchema(deals){
+let items = deals.slice(0, 20).map((d, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": d.title,
+  "url": d.link
+}));
+let schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": items
+};
+let old = document.getElementById("itemlist-schema");
+if(old) old.remove();
+let script = document.createElement("script");
+script.type = "application/ld+json";
+script.id = "itemlist-schema";
+script.innerHTML = JSON.stringify(schema);
+document.head.appendChild(script);
+}
+
 // INIT
 loadDeals();
-
+addItemListSchema(allDeals); 
+  
 </script>
 
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
