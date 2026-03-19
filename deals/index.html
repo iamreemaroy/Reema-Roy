@@ -135,6 +135,93 @@
         text-decoration: none;
         margin-top: 10px;
       }
+		/* MOBILE FILTER UI */
+.mobile-filters {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 998;
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: #1b1b1b;
+  transition: 0.3s;
+  z-index: 999;
+  border-radius: 16px 16px 0 0;
+}
+
+.bottom-sheet.active {
+  bottom: 0;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.sheet-content {
+  padding: 20px;
+  color: white;
+}
+
+.sheet-content input,
+.sheet-content select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #111;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+/* ✅ MOBILE ONLY */
+@media (max-width: 768px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-filters {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-filters button {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .deals-layout {
+    flex-direction: column;
+  }
+
+  .deal-card {
+    width: 100%;
+  }
+}
     </style>
   </head>
   <body>
@@ -145,6 +232,27 @@
           <h1>Latest Deals</h1>
           <p>Find the latest Amazon and Myntra deals curated daily. Discover discounts on electronics, fashion, home essentials, and more. Save money with verified offers and trending products updated regularly.</p>
         </div>
+
+		  <!-- MOBILE FILTER BAR -->
+<div class="mobile-filters">
+  <button onclick="openFilter('search')">Search</button>
+  <button onclick="openFilter('category')">Category</button>
+  <button onclick="openFilter('price')">Price</button>
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeFilter()"></div>
+
+<!-- BOTTOM SHEET -->
+<div id="filterSheet" class="bottom-sheet">
+  <div class="sheet-content">
+    <h3 id="filterTitle">Filter</h3>
+
+    <div id="filterOptions"></div>
+
+    <button onclick="applyMobileFilters()">Apply Filter</button>
+  </div>
+</div>
 		  
         <div class="deals-layout">
           <!-- FILTER SIDEBAR -->
@@ -300,6 +408,72 @@
     script.innerHTML = JSON.stringify(schema);
     document.head.appendChild(script);
   }
+
+		function openFilter(type) {
+  document.getElementById("filterSheet").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+
+  let title = document.getElementById("filterTitle");
+  let options = document.getElementById("filterOptions");
+
+  if (type === "search") {
+    title.innerText = "Search";
+    options.innerHTML = `
+      <input type="text" id="m_search" placeholder="Search product">
+    `;
+  }
+
+  if (type === "category") {
+    title.innerText = "Category";
+    options.innerHTML = `
+      <select id="m_category">
+        <option value="">All</option>
+        <option value="beauty-skincare">Beauty & Skincare</option>
+        <option value="daily-essentials">Daily Essentials</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="home-kitchen">Home & Kitchen</option>
+        <option value="lifestyle">Lifestyle</option>
+      </select>
+    `;
+  }
+
+  if (type === "price") {
+    title.innerText = "Price Range";
+    options.innerHTML = `
+      <select id="m_price">
+        <option value="">All</option>
+        <option value="0-1000">₹0 - ₹1000</option>
+        <option value="1000-5000">₹1000 - ₹5000</option>
+        <option value="5000-10000">₹5000 - ₹10000</option>
+        <option value="10000-20000">₹10000 - ₹20000</option>
+        <option value="20000-999999">₹20000+</option>
+      </select>
+    `;
+  }
+}
+
+function closeFilter() {
+  document.getElementById("filterSheet").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+function applyMobileFilters() {
+  let search = document.getElementById("m_search")?.value || "";
+  let category = document.getElementById("m_category")?.value || "";
+  let price = document.getElementById("m_price")?.value || "";
+
+  let params = new URLSearchParams(window.location.search);
+
+  if (search) params.set("search", search);
+  if (category) params.set("category", category);
+  if (price) params.set("price", price);
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  closeFilter();
+  filterDeals();
+}
   // INIT
   loadDeals();
   </script>
