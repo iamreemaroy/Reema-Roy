@@ -46,6 +46,7 @@ document.querySelector("[onclick='loginGithub()']").style.display="none";
 }  
 
 let title=document.getElementById("title").value.trim();
+let description = document.getElementById("description").value.trim();
 
 let rawPrice=document.getElementById("price").value;
 let price=parseInt(rawPrice.replace(/[^0-9]/g,'')) || 0;
@@ -71,12 +72,13 @@ let category=document.getElementById("category").value.toLowerCase().trim();
 let repo="iamreemaroy/Reema-Roy";
 
 let newDeal={
-title,
-price,
-platform,
-link,
-image,
-category
+  title,
+  price,
+  platform,
+  link,
+  image,
+  category,
+  description
 };
 
 let res=await fetch(
