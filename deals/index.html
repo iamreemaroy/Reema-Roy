@@ -457,6 +457,9 @@ function instantFilter(type, value) {
   updateURL(params);
   renderActiveFilters();
   filterDeals();
+
+  // ✅ FIX: re-render filter UI so selection color updates
+  openFilter(type);
 }
 
 function multiSelectFilter(type, checkbox) {
@@ -472,6 +475,9 @@ function multiSelectFilter(type, checkbox) {
   updateURL(params);
   renderActiveFilters();
   filterDeals();
+
+  // ✅ FIX: refresh UI
+  openFilter(type);
 }
 
 function removeFilter(type) {
