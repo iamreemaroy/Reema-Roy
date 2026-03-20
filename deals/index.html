@@ -437,6 +437,8 @@ function filterDeals() {
     let matchSearch = title.includes(search);
     let matchCategory = !categories[0] || categories.includes((d.category || "").toLowerCase());
     let matchPrice = price >= min && price <= max;
+
+    return matchSearch && matchCategory && matchPrice; // ✅ THIS WAS MISSING
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
