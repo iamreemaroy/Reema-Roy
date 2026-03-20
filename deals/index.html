@@ -266,7 +266,19 @@
     cursor: pointer;
     font-size: 12px;
   }
+  .filter-option {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #222;
+  cursor: pointer;
 }
+
+.filter-option.active {
+  background: #ff6600;
+}
+}
+      
     </style>
   </head>
   <body>
@@ -281,11 +293,10 @@
 
 <!-- MOBILE FILTER BAR -->
 <div class="mobile-filters">
-  <button onclick="openFilter('search')">🔍</button>
-  <button onclick="openFilter('category')">📦</button>
-  <button onclick="openFilter('price')">💰</button>
-  <button onclick="openFilter('discount')">🏷</button>
-  <button onclick="openFilter('sort')">↕</button>
+  <button onclick="openFilter('search')">Search</button>
+  <button onclick="openFilter('category')">Category</button>
+  <button onclick="openFilter('price')">Price</button>
+  <button onclick="openFilter('sort')">Sort</button>
 </div>
 
 <!-- ACTIVE FILTERS -->
@@ -409,7 +420,6 @@ function filterDeals() {
   let search = (params.get("search") || "").toLowerCase();
   let categories = (params.get("category") || "").split(",");
   let priceRange = params.get("price");
-  let discounts = (params.get("discount") || "").split(",");
   let sort = params.get("sort");
 
   let min = 0, max = 999999;
@@ -423,18 +433,10 @@ function filterDeals() {
   let filtered = allDeals.filter(d => {
     let title = (d.title || "").toLowerCase();
     let price = parseInt(d.price || "0");
-    let discount = parseInt(d.discount || "0");
 
     let matchSearch = title.includes(search);
     let matchCategory = !categories[0] || categories.includes((d.category || "").toLowerCase());
     let matchPrice = price >= min && price <= max;
-
-    let matchDiscount = true;
-    if (discounts[0]) {
-      matchDiscount = discounts.some(dv => discount >= +dv);
-    }
-
-    return matchSearch && matchCategory && matchPrice && matchDiscount;
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
@@ -515,6 +517,7 @@ function openFilter(type) {
   let params = getParams();
   let options = document.getElementById("filterOptions");
 
+  /* SEARCH */
   if (type === "search") {
     options.innerHTML = `
       <input type="text"
@@ -524,52 +527,68 @@ function openFilter(type) {
     `;
   }
 
+  /* CATEGORY (MULTI SELECT) */
   if (type === "category") {
     let selected = (params.get("category") || "").split(",");
     let list = ["beauty-skincare","fashion","electronics","home-kitchen","lifestyle"];
 
     options.innerHTML = list.map(c => `
-      <label>
+      <label style="display:flex; gap:10px; padding:10px 0;">
         <input type="checkbox" value="${c}"
         ${selected.includes(c) ? "checked" : ""}
         onchange="multiSelectFilter('category', this)">
         ${c}
-      </label><br>
+      </label>
     `).join("");
   }
 
+  /* PRICE (CLICK SELECT - NO DROPDOWN) */
   if (type === "price") {
-    options.innerHTML = `
-      <select onchange="instantFilter('price', this.value)">
-        <option value="">All</option>
-        <option value="0-1000">₹0-1000</option>
-        <option value="1000-5000">₹1000-5000</option>
-        <option value="5000-10000">₹5000-10000</option>
-      </select>
-    `;
-  }
+    let selected = params.get("price") || "";
 
-  if (type === "discount") {
-    let selected = (params.get("discount") || "").split(",");
+    let list = [
+      {label:"All", value:""},
+      {label:"₹0 - ₹1000", value:"0-1000"},
+      {label:"₹1000 - ₹5000", value:"1000-5000"},
+      {label:"₹5000 - ₹10000", value:"5000-10000"}
+    ];
 
-    options.innerHTML = ["10","25","50","70"].map(d => `
-      <label>
-        <input type="checkbox" value="${d}"
-        ${selected.includes(d) ? "checked" : ""}
-        onchange="multiSelectFilter('discount', this)">
-        ${d}%+ off
-      </label><br>
+    options.innerHTML = list.map(p => `
+      <div onclick="instantFilter('price','${p.value}')"
+        style="
+          padding:12px;
+          margin-bottom:8px;
+          border-radius:8px;
+          background:${selected === p.value ? '#ff6600' : '#222'};
+          cursor:pointer;
+        ">
+        ${p.label}
+      </div>
     `).join("");
   }
 
+  /* SORT (CLICK SELECT - NO DROPDOWN) */
   if (type === "sort") {
-    options.innerHTML = `
-      <select onchange="instantFilter('sort', this.value)">
-        <option value="">Default</option>
-        <option value="low">Price Low → High</option>
-        <option value="high">Price High → Low</option>
-      </select>
-    `;
+    let selected = params.get("sort") || "";
+
+    let list = [
+      {label:"Default", value:""},
+      {label:"Price Low → High", value:"low"},
+      {label:"Price High → Low", value:"high"}
+    ];
+
+    options.innerHTML = list.map(s => `
+      <div onclick="instantFilter('sort','${s.value}')"
+        style="
+          padding:12px;
+          margin-bottom:8px;
+          border-radius:8px;
+          background:${selected === s.value ? '#ff6600' : '#222'};
+          cursor:pointer;
+        ">
+        ${s.label}
+      </div>
+    `).join("");
   }
 }
 
