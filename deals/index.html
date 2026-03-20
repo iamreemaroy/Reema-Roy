@@ -147,37 +147,6 @@
         display: none;
       }
 
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: none;
-        z-index: 998;
-      }
-
-      .bottom-sheet {
-        position: fixed;
-        bottom: -100%;
-        left: 0;
-        width: 100%;
-        height: 65%;
-        background: #1b1b1b;
-        transition: 0.3s;
-        z-index: 999;
-        border-radius: 16px 16px 0 0;
-      }
-
-      .bottom-sheet.active {
-        bottom: 0;
-      }
-
-      .overlay.active {
-        display: block;
-      }
-
       .sheet-content {
         padding: 20px;
         color: white;
@@ -277,7 +246,43 @@
 .filter-option.active {
   background: #ff6600;
 }
+  .mobile-filters {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #111;
+  justify-content: center;
 }
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #1b1b1b;
+  padding: 10px;
+  border-radius: 10px;
+  width: 220px;
+  z-index: 999;
+}
+
+.dropdown-menu.active {
+  display: block;
+}
+}
+      
       
     </style>
   </head>
@@ -291,26 +296,35 @@
         </div>
         <!-- 🔥 ONLY REPLACED MOBILE FILTER SECTION + JS LOGIC -->
 
-<!-- MOBILE FILTER BAR -->
 <div class="mobile-filters">
-  <button onclick="openFilter('category')">Category</button>
-  <button onclick="openFilter('price')">Price</button>
-  <button onclick="openFilter('sort')">Sort</button>
+
+  <!-- CATEGORY -->
+  <div class="dropdown">
+    <button onclick="toggleDropdown('catDropdown')">Category</button>
+    <div class="dropdown-menu" id="catDropdown"></div>
+  </div>
+
+  <!-- PRICE -->
+  <select onchange="selectSingle('price', this.value)">
+    <option value="">Price</option>
+    <option value="0-1000">₹0 - ₹1000</option>
+    <option value="1000-5000">₹1000 - ₹5000</option>
+    <option value="5000-10000">₹5000 - ₹10000</option>
+    <option value="10000-999999">₹10000+</option>
+  </select>
+
+  <!-- SORT -->
+  <select onchange="selectSingle('sort', this.value)">
+    <option value="">Sort</option>
+    <option value="low">Price Low → High</option>
+    <option value="high">Price High → Low</option>
+  </select>
+
 </div>
 
 <!-- ACTIVE FILTERS -->
 <div class="active-filters" id="activeFilters"></div>
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeFilter()"></div>
-
-<!-- BOTTOM SHEET -->
-<div id="filterSheet" class="bottom-sheet">
-  <div class="sheet-content">
-    <h3 id="filterTitle">Filter</h3>
-    <div id="filterOptions"></div>
-  </div>
-</div>
         <div class="deals-layout">
           <!-- FILTER SIDEBAR -->
           <div class="sidebar">
@@ -360,22 +374,7 @@ async function loadDeals() {
   let res = await fetch("/data/deals.json");
   allDeals = await res.json();
 
-  if (allDeals.length > 0) {
-    let first = allDeals[0];
-    document.title = "Latest Deals on Amazon & Myntra | Reema Roy";
-
-    let metaDesc = document.querySelector("meta[name='description']");
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
-    }
-
-    metaDesc.content = first.description || "Best curated deals on Amazon & Myntra.";
-  }
-
   addItemListSchema(allDeals);
-  syncFiltersUI();
   renderActiveFilters();
   filterDeals();
 }
@@ -435,7 +434,7 @@ function filterDeals() {
     let matchCategory = !categories[0] || categories.includes(category);
     let matchPrice = price >= min && price <= max;
 
-    return matchCategory && matchPrice; // ✅ IMPORTANT
+    return matchCategory && matchPrice;
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
@@ -444,8 +443,57 @@ function filterDeals() {
   renderDeals(filtered);
 }
 
-/* ================= FILTER ACTIONS ================= */
-function instantFilter(type, value) {
+/* ================= CATEGORY DROPDOWN ================= */
+function renderCategoryDropdown() {
+  let params = getParams();
+  let selected = (params.get("category") || "").split(",");
+
+  let list = [
+    {label:"Beauty", value:"beauty-skincare"},
+    {label:"Fashion", value:"fashion"},
+    {label:"Electronics", value:"electronics"},
+    {label:"Home", value:"home-kitchen"},
+    {label:"Lifestyle", value:"lifestyle"}
+  ];
+
+  let html = list.map(c => `
+    <div onclick="toggleCategory('${c.value}')"
+      style="
+        padding:8px;
+        margin-bottom:6px;
+        border-radius:6px;
+        cursor:pointer;
+        background:${selected.includes(c.value) ? '#ff6600' : '#222'};
+      ">
+      ${c.label}
+    </div>
+  `).join("");
+
+  document.getElementById("catDropdown").innerHTML = html;
+}
+
+/* ================= TOGGLE CATEGORY ================= */
+function toggleCategory(value) {
+  let params = getParams();
+  let values = (params.get("category") || "").split(",").filter(Boolean);
+
+  if (values.includes(value)) {
+    values = values.filter(v => v !== value);
+  } else {
+    values.push(value);
+  }
+
+  if (values.length) params.set("category", values.join(","));
+  else params.delete("category");
+
+  updateURL(params);
+  renderActiveFilters();
+  filterDeals();
+  renderCategoryDropdown();
+}
+
+/* ================= PRICE / SORT ================= */
+function selectSingle(type, value) {
   let params = getParams();
 
   if (!value) params.delete(type);
@@ -454,44 +502,19 @@ function instantFilter(type, value) {
   updateURL(params);
   renderActiveFilters();
   filterDeals();
-
-  // ✅ FIX: re-render filter UI so selection color updates
-  openFilter(type);
 }
 
-function multiSelectFilter(type, checkbox) {
-  let params = getParams();
-  let values = (params.get(type) || "").split(",").filter(Boolean);
+/* ================= DROPDOWN ================= */
+function toggleDropdown(id) {
+  let el = document.getElementById(id);
+  el.classList.toggle("active");
 
-  if (checkbox.checked) values.push(checkbox.value);
-  else values = values.filter(v => v !== checkbox.value);
-
-  if (values.length) params.set(type, values.join(","));
-  else params.delete(type);
-
-  updateURL(params);
-  renderActiveFilters();
-  filterDeals();
-
-  // ✅ FIX: refresh UI
-  openFilter(type);
+  if (id === "catDropdown") {
+    renderCategoryDropdown();
+  }
 }
 
-function removeFilter(type) {
-  let params = getParams();
-  params.delete(type);
-  updateURL(params);
-  renderActiveFilters();
-  filterDeals();
-}
-
-function clearAllFilters() {
-  history.replaceState(null, "", window.location.pathname);
-  renderActiveFilters();
-  filterDeals();
-}
-
-/* ================= UI ================= */
+/* ================= FILTER CHIPS ================= */
 function renderActiveFilters() {
   let params = getParams();
   let container = document.getElementById("activeFilters");
@@ -514,154 +537,18 @@ function renderActiveFilters() {
   container.innerHTML = chips.join("");
 }
 
-/* ================= FILTER UI ================= */
-function openFilter(type) {
-  document.getElementById("filterSheet").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
-
+function removeFilter(type) {
   let params = getParams();
-  let options = document.getElementById("filterOptions");
-
-  /* ================= CATEGORY (LIKE AMAZON BRANDS) ================= */
-  if (type === "category") {
-    let selected = (params.get("category") || "").split(",");
-
-    let list = [
-      {label:"Beauty", value:"beauty-skincare"},
-      {label:"Fashion", value:"fashion"},
-      {label:"Electronics", value:"electronics"},
-      {label:"Home", value:"home-kitchen"},
-      {label:"Lifestyle", value:"lifestyle"}
-    ];
-
-    options.innerHTML = `
-      <div style="display:flex; flex-wrap:wrap; gap:10px;">
-        ${list.map(c => `
-          <div 
-            onclick="toggleChip('category','${c.value}')"
-            style="
-              padding:8px 14px;
-              border-radius:20px;
-              font-size:13px;
-              cursor:pointer;
-              border:1px solid ${selected.includes(c.value) ? '#ff6600' : '#444'};
-              background:${selected.includes(c.value) ? '#ff6600' : '#222'};
-              color:white;
-            ">
-            ${c.label}
-          </div>
-        `).join("")}
-      </div>
-    `;
-  }
-
-  /* ================= PRICE ================= */
-  if (type === "price") {
-    let selected = params.get("price") || "";
-
-    let list = [
-      {label:"All", value:""},
-      {label:"₹0 - ₹1000", value:"0-1000"},
-      {label:"₹1000 - ₹5000", value:"1000-5000"},
-      {label:"₹5000 - ₹10000", value:"5000-10000"},
-      {label:"₹10000+", value:"10000-999999"}
-    ];
-
-    options.innerHTML = list.map(p => `
-      <div onclick="selectSingle('price','${p.value}')"
-        style="
-          padding:12px;
-          margin-bottom:8px;
-          border-radius:8px;
-          background:${selected === p.value ? '#ff6600' : '#222'};
-          cursor:pointer;
-        ">
-        ${p.label}
-      </div>
-    `).join("");
-  }
-
-  /* ================= SORT ================= */
-  if (type === "sort") {
-    let selected = params.get("sort") || "";
-
-    let list = [
-      {label:"Featured", value:""},
-      {label:"Price Low → High", value:"low"},
-      {label:"Price High → Low", value:"high"}
-    ];
-
-    options.innerHTML = list.map(s => `
-      <div onclick="selectSingle('sort','${s.value}')"
-        style="
-          padding:12px;
-          margin-bottom:8px;
-          border-radius:8px;
-          background:${selected === s.value ? '#ff6600' : '#222'};
-          cursor:pointer;
-        ">
-        ${s.label}
-      </div>
-    `).join("");
-  }
-}
-
-      /* MULTI CHIP (CATEGORY LIKE AMAZON) */
-function toggleChip(type, value) {
-  let params = getParams();
-  let values = (params.get(type) || "").split(",").filter(Boolean);
-
-  if (values.includes(value)) {
-    values = values.filter(v => v !== value);
-  } else {
-    values.push(value);
-  }
-
-  if (values.length) params.set(type, values.join(","));
-  else params.delete(type);
-
+  params.delete(type);
   updateURL(params);
   renderActiveFilters();
   filterDeals();
-
-  // 🔥 re-render UI (instant highlight)
-  openFilter(type);
 }
 
-/* SINGLE SELECT (PRICE / SORT) */
-function selectSingle(type, value) {
-  let params = getParams();
-
-  if (!value) params.delete(type);
-  else params.set(type, value);
-
-  updateURL(params);
+function clearAllFilters() {
+  history.replaceState(null, "", window.location.pathname);
   renderActiveFilters();
   filterDeals();
-
-  // highlight update
-  openFilter(type);
-
-  // optional auto close
-  if (type !== "category") closeFilter();
-}
-
-function closeFilter() {
-  document.getElementById("filterSheet").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
-}
-
-/* ================= SYNC ================= */
-function syncFiltersUI() {
-  let params = getParams();
-
-  let s = document.getElementById("search");
-  let c = document.getElementById("category");
-  let p = document.getElementById("priceRange");
-
-  if (s) s.value = params.get("search") || "";
-  if (c) c.value = params.get("category") || "";
-  if (p) p.value = params.get("price") || "";
 }
 
 /* ================= SCHEMA ================= */
