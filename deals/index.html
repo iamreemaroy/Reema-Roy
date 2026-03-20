@@ -417,7 +417,6 @@ function updateURL(params) {
 function filterDeals() {
   let params = getParams();
 
-  let search = (params.get("search") || "").toLowerCase();
   let categories = (params.get("category") || "").split(",");
   let priceRange = params.get("price");
   let sort = params.get("sort");
@@ -431,14 +430,13 @@ function filterDeals() {
   }
 
   let filtered = allDeals.filter(d => {
-    let title = (d.title || "").toLowerCase();
     let price = parseInt(d.price || "0");
+    let category = (d.category || "").toLowerCase();
 
-    let matchSearch = title.includes(search);
-    let matchCategory = !categories[0] || categories.includes((d.category || "").toLowerCase());
+    let matchCategory = !categories[0] || categories.includes(category);
     let matchPrice = price >= min && price <= max;
 
-    return matchSearch && matchCategory && matchPrice; // ✅ THIS WAS MISSING
+    return matchCategory && matchPrice; // ✅ IMPORTANT
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
@@ -525,32 +523,40 @@ function openFilter(type) {
   let params = getParams();
   let options = document.getElementById("filterOptions");
 
-  /* SEARCH */
-  if (type === "search") {
+  /* ================= CATEGORY (LIKE AMAZON BRANDS) ================= */
+  if (type === "category") {
+    let selected = (params.get("category") || "").split(",");
+
+    let list = [
+      {label:"Beauty", value:"beauty-skincare"},
+      {label:"Fashion", value:"fashion"},
+      {label:"Electronics", value:"electronics"},
+      {label:"Home", value:"home-kitchen"},
+      {label:"Lifestyle", value:"lifestyle"}
+    ];
+
     options.innerHTML = `
-      <input type="text"
-      value="${params.get("search") || ""}"
-      placeholder="Search..."
-      oninput="instantFilter('search', this.value)">
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        ${list.map(c => `
+          <div 
+            onclick="toggleChip('category','${c.value}')"
+            style="
+              padding:8px 14px;
+              border-radius:20px;
+              font-size:13px;
+              cursor:pointer;
+              border:1px solid ${selected.includes(c.value) ? '#ff6600' : '#444'};
+              background:${selected.includes(c.value) ? '#ff6600' : '#222'};
+              color:white;
+            ">
+            ${c.label}
+          </div>
+        `).join("")}
+      </div>
     `;
   }
 
-  /* CATEGORY (MULTI SELECT) */
-  if (type === "category") {
-    let selected = (params.get("category") || "").split(",");
-    let list = ["beauty-skincare","fashion","electronics","home-kitchen","lifestyle"];
-
-    options.innerHTML = list.map(c => `
-      <label style="display:flex; gap:10px; padding:10px 0;">
-        <input type="checkbox" value="${c}"
-        ${selected.includes(c) ? "checked" : ""}
-        onchange="multiSelectFilter('category', this)">
-        ${c}
-      </label>
-    `).join("");
-  }
-
-  /* PRICE (CLICK SELECT - NO DROPDOWN) */
+  /* ================= PRICE ================= */
   if (type === "price") {
     let selected = params.get("price") || "";
 
@@ -558,11 +564,12 @@ function openFilter(type) {
       {label:"All", value:""},
       {label:"₹0 - ₹1000", value:"0-1000"},
       {label:"₹1000 - ₹5000", value:"1000-5000"},
-      {label:"₹5000 - ₹10000", value:"5000-10000"}
+      {label:"₹5000 - ₹10000", value:"5000-10000"},
+      {label:"₹10000+", value:"10000-999999"}
     ];
 
     options.innerHTML = list.map(p => `
-      <div onclick="instantFilter('price','${p.value}')"
+      <div onclick="selectSingle('price','${p.value}')"
         style="
           padding:12px;
           margin-bottom:8px;
@@ -575,18 +582,18 @@ function openFilter(type) {
     `).join("");
   }
 
-  /* SORT (CLICK SELECT - NO DROPDOWN) */
+  /* ================= SORT ================= */
   if (type === "sort") {
     let selected = params.get("sort") || "";
 
     let list = [
-      {label:"Default", value:""},
+      {label:"Featured", value:""},
       {label:"Price Low → High", value:"low"},
       {label:"Price High → Low", value:"high"}
     ];
 
     options.innerHTML = list.map(s => `
-      <div onclick="instantFilter('sort','${s.value}')"
+      <div onclick="selectSingle('sort','${s.value}')"
         style="
           padding:12px;
           margin-bottom:8px;
@@ -598,6 +605,46 @@ function openFilter(type) {
       </div>
     `).join("");
   }
+}
+
+      /* MULTI CHIP (CATEGORY LIKE AMAZON) */
+function toggleChip(type, value) {
+  let params = getParams();
+  let values = (params.get(type) || "").split(",").filter(Boolean);
+
+  if (values.includes(value)) {
+    values = values.filter(v => v !== value);
+  } else {
+    values.push(value);
+  }
+
+  if (values.length) params.set(type, values.join(","));
+  else params.delete(type);
+
+  updateURL(params);
+  renderActiveFilters();
+  filterDeals();
+
+  // 🔥 re-render UI (instant highlight)
+  openFilter(type);
+}
+
+/* SINGLE SELECT (PRICE / SORT) */
+function selectSingle(type, value) {
+  let params = getParams();
+
+  if (!value) params.delete(type);
+  else params.set(type, value);
+
+  updateURL(params);
+  renderActiveFilters();
+  filterDeals();
+
+  // highlight update
+  openFilter(type);
+
+  // optional auto close
+  if (type !== "category") closeFilter();
 }
 
 function closeFilter() {
