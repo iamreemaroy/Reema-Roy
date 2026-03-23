@@ -380,7 +380,7 @@ body {
                 <option value="20000-999999">₹20000+</option>
               </select>
             </div>
-            <button onclick="applyFilters()">Apply Filter</button>
+            <button onclick="applyDesktopFilters()">Apply Filter</button>
           </div>
           <!-- DEALS GRID -->
           <div class="deals-content">
@@ -391,6 +391,22 @@ body {
     </main>
     <div id="footer-placeholder"></div>
     <script>
+      function applyDesktopFilters() {
+  let params = new URLSearchParams();
+
+  let search = document.getElementById("search").value.toLowerCase();
+  let category = document.getElementById("category").value;
+  let price = document.getElementById("priceRange").value;
+
+  if (search) params.set("search", search);
+  if (category) params.set("category", category);
+  if (price) params.set("price", price);
+
+  updateURL(params);
+  renderActiveFilters();
+  filterDeals();
+}
+      
 let allDeals = [];
 
 /* ================= LOAD ================= */
@@ -437,8 +453,10 @@ function updateURL(params) {
 
 /* ================= FILTER ================= */
 function filterDeals() {
+  function filterDeals() {
   let params = getParams();
 
+  let search = (params.get("search") || "").toLowerCase();
   let categories = (params.get("category") || "").split(",");
   let priceRange = params.get("price");
   let sort = params.get("sort");
@@ -452,13 +470,15 @@ function filterDeals() {
   }
 
   let filtered = allDeals.filter(d => {
+    let title = (d.title || "").toLowerCase();
     let price = parseInt(d.price || "0");
     let category = (d.category || "").toLowerCase();
 
+    let matchSearch = title.includes(search);
     let matchCategory = !categories[0] || categories.includes(category);
     let matchPrice = price >= min && price <= max;
 
-    return matchCategory && matchPrice;
+    return matchSearch && matchCategory && matchPrice;
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
@@ -466,7 +486,6 @@ function filterDeals() {
 
   renderDeals(filtered);
 }
-
 /* ================= CATEGORY DROPDOWN ================= */
 function renderCategoryDropdown() {
   let params = getParams();
