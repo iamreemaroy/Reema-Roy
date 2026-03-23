@@ -353,38 +353,35 @@ body {
           <!-- FILTER SIDEBAR -->
           <div class="sidebar">
             <h3>Filter</h3>
-            
             <div class="filter-group">
-              <input id="search" oninput="applyDesktopFilters()">
-<select id="category" onchange="applyDesktopFilters()">
-<select id="priceRange" onchange="applyDesktopFilters()">
-  
-              <label>Search</label>
-              <input type="text" id="search" placeholder="Search product">
-            </div>
-            <div class="filter-group">
-              <label>Category</label>
-              <select id="category">
-                <option value="">All</option>
-                <option value="beauty-skincare">Beauty & Skincare</option>
-                <option value="daily-essentials">Daily Essentials</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="home-kitchen">Home & Kitchen</option>
-                <option value="lifestyle">Lifestyle</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label>Price Range</label>
-              <select id="priceRange">
-                <option value="">All</option>
-                <option value="0-1000">₹0 - ₹1000</option>
-                <option value="1000-5000">₹1000 - ₹5000</option>
-                <option value="5000-10000">₹5000 - ₹10000</option>
-                <option value="10000-20000">₹10000 - ₹20000</option>
-                <option value="20000-999999">₹20000+</option>
-              </select>
-            </div>
+  <label>Search</label>
+  <input type="text" id="search" placeholder="Search product" oninput="applyDesktopFilters()">
+</div>
+
+<div class="filter-group">
+  <label>Category</label>
+  <select id="category" onchange="applyDesktopFilters()">
+    <option value="">All</option>
+    <option value="beauty-skincare">Beauty & Skincare</option>
+    <option value="daily-essentials">Daily Essentials</option>
+    <option value="electronics">Electronics</option>
+    <option value="fashion">Fashion</option>
+    <option value="home-kitchen">Home & Kitchen</option>
+    <option value="lifestyle">Lifestyle</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label>Price Range</label>
+  <select id="priceRange" onchange="applyDesktopFilters()">
+    <option value="">All</option>
+    <option value="0-1000">₹0 - ₹1000</option>
+    <option value="1000-5000">₹1000 - ₹5000</option>
+    <option value="5000-10000">₹5000 - ₹10000</option>
+    <option value="10000-20000">₹10000 - ₹20000</option>
+    <option value="20000-999999">₹20000+</option>
+  </select>
+</div>
   
           </div>
           <!-- DEALS GRID -->
@@ -496,12 +493,12 @@ function renderCategoryDropdown() {
   let selected = (params.get("category") || "").split(",");
 
   let list = [
-    {label:"Beauty", value:"beauty-skincare"},
-    {label:"Fashion", value:"fashion"},
-    {label:"Electronics", value:"electronics"},
-    {label:"Home", value:"home-kitchen"},
-    {label:"Lifestyle", value:"lifestyle"}
-  ];
+  {label:"Beauty & Skincare", value:"beauty-skincare"},
+  {label:"Fashion", value:"fashion"},
+  {label:"Electronics", value:"electronics"},
+  {label:"Home & Kitchen", value:"home-kitchen"},
+  {label:"Lifestyle", value:"lifestyle"}
+];
 
   let html = list.map(c => `
     <div onclick="toggleCategory('${c.value}')"
