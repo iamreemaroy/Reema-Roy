@@ -353,7 +353,12 @@ body {
           <!-- FILTER SIDEBAR -->
           <div class="sidebar">
             <h3>Filter</h3>
+            
             <div class="filter-group">
+              <input id="search" oninput="applyDesktopFilters()">
+<select id="category" onchange="applyDesktopFilters()">
+<select id="priceRange" onchange="applyDesktopFilters()">
+  
               <label>Search</label>
               <input type="text" id="search" placeholder="Search product">
             </div>
@@ -452,12 +457,11 @@ function updateURL(params) {
 }
 
 /* ================= FILTER ================= */
-function filterDeals() {
   function filterDeals() {
   let params = getParams();
 
   let search = (params.get("search") || "").toLowerCase();
-  let categories = (params.get("category") || "").split(",");
+  let categories = (params.get("category") || "").split(",").filter(Boolean);
   let priceRange = params.get("price");
   let sort = params.get("sort");
 
@@ -471,11 +475,11 @@ function filterDeals() {
 
   let filtered = allDeals.filter(d => {
     let title = (d.title || "").toLowerCase();
-    let price = parseInt(d.price || "0");
+    let price = parseInt((d.price || "0").toString().replace(/[^0-9]/g, '')) || 0;
     let category = (d.category || "").toLowerCase();
 
     let matchSearch = title.includes(search);
-    let matchCategory = !categories[0] || categories.includes(category);
+    let matchCategory = categories.length === 0 || categories.includes(category);
     let matchPrice = price >= min && price <= max;
 
     return matchSearch && matchCategory && matchPrice;
