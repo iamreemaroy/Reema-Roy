@@ -390,7 +390,7 @@ function renderDeals(deals) {
   }
 
   let html = deals.map(d => {
-    let price = Number((d.price || "0").replace(/\D/g, ""));
+    let price = Number(String(d.price || "0").replace(/\D/g, ""));
 
     return `
       <div class="deal-card">
