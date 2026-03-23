@@ -269,17 +269,29 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 40px;
+  top: 45px;
   left: 0;
-  background: #1b1b1b;
-  padding: 10px;
-  border-radius: 10px;
   width: 220px;
-  z-index: 999;
+  background: #1b1b1b;
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 9999;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .dropdown-menu.active {
   display: block;
+}
+  .dropdown-menu div {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  background: #222;
+}
+
+.dropdown-menu div:hover {
+  background: #ff6600;
 }
 }
       
@@ -305,20 +317,26 @@
   </div>
 
   <!-- PRICE -->
-  <select onchange="selectSingle('price', this.value)">
-    <option value="">Price</option>
-    <option value="0-1000">₹0 - ₹1000</option>
-    <option value="1000-5000">₹1000 - ₹5000</option>
-    <option value="5000-10000">₹5000 - ₹10000</option>
-    <option value="10000-999999">₹10000+</option>
-  </select>
+<div class="dropdown">
+  <button onclick="toggleDropdown('priceDropdown')">Price</button>
+  <div class="dropdown-menu" id="priceDropdown">
+    <div onclick="selectSingle('price','')">All</div>
+    <div onclick="selectSingle('price','0-1000')">₹0 - ₹1000</div>
+    <div onclick="selectSingle('price','1000-5000')">₹1000 - ₹5000</div>
+    <div onclick="selectSingle('price','5000-10000')">₹5000 - ₹10000</div>
+    <div onclick="selectSingle('price','10000-999999')">₹10000+</div>
+  </div>
+</div>
 
-  <!-- SORT -->
-  <select onchange="selectSingle('sort', this.value)">
-    <option value="">Sort</option>
-    <option value="low">Price Low → High</option>
-    <option value="high">Price High → Low</option>
-  </select>
+<!-- SORT -->
+<div class="dropdown">
+  <button onclick="toggleDropdown('sortDropdown')">Sort</button>
+  <div class="dropdown-menu" id="sortDropdown">
+    <div onclick="selectSingle('sort','')">Featured</div>
+    <div onclick="selectSingle('sort','low')">Price Low → High</div>
+    <div onclick="selectSingle('sort','high')">Price High → Low</div>
+  </div>
+</div>
 
 </div>
 
@@ -506,14 +524,25 @@ function selectSingle(type, value) {
 
 /* ================= DROPDOWN ================= */
 function toggleDropdown(id) {
+  document.querySelectorAll(".dropdown-menu").forEach(el => {
+    if (el.id !== id) el.classList.remove("active");
+  });
+
   let el = document.getElementById(id);
   el.classList.toggle("active");
 
-  if (id === "catDropdown") {
-    renderCategoryDropdown();
-  }
+  if (id === "catDropdown") renderCategoryDropdown();
 }
 
+
+/* ================= CLICK OUTSIDE TO CLOSE ================= */
+ document.addEventListener("click", function(e) {
+  if (!e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown-menu").forEach(el => {
+      el.classList.remove("active");
+    });
+  }
+});     
 /* ================= FILTER CHIPS ================= */
 function renderActiveFilters() {
   let params = getParams();
