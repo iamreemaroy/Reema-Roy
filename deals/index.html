@@ -21,43 +21,13 @@
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
-   <style>
-     .deals-grid {
+<style>
+  .deals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 30px;
 }
-@media (max-width: 768px) {
 
-  .deals-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 👈 2 items per row */
-    gap: 8px;
-  }
-
-  .deal-card {
-    width: 100% !important;        /* keep full width inside grid */
-    height: auto !important;       /* optional: better for responsiveness */
-    padding: 10px !important;
-  }
-
-  .deal-img img {
-    height: 140px;      /* slightly smaller for mobile */
-  }
-
-  .deal-title {
-    font-size: 12px !important;;
-    height: auto !important;;
-  }
-
-  .deal-btn {
-    padding: 6px;
-    font-size: 12px;
-  }
-  .deal-price {
-    
-  }
-}
 /* ================= LAYOUT ================= */
 .deals-layout {
   display: flex;
@@ -67,7 +37,6 @@
   padding: 40px 20px;
 }
 
-/* 🔥 FIX: prevent dropdown clipping */
 .section,
 .container,
 .deals-layout {
@@ -93,22 +62,9 @@
   color: white;
 }
 
-.sidebar button {
-  margin-top: 10px;
-  padding: 8px 14px;
-  border: none;
-  background: #ff6600;
-  color: white;
-  border-radius: 6px;
-}
-
 .sidebar h3 {
   margin-bottom: 20px;
 }
-
-.deal-card {
-  border-radius: 10px;
-}     
 
 /* ================= DEAL CARDS ================= */
 .deals-content {
@@ -116,25 +72,18 @@
 }
 
 .deal-card {
-  width: 300px;
-  height: 375px;
   background: #1b1b1b;
   border-radius: 12px;
   padding: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: 0.2s;
 }
 
 .deal-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .deal-img {
   display: flex;
-  align-items: center;
   justify-content: center;
   background: #111;
   border-radius: 8px;
@@ -149,157 +98,30 @@
 
 .deal-title {
   font-size: 14px;
-  font-weight: 600;
   color: white;
   margin-top: 8px;
-  height: 40px;
   text-align: center;
 }
 
 .deal-price {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: bold;
   color: #ff6600;
-  margin-top: 6px;
   text-align: center;
 }
 
 .deal-btn {
   background: #ff6600;
   color: white;
+  display: block;
   text-align: center;
   padding: 8px;
   border-radius: 6px;
-  text-decoration: none;
   margin-top: 10px;
 }
 
-/* ================= MOBILE ================= */
-.mobile-filters {
-  display: none;
-}
-
-/* 🔥 FIX: make filter bar always on top */
-@media (max-width: 768px) {
-
-  .sidebar {
-    display: none;
-  }
-
-  .mobile-filters {
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    background: #111;
-    position: sticky;
-    top: 0;
-    z-index: 99999; /* 🔥 VERY IMPORTANT */
-    justify-content: center;
-  }
-
-  .mobile-filters button {
-    background: #222;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-
-  .deals-layout {
-    flex-direction: column;
-  }
-
-  .deal-card {
-    width: 100%;
-  }
-
-  /* ================= DROPDOWN ================= */
-
-  .dropdown {
-    position: relative;
-  }
-
-  .dropdown button {
-    background: #222;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 20px;
-  }
-
-  /* 🔥 FIX: SUPER HIGH Z-INDEX */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 45px;
-    left: 0;
-    width: 220px;
-    background: #1b1b1b;
-    border-radius: 10px;
-    padding: 10px;
-    z-index: 999999; /* 🔥 CRITICAL FIX */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  }
-
-  .dropdown-menu.active {
-    display: block;
-  }
-  
-  .dropdown-menu {
-  left: 50% !important;
-  transform: translateX(-50%);
-}
-
-  .dropdown-menu div {
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 6px;
-    background: #222;
-    color: white;
-  }
-
-  .dropdown-menu div:hover {
-    background: #ff6600;
-  }
-
-  /* ================= FILTER CHIPS ================= */
-
-  .active-filters {
-    display: flex;
-    gap: 8px;
-    padding: 8px 10px;
-    flex-wrap: wrap;
-    background: #111;
-  }
-
-  .filter-chip {
-    background: #222;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .filter-chip span {
-    cursor: pointer;
-  }
-
-  .clear-all {
-    background: #ff6600;
-    padding: 6px 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-
-}
-
-     .active-filters {
+/* ================= FILTER CHIPS ================= */
+.active-filters {
   display: flex;
   gap: 10px;
   padding: 10px 20px;
@@ -324,18 +146,80 @@
 
 .clear-all {
   background: #ff6600;
+  color: white;
   padding: 6px 12px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 13px;
-  color: white;
 }
 
-/* 🔥 SAFETY FIX */
+/* ================= MOBILE ================= */
+.mobile-filters {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-filters {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    justify-content: center;
+  }
+
+  .mobile-filters button {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+  }
+
+  .deals-layout {
+    flex-direction: column;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #1b1b1b;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 999999;
+  }
+
+  .dropdown-menu.active {
+    display: block;
+  }
+
+  .dropdown-menu div {
+    padding: 10px;
+    margin-bottom: 6px;
+    background: #222;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .dropdown-menu div:hover {
+    background: #ff6600;
+  }
+}
+
 body {
   overflow-x: hidden;
 }
-
 </style>
   </head>
   <body>
@@ -424,73 +308,25 @@ body {
       </section>
     </main>
     <div id="footer-placeholder"></div>
-    <script>
-      function applyDesktopFilters() {
-  let params = new URLSearchParams();
+<script>
+  let allDeals = [];
 
-  let search = document.getElementById("search").value.toLowerCase();
-  let category = document.getElementById("category").value;
-  let price = document.getElementById("priceRange").value;
-
-  if (search) params.set("search", search);
-  if (category) params.set("category", category);
-  if (price) params.set("price", price);
-
-  updateURL(params);
-  renderActiveFilters();
-  filterDeals();
-}
-      
-let allDeals = [];
-
-/* ================= LOAD ================= */
+/* LOAD */
 async function loadDeals() {
   let res = await fetch("/data/deals.json");
   allDeals = await res.json();
 
-  addItemListSchema(allDeals);
+  syncDesktopFilters();
   renderActiveFilters();
   filterDeals();
 }
 
-/* ================= RENDER ================= */
-function renderDeals(deals) {
-  let html = "";
-
-  deals.slice().reverse().forEach(d => {
-    let priceNumber = parseInt((d.price || "0").toString().replace(/[^0-9]/g, '')) || 0;
-    let image = (d.image || "").replace(/_SL\d+_/, "_SL2000_");
-
-    html += `
-      <div class="deal-card">
-        <div class="deal-img">
-          <img src="${image || '/assets/img/no-image.png'}" loading="lazy">
-        </div>
-        <div class="deal-title">${d.title || "Product"}</div>
-        <div class="deal-price">₹${priceNumber.toLocaleString()}</div>
-        <a href="${d.link}" target="_blank" class="deal-btn">View Deal</a>
-      </div>
-    `;
-  });
-
-  document.getElementById("deals").innerHTML = html;
-}
-
-/* ================= URL ================= */
-function getParams() {
-  return new URLSearchParams(window.location.search);
-}
-
-function updateURL(params) {
-  history.replaceState(null, "", "?" + params.toString());
-}
-
-/* ================= FILTER ================= */
-  function filterDeals() {
-  let params = getParams();
+/* FILTER */
+function filterDeals() {
+  let params = new URLSearchParams(window.location.search);
 
   let search = (params.get("search") || "").toLowerCase();
-  let categories = (params.get("category") || "").split(",").filter(Boolean);
+  let category = params.get("category");
   let priceRange = params.get("price");
   let sort = params.get("sort");
 
@@ -504,14 +340,14 @@ function updateURL(params) {
 
   let filtered = allDeals.filter(d => {
     let title = (d.title || "").toLowerCase();
-    let price = parseInt((d.price || "0").toString().replace(/[^0-9]/g, '')) || 0;
-    let category = (d.category || "").toLowerCase();
+    let price = parseInt((d.price || "0").replace(/\D/g,'')) || 0;
+    let cat = (d.category || "").toLowerCase();
 
-    let matchSearch = title.includes(search);
-    let matchCategory = categories.length === 0 || categories.includes(category);
-    let matchPrice = price >= min && price <= max;
-
-    return matchSearch && matchCategory && matchPrice;
+    return (
+      title.includes(search) &&
+      (!category || cat === category) &&
+      price >= min && price <= max
+    );
   });
 
   if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
@@ -519,159 +355,127 @@ function updateURL(params) {
 
   renderDeals(filtered);
 }
-/* ================= CATEGORY DROPDOWN ================= */
-function renderCategoryDropdown() {
-  let params = getParams();
-  let selected = (params.get("category") || "").split(",");
 
-  let list = [
-  {label:"Beauty & Skincare", value:"beauty-skincare"},
-  {label:"Fashion", value:"fashion"},
-  {label:"Electronics", value:"electronics"},
-  {label:"Home & Kitchen", value:"home-kitchen"},
-  {label:"Lifestyle", value:"lifestyle"}
-];
+/* RENDER */
+function renderDeals(deals) {
+  let html = deals.map(d => {
+    let price = parseInt((d.price || "0").replace(/\D/g,'')) || 0;
 
-  let html = list.map(c => `
-    <div onclick="toggleCategory('${c.value}')"
-      style="
-        padding:8px;
-        margin-bottom:6px;
-        border-radius:6px;
-        cursor:pointer;
-        background:${selected.includes(c.value) ? '#ff6600' : '#222'};
-      ">
-      ${c.label}
-    </div>
+    return `
+      <div class="deal-card">
+        <div class="deal-img">
+          <img src="${d.image || ''}">
+        </div>
+        <div class="deal-title">${d.title}</div>
+        <div class="deal-price">₹${price}</div>
+        <a href="${d.link}" target="_blank" class="deal-btn">View Deal</a>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("deals").innerHTML = html;
+}
+
+/* DESKTOP FILTER */
+function applyDesktopFilters() {
+  let params = new URLSearchParams();
+
+  let search = document.getElementById("search").value;
+  let category = document.getElementById("category").value;
+  let price = document.getElementById("priceRange").value;
+
+  if (search) params.set("search", search);
+  if (category) params.set("category", category);
+  if (price) params.set("price", price);
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* SYNC */
+function syncDesktopFilters() {
+  let params = new URLSearchParams(window.location.search);
+
+  document.getElementById("search").value = params.get("search") || "";
+  document.getElementById("category").value = params.get("category") || "";
+  document.getElementById("priceRange").value = params.get("price") || "";
+}
+
+/* MOBILE */
+function toggleDropdown(id) {
+  document.querySelectorAll(".dropdown-menu").forEach(el=>{
+    if(el.id!==id) el.classList.remove("active");
+  });
+  document.getElementById(id).classList.toggle("active");
+}
+
+function selectSingle(type,value){
+  let params=new URLSearchParams(window.location.search);
+  params.set(type,value);
+  history.replaceState(null,"","?"+params.toString());
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* CATEGORY */
+function renderCategoryDropdown(){
+  let list=[
+    {label:"Beauty & Skincare",value:"beauty-skincare"},
+    {label:"Fashion",value:"fashion"},
+    {label:"Electronics",value:"electronics"},
+    {label:"Home & Kitchen",value:"home-kitchen"},
+    {label:"Lifestyle",value:"lifestyle"}
+  ];
+
+  let html=list.map(c=>`
+    <div onclick="selectSingle('category','${c.value}')">${c.label}</div>
   `).join("");
 
-  document.getElementById("catDropdown").innerHTML = html;
+  document.getElementById("catDropdown").innerHTML=html;
 }
 
-/* ================= TOGGLE CATEGORY ================= */
-function toggleCategory(value) {
-  let params = getParams();
-  let values = (params.get("category") || "").split(",").filter(Boolean);
+/* FILTER CHIPS */
+function renderActiveFilters(){
+  let params=new URLSearchParams(window.location.search);
+  let html="";
 
-  if (values.includes(value)) {
-    values = values.filter(v => v !== value);
-  } else {
-    values.push(value);
-  }
-
-  if (values.length) params.set("category", values.join(","));
-  else params.delete("category");
-
-  updateURL(params);
-  renderActiveFilters();
-  filterDeals();
-  renderCategoryDropdown();
-}
-
-/* ================= PRICE / SORT ================= */
-function selectSingle(type, value) {
-  let params = getParams();
-
-  if (!value) params.delete(type);
-  else params.set(type, value);
-
-  updateURL(params);
-  renderActiveFilters();
-  filterDeals();
-}
-
-/* ================= DROPDOWN ================= */
-function toggleDropdown(id) {
-  document.querySelectorAll(".dropdown-menu").forEach(el => {
-    if (el.id !== id) el.classList.remove("active");
-  });
-
-  let el = document.getElementById(id);
-  el.classList.toggle("active");
-
-  if (id === "catDropdown") renderCategoryDropdown();
-}
-
-
-/* ================= CLICK OUTSIDE TO CLOSE ================= */
- document.addEventListener("click", function(e) {
-  if (!e.target.closest(".dropdown")) {
-    document.querySelectorAll(".dropdown-menu").forEach(el => {
-      el.classList.remove("active");
-    });
-  }
-});     
-/* ================= FILTER CHIPS ================= */
-function renderActiveFilters() {
-  let params = getParams();
-  let container = document.getElementById("activeFilters");
-
-  let chips = [];
-
-  params.forEach((val, key) => {
-    chips.push(`
+  params.forEach((v,k)=>{
+    html+=`
       <div class="filter-chip">
-        ${formatLabel(key)}: ${formatValue(val)}
-        function formatLabel(key) {
-  return key === "category" ? "Category" :
-         key === "price" ? "Price" :
-         key === "search" ? "Search" : key;
-}
-
-function formatValue(val) {
-  return val.replace("-", " - ");
-}
-        <span onclick="removeFilter('${key}')">✕</span>
+        ${k}: ${v}
+        <span onclick="removeFilter('${k}')">✕</span>
       </div>
-    `);
+    `;
   });
 
-  if (chips.length) {
-    chips.push(`<div class="clear-all" onclick="clearAllFilters()">Clear All</div>`);
+  if(html){
+    html+=`<div class="clear-all" onclick="clearAllFilters()">Clear All</div>`;
   }
 
-  container.innerHTML = chips.join("");
+  document.getElementById("activeFilters").innerHTML=html;
 }
 
-function removeFilter(type) {
-  let params = getParams();
-  params.delete(type);
-  updateURL(params);
+/* REMOVE */
+function removeFilter(key){
+  let params=new URLSearchParams(window.location.search);
+  params.delete(key);
+  history.replaceState(null,"","?"+params.toString());
+  syncDesktopFilters();
   renderActiveFilters();
   filterDeals();
 }
 
-function clearAllFilters() {
-  history.replaceState(null, "", window.location.pathname);
+/* CLEAR */
+function clearAllFilters(){
+  history.replaceState(null,"",window.location.pathname);
+  syncDesktopFilters();
   renderActiveFilters();
   filterDeals();
 }
 
-/* ================= SCHEMA ================= */
-function addItemListSchema(deals) {
-  if (!deals.length) return;
-
-  let items = deals.slice(0, 20).map((d, i) => ({
-    "@type": "ListItem",
-    "position": i + 1,
-    "name": d.title,
-    "url": d.link
-  }));
-
-  let schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": items
-  };
-
-  let script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.innerHTML = JSON.stringify(schema);
-
-  document.head.appendChild(script);
-}
-
-/* ================= INIT ================= */
+/* INIT */
 loadDeals();
 </script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
