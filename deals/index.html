@@ -309,62 +309,86 @@ body {
     </main>
     <div id="footer-placeholder"></div>
 <script>
-  let allDeals = [];
+let allDeals = [];
 
-/* LOAD */
+/* ================= LOAD ================= */
 async function loadDeals() {
-  let res = await fetch("/data/deals.json");
-  allDeals = await res.json();
+  try {
+    let res = await fetch("/data/deals.json");
+    allDeals = await res.json();
 
-  syncDesktopFilters();
-  renderActiveFilters();
-  filterDeals();
+    syncDesktopFilters();
+    renderCategoryDropdown(); // ✅ important for mobile
+    renderActiveFilters();
+    filterDeals();
+  } catch (e) {
+    console.error("Deals load error", e);
+  }
 }
 
-/* FILTER */
+/* ================= FILTER ================= */
 function filterDeals() {
   let params = new URLSearchParams(window.location.search);
 
   let search = (params.get("search") || "").toLowerCase();
-  let category = params.get("category");
+  let category = params.get("category") || "";
   let priceRange = params.get("price");
   let sort = params.get("sort");
 
   let min = 0, max = 999999;
 
   if (priceRange) {
-    let p = priceRange.split("-");
-    min = +p[0];
-    max = +p[1];
+    let [a, b] = priceRange.split("-");
+    min = Number(a);
+    max = Number(b);
   }
 
   let filtered = allDeals.filter(d => {
     let title = (d.title || "").toLowerCase();
-    let price = parseInt((d.price || "0").replace(/\D/g,'')) || 0;
+    let price = Number((d.price || "0").toString().replace(/\D/g, ""));
     let cat = (d.category || "").toLowerCase();
 
     return (
       title.includes(search) &&
       (!category || cat === category) &&
-      price >= min && price <= max
+      price >= min &&
+      price <= max
     );
   });
 
-  if (sort === "low") filtered.sort((a,b)=>a.price-b.price);
-  if (sort === "high") filtered.sort((a,b)=>b.price-a.price);
+  /* ✅ FIX SORT */
+  if (sort === "low") {
+    filtered.sort((a, b) =>
+      Number((a.price || "0").replace(/\D/g, "")) -
+      Number((b.price || "0").replace(/\D/g, ""))
+    );
+  }
+
+  if (sort === "high") {
+    filtered.sort((a, b) =>
+      Number((b.price || "0").replace(/\D/g, "")) -
+      Number((a.price || "0").replace(/\D/g, ""))
+    );
+  }
 
   renderDeals(filtered);
 }
 
-/* RENDER */
+/* ================= RENDER ================= */
 function renderDeals(deals) {
+  if (!deals.length) {
+    document.getElementById("deals").innerHTML =
+      `<p style="color:white;text-align:center;">No products found</p>`;
+    return;
+  }
+
   let html = deals.map(d => {
-    let price = parseInt((d.price || "0").replace(/\D/g,'')) || 0;
+    let price = Number((d.price || "0").replace(/\D/g, ""));
 
     return `
       <div class="deal-card">
         <div class="deal-img">
-          <img src="${d.image || ''}">
+          <img src="${d.image || '/assets/img/no-image.png'}">
         </div>
         <div class="deal-title">${d.title}</div>
         <div class="deal-price">₹${price}</div>
@@ -376,7 +400,7 @@ function renderDeals(deals) {
   document.getElementById("deals").innerHTML = html;
 }
 
-/* DESKTOP FILTER */
+/* ================= DESKTOP ================= */
 function applyDesktopFilters() {
   let params = new URLSearchParams();
 
@@ -394,7 +418,7 @@ function applyDesktopFilters() {
   filterDeals();
 }
 
-/* SYNC */
+/* ================= SYNC ================= */
 function syncDesktopFilters() {
   let params = new URLSearchParams(window.location.search);
 
@@ -403,25 +427,31 @@ function syncDesktopFilters() {
   document.getElementById("priceRange").value = params.get("price") || "";
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 function toggleDropdown(id) {
-  document.querySelectorAll(".dropdown-menu").forEach(el=>{
-    if(el.id!==id) el.classList.remove("active");
+  document.querySelectorAll(".dropdown-menu").forEach(el => {
+    if (el.id !== id) el.classList.remove("active");
   });
-  document.getElementById(id).classList.toggle("active");
+
+  let el = document.getElementById(id);
+  el.classList.toggle("active");
+
+  if (id === "catDropdown") renderCategoryDropdown(); // ✅ important
 }
 
-function selectSingle(type,value){
-  let params=new URLSearchParams(window.location.search);
-  params.set(type,value);
-  history.replaceState(null,"","?"+params.toString());
+function selectSingle(type, value) {
+  let params = new URLSearchParams(window.location.search);
+  params.set(type, value);
+
+  history.replaceState(null, "", "?" + params.toString());
+
   renderActiveFilters();
   filterDeals();
 }
 
-/* CATEGORY */
-function renderCategoryDropdown(){
-  let list=[
+/* ================= CATEGORY ================= */
+function renderCategoryDropdown() {
+  let list = [
     {label:"Beauty & Skincare",value:"beauty-skincare"},
     {label:"Fashion",value:"fashion"},
     {label:"Electronics",value:"electronics"},
@@ -429,20 +459,20 @@ function renderCategoryDropdown(){
     {label:"Lifestyle",value:"lifestyle"}
   ];
 
-  let html=list.map(c=>`
+  let html = list.map(c => `
     <div onclick="selectSingle('category','${c.value}')">${c.label}</div>
   `).join("");
 
-  document.getElementById("catDropdown").innerHTML=html;
+  document.getElementById("catDropdown").innerHTML = html;
 }
 
-/* FILTER CHIPS */
-function renderActiveFilters(){
-  let params=new URLSearchParams(window.location.search);
-  let html="";
+/* ================= FILTER CHIPS ================= */
+function renderActiveFilters() {
+  let params = new URLSearchParams(window.location.search);
+  let html = "";
 
-  params.forEach((v,k)=>{
-    html+=`
+  params.forEach((v, k) => {
+    html += `
       <div class="filter-chip">
         ${k}: ${v}
         <span onclick="removeFilter('${k}')">✕</span>
@@ -450,32 +480,44 @@ function renderActiveFilters(){
     `;
   });
 
-  if(html){
-    html+=`<div class="clear-all" onclick="clearAllFilters()">Clear All</div>`;
+  if (html) {
+    html += `<div class="clear-all" onclick="clearAllFilters()">Clear All</div>`;
   }
 
-  document.getElementById("activeFilters").innerHTML=html;
+  document.getElementById("activeFilters").innerHTML = html;
 }
 
-/* REMOVE */
-function removeFilter(key){
-  let params=new URLSearchParams(window.location.search);
+/* ================= REMOVE ================= */
+function removeFilter(key) {
+  let params = new URLSearchParams(window.location.search);
   params.delete(key);
-  history.replaceState(null,"","?"+params.toString());
+
+  history.replaceState(null, "", "?" + params.toString());
+
   syncDesktopFilters();
   renderActiveFilters();
   filterDeals();
 }
 
-/* CLEAR */
-function clearAllFilters(){
-  history.replaceState(null,"",window.location.pathname);
+/* ================= CLEAR ================= */
+function clearAllFilters() {
+  history.replaceState(null, "", window.location.pathname);
+
   syncDesktopFilters();
   renderActiveFilters();
   filterDeals();
 }
 
-/* INIT */
+/* ================= CLICK OUTSIDE ================= */
+document.addEventListener("click", function(e) {
+  if (!e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown-menu").forEach(el => {
+      el.classList.remove("active");
+    });
+  }
+});
+
+/* ================= INIT ================= */
 loadDeals();
 </script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
