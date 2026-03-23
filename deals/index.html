@@ -36,9 +36,9 @@
   }
 
   .deal-card {
-    width: 100%;        /* keep full width inside grid */
-    height: auto;       /* optional: better for responsiveness */
-    padding: 10px;
+    width: 100% !important;        /* keep full width inside grid */
+    height: auto !important;       /* optional: better for responsiveness */
+    padding: 10px !important;
   }
 
   .deal-img img {
@@ -297,6 +297,38 @@
     font-size: 12px;
   }
 
+}
+
+     .active-filters {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-chip {
+  background: #222;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-chip span {
+  cursor: pointer;
+}
+
+.clear-all {
+  background: #ff6600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  color: white;
 }
 
 /* 🔥 SAFETY FIX */
@@ -579,7 +611,16 @@ function renderActiveFilters() {
   params.forEach((val, key) => {
     chips.push(`
       <div class="filter-chip">
-        ${key}: ${val}
+        ${formatLabel(key)}: ${formatValue(val)}
+        function formatLabel(key) {
+  return key === "category" ? "Category" :
+         key === "price" ? "Price" :
+         key === "search" ? "Search" : key;
+}
+
+function formatValue(val) {
+  return val.replace("-", " - ");
+}
         <span onclick="removeFilter('${key}')">✕</span>
       </div>
     `);
