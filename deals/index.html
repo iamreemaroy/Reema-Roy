@@ -315,10 +315,15 @@ let allDeals = [];
 async function loadDeals() {
   try {
     let res = await fetch("/data/deals.json");
+
+    if (!res.ok) throw new Error("Fetch failed");
+
     allDeals = await res.json();
 
+    console.log("Loaded deals:", allDeals); // ✅ debug
+
     syncDesktopFilters();
-    renderCategoryDropdown(); // ✅ important for mobile
+    renderCategoryDropdown();
     renderActiveFilters();
     filterDeals();
   } catch (e) {
@@ -331,7 +336,7 @@ function filterDeals() {
   let params = new URLSearchParams(window.location.search);
 
   let search = (params.get("search") || "").toLowerCase();
-  let category = params.get("category") || "";
+  let category = (params.get("category") || "").toLowerCase().trim();
   let priceRange = params.get("price");
   let sort = params.get("sort");
 
@@ -346,17 +351,17 @@ function filterDeals() {
   let filtered = allDeals.filter(d => {
     let title = (d.title || "").toLowerCase();
     let price = Number((d.price || "0").toString().replace(/\D/g, ""));
-    let cat = (d.category || "").toLowerCase();
+    let cat = (d.category || "").toLowerCase().trim();
 
     return (
       title.includes(search) &&
-      (!category || cat === category) &&
+      (!category || cat.includes(category)) &&   // ✅ FIXED
       price >= min &&
       price <= max
     );
   });
 
-  /* ✅ FIX SORT */
+  /* ================= SORT ================= */
   if (sort === "low") {
     filtered.sort((a, b) =>
       Number((a.price || "0").replace(/\D/g, "")) -
@@ -376,8 +381,10 @@ function filterDeals() {
 
 /* ================= RENDER ================= */
 function renderDeals(deals) {
-  if (!deals.length) {
-    document.getElementById("deals").innerHTML =
+  let container = document.getElementById("deals");
+
+  if (!deals || deals.length === 0) {
+    container.innerHTML =
       `<p style="color:white;text-align:center;">No products found</p>`;
     return;
   }
@@ -390,14 +397,14 @@ function renderDeals(deals) {
         <div class="deal-img">
           <img src="${d.image || '/assets/img/no-image.png'}">
         </div>
-        <div class="deal-title">${d.title}</div>
+        <div class="deal-title">${d.title || ""}</div>
         <div class="deal-price">₹${price}</div>
-        <a href="${d.link}" target="_blank" class="deal-btn">View Deal</a>
+        <a href="${d.link || '#'}" target="_blank" class="deal-btn">View Deal</a>
       </div>
     `;
   }).join("");
 
-  document.getElementById("deals").innerHTML = html;
+  container.innerHTML = html;
 }
 
 /* ================= DESKTOP ================= */
@@ -436,7 +443,7 @@ function toggleDropdown(id) {
   let el = document.getElementById(id);
   el.classList.toggle("active");
 
-  if (id === "catDropdown") renderCategoryDropdown(); // ✅ important
+  if (id === "catDropdown") renderCategoryDropdown();
 }
 
 function selectSingle(type, value) {
