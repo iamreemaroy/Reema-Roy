@@ -22,10 +22,24 @@
     <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
 <style>
+  /* Desktop */
   .deals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+  /* Mobile */
+  @media (max-width: 768px) {
+  .deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet */
+@media (min-width: 1024px) {
+  .deals-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* ================= LAYOUT ================= */
