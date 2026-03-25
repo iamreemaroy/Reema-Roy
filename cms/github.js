@@ -68,13 +68,14 @@ let category=document.getElementById("category").value.toLowerCase().trim();
 let repo="iamreemaroy/Reema-Roy";
 
 let newDeal={
-  title,
+title,
   price,
   platform,
   link,
   image,
   category,
-  description
+  description,
+  createdAt: new Date().toISOString()
 };
 
 let res=await fetch(
