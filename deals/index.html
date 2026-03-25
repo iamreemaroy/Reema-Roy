@@ -22,6 +22,38 @@
     <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
 <style>
+.deal-card {
+  background: #1b1b1b;
+  border-radius: 12px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* important */
+}
+
+.deal-title {
+  min-height: 40px; /* ✅ FIX: equal title space */
+  -webkit-line-clamp: 2; /* max 2 lines */
+  overflow: hidden;
+}
+  .deal-price {
+  margin-top: auto; /* pushes everything below */
+}
+
+.deal-btn {
+  margin-top: 10px;
+}
+  .deal-title {
+  min-height: 42px;
+  font-size: 14px;
+}
+
+.deal-price {
+  min-height: 24px;
+}
+
+  
   /* Desktop */
   .deals-grid {
   display: grid;
@@ -107,7 +139,6 @@
 }
 
 .deal-title {
-  font-size: 14px;
   color: white;
   margin-top: 8px;
   text-align: center;
