@@ -97,7 +97,7 @@ try {
   deals = [];
 }
   
-deals.push(newDeal);
+deals.unshift(newDeal);
 
 let updated=btoa(JSON.stringify(deals,null,2));
 
