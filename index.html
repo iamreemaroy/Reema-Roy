@@ -379,10 +379,46 @@
         <div class="row justify-content-center">
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card position-relative z-1">
-              <h3>
-                  Latest YouTube video
-              </h3>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/vuXkxp5GJ8o?si=LRdbnImi-hgpLP6M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <div id="youtubeVideos"></div>
+              <script>
+const API_KEY = "AIzaSyAEYdwUmG1wNl3_Fv0klncF4MLZEqtoOSs";
+const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
+
+async function fetchYouTubeVideos() {
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=8`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const container = document.getElementById("youtubeVideos");
+    container.innerHTML = "";
+
+    data.items.forEach(video => {
+      if (video.id.videoId) {
+        const videoHTML = `
+          <div class="video-card">
+            <img src="${video.snippet.thumbnails.high.url}" />
+            <h3>${video.snippet.title}</h3>
+            <p>${new Date(video.snippet.publishedAt).toDateString()}</p>
+            <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+              ▶ Watch
+            </a>
+          </div>
+        `;
+        container.innerHTML += videoHTML;
+      }
+    });
+
+  } catch (error) {
+    console.error("Error fetching YouTube videos:", error);
+  }
+}
+
+// Load on page open
+fetchYouTubeVideos();
+</script>
+              
             </div>
           </div>
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
