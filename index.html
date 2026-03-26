@@ -376,13 +376,30 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row justify-content-center">
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-card position-relative z-1">
-              <div id="youtubeVideos"></div>
-              <script>
-const API_KEY = "AIzaSyAEYdwUmG1wNl3_Fv0klncF4MLZEqtoOSs";
-const CHANNEL_ID = "UCzrsI894Qk73JO0qQNiaP_g";
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+  
+  <!-- YouTube Section FULL WIDTH -->
+  <div class="service-card position-relative z-1">
+    <div id="youtubeVideos"></div>
+  </div>
+
+</div>
+        <style>
+          #youtubeVideos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  width: 100%;
+}
+          @media (max-width: 768px) {
+  #youtubeVideos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+          </style>
+        <script>
+const API_KEY = "YOUR_API_KEY";
+const CHANNEL_ID = "YOUR_CHANNEL_ID";
 
 async function fetchYouTubeVideos() {
   const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=8`;
@@ -418,9 +435,7 @@ async function fetchYouTubeVideos() {
 // Load on page open
 fetchYouTubeVideos();
 </script>
-              
-            </div>
-          </div>
+          
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-card position-relative z-1">
               <h3>
