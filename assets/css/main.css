@@ -2558,3 +2558,105 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+
+/*--------------------------------------------------------------
+# Homepage Linkedin Recommendation Block
+--------------------------------------------------------------*/
+.nav {
+  z-index: 10;
+}
+.testimonial-section {
+  position: relative;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.testimonial-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.testimonial-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonial-card {
+  min-width: 320px;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.role {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  margin-right: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #0073b1;
+  font-weight: 500;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 5px;
+}
+
+.next {
+  right: 5px;
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    min-width: 85%;
+  }
+}
+
+.testimonial-slider {
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-card {
+  scroll-snap-align: start;
+}
