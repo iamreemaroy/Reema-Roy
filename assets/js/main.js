@@ -203,3 +203,26 @@ function initHeader() {
   });
 
 })();
+
+
+/* ---------- Homepage Linkedin Recommendation Block ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+
+  const slider = document.querySelector('.testimonial-slider');
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+  const card = document.querySelector('.testimonial-card');
+
+  if (!slider || !nextBtn || !prevBtn || !card) return;
+
+  const cardWidth = card.offsetWidth + 20;
+
+  nextBtn.addEventListener("click", () => {
+    slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  });
+
+});
