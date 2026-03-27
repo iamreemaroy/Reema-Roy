@@ -5,4 +5,4 @@ Connect with me across platforms:
   YouTube - https://www.youtube.com/@iamreemaroy
   Instagram - https://www.instagram.com/iamreemaroyy
   X - https://x.com/iamreemaroy
-  Linktree - https://linktr.ee/iamreemaroy
+  
