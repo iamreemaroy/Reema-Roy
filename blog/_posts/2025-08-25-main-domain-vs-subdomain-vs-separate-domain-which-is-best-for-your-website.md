@@ -90,4 +90,4 @@ If your new feature is planned to become a standalone brand, then a separate dom
 
 Choosing between a main domain, subdomain, or separate domain is not just a technical decision—it’s a strategic one. The right choice depends on your branding, SEO goals, technical setup, and long-term vision.
 
-At **BizzNist**, we help businesses build and scale websites with the right domain structure, SEO strategy, and seamless user experience.
+I help businesses build and scale websites with the right domain structure, SEO strategy, and seamless user experience.
