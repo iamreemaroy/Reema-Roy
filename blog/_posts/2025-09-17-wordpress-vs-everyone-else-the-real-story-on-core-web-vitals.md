@@ -158,8 +158,6 @@ If I were you deciding today:
 
 ## Conclusion
 
-In short:
-
 > WordPress is powerful, flexible, mature. But when it comes to Core Web Vitals, it lags behind many competitors in what % of sites achieve “good” scores, and its improvement rate is modest. There are structural, ecosystem, human challenges behind that (technical debt, plugin/theme variability, hosting, etc.). But it can be fixed or mitigated with the right tech choices and effort.
 
 If you care about UX, conversion, speed — you can’t ignore CWV. And right now, WordPress users have a steeper hill to climb than some others. But that doesn’t mean you can’t reach the summit.
