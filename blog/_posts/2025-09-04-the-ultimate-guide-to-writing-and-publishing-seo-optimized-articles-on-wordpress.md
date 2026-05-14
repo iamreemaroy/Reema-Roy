@@ -130,12 +130,6 @@ Now that you’ve chosen your topic, you can begin writing the article. Use the 
      * Enter your primary keyword ("Yoga for Beginners") in the SEO plugin’s focus keyword field.
      * Follow the plugin's suggestions (green lights mean good to go!).
 
-!\[](/assets/uploads/blog/screenshot-2025-09-04-at-5.09.37 pm.png)
-
-![](/assets/uploads/blog/categories-and-tags-selection.png)
-
-![](/assets/uploads/blog/categories-and-tags-selection.png)
-
 ## Preview and Publish
 
 1. **Preview the Article**:
