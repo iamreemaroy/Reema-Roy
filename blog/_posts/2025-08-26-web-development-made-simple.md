@@ -3,7 +3,7 @@ title: Web Development Made Simple
 meta_description: >
   Learn web development in simple steps. Understand front-end (HTML, CSS,
   JavaScript), back-end (Node.js, Python, databases), and how APIs connect them.
-  Start your journey to becoming a full-stack developer with BizzNist.
+  Start your journey to becoming a full-stack developer with me.
 meta_keywords:
   - web development
   - front-end development
@@ -25,15 +25,13 @@ author: Reema Roy
 date: 2025-08-26T15:30:00.000+05:30
 thumbnail: /assets/blog/img/what-is-web-development-.webp
 slug: web-development-made-simple
-meta_title: Web Development Made Simple | Front-End & Back-End Basics Explained
+meta_title: Web Development Made Simple | Front-End & Back-End Basics Explained | Reema Roy
 ---
 Web development might sound complex, but at its core, it’s just about building and maintaining websites. Whether you’re scrolling through an e-commerce store, watching a video, or reading a blog, every click and interaction is powered by web development.
 
 Let’s break it down into simple parts so you can understand how websites come to life.
 
 ## 1. Front-End (Client-Side) – The Face of Your Website
-
-![Front-End (Client-Side) – The Face of Your Website](/assets/uploads/blog/front-end-client-side-–-the-face-of-your-website.png "Front-End (Client-Side) – The Face of Your Website")
 
 The front-end is everything you see on a website. From the layout and colors to the buttons you click, it’s all designed to create a smooth user experience.
 
@@ -55,8 +53,6 @@ The front-end is everything you see on a website. From the layout and colors to 
 *In short, the front-end is the “face” of your website—what your visitors see and interact with.*
 
 ## 2. Back-End (Server-Side) – The Engine of Your Website
-
-![Back-End (Server-Side) – The Engine of Your Website](/assets/uploads/blog/back-end-server-side-–-the-engine-of-your-website.png "Back-End (Server-Side) – The Engine of Your Website")
 
 While the front-end focuses on what users see, the back-end is what happens behind the scenes. It’s like the engine of a car—you don’t see it, but it powers everything.
 
@@ -88,14 +84,12 @@ When combined, these create a complete, dynamic, and interactive web application
 
 ## Pro Tip for Beginners
 
-![Pro Tip for Beginners](/assets/uploads/blog/pro-tip-for-beginners.png "Pro Tip for Beginners")
-
 If you’re new to web development, don’t get overwhelmed. Start step by step:
 
 1. Learn the **basics** → HTML, CSS, and JavaScript.
 2. Move on to **frameworks** → React (front-end), Node.js (back-end).
 3. Explore **databases & APIs** → MySQL, MongoDB, REST, GraphQL.
 
-*Follow this roadmap, and you’ll be well on your way to becoming a full-stack developer.*
+Follow this roadmap, and you’ll be well on your way to becoming a full-stack developer.
 
-*At BizzNist, we simplify IT knowledge for businesses and learners. Web development doesn’t have to be intimidating—once you understand the building blocks, the possibilities are endless.*
+I simplify IT knowledge for businesses and learners. Web development doesn’t have to be intimidating—once you understand the building blocks, the possibilities are endless.
