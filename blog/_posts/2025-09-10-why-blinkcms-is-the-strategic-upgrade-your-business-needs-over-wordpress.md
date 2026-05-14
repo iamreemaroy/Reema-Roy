@@ -166,6 +166,8 @@ Then **YES** , BlinkCMS is the right investment.
 
 Experience the power of BlinkCMS in action.
 
+<button class="demo-btn">
 [👉 Request a Free Demo Now](https://calendly.com/iamreemaroy/30min)
+</button>
 
 > Let us show you how BlinkCMS can transform your digital presence.[](https://www.bizznist.com/)
