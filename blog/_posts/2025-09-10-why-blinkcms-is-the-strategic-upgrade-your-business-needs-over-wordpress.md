@@ -163,7 +163,6 @@ As BlinkCMS evolves, you get:
 Then **YES** , BlinkCMS is the right investment.
 
 #### Ready for a Demo?
-
 Experience the power of BlinkCMS in action.
 
 <button class="demo-btn">
