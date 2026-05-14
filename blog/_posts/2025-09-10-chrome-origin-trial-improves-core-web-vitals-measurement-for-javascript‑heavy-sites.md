@@ -20,7 +20,7 @@ date: 2025-08-04T12:27:00.000+05:30
 thumbnail: /assets/blog/img/soft-navigation-api-in-chrome.webp
 slug: chrome-core-web-vitals-spa-tracking
 meta_title: Google Chrome Origin Trial Fixes Core Web Vitals Tracking for
-  JavaScript-Heavy & SPA Sites | BizzNist
+  JavaScript-Heavy & SPA Sites | Reema Roy
 ---
 ## Introduction
 
@@ -75,5 +75,4 @@ Chrome is addressing this blind spot through the Soft Navigations API available 
 
 This Chrome trial fills a critical gap. SPA-based websites can now begin closing the visibility gap—getting genuine real‑user feedback on performance. This positions you ahead of the curve when Google eventually updates its public dashboards like CrUX to include soft navigation metrics.
 
-If you’re responsible for performance or SEO on an SPA, this is your moment to act—and gain that SEO competitive edge.[
-](https://www.bizznist.com/)
+If you’re responsible for performance or SEO on an SPA, this is your moment to act—and gain that SEO competitive edge.
