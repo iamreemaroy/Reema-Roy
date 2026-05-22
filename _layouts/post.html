@@ -219,14 +219,25 @@ layout: default
     }
 
     .author-box {
-    flex-direction: column;
-    text-align: center;
+      display: flex;
+      gap: 10px;
+      background: #473333;
+      border-radius: 18px;
+      padding: 10px;
+      margin-top: 30px;
+      align-items: center;
+      text-align: left;
   }
 
   .author-box img {
-    width: 90px;
-    height: 90px;
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(255, 255, 255, 0.08);
   }
+    
   .author-box h3 {
   color: #ffffff;
   font-size: 22px;
