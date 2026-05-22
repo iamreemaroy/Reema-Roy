@@ -8,6 +8,7 @@ permalink: /blog/:slug/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-last-modified-at
 
 defaults:
   - scope:
@@ -20,3 +21,4 @@ paginate: 12
 paginate_path: "/blog/page:num/"
 plugins:
   - jekyll-paginate
+
