@@ -30,9 +30,41 @@ layout: default
                 <img src="{{ page.thumbnail | absolute_url }}" class="img-fluid featured-image" alt="{{ page.title }}" loading="lazy" decoding="async">
               </div>
             </div>
-          </div> {% endif %} <div class="content mt-5">
-            {{ content }}
-          </div>
+          <div class="content mt-5">
+  {{ content }}
+
+  <!-- ALSO READ -->
+
+  {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
+
+  {% if related_posts.size > 0 %}
+
+  <div class="also-read-box">
+
+    <div class="also-read-title">
+      <i class="bi bi-book"></i>
+      Also Read
+    </div>
+
+    <ul class="also-read-links">
+
+      {% for post in related_posts %}
+
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+  {% endif %}
+
+</div>
           <div class="author-box">
             <img src="/assets/img/profile/profile-2.webp" alt="Reema Roy">
             <div>
