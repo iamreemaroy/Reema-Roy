@@ -31,7 +31,47 @@ layout: default
               </div>
             </div>
           <div class="content mt-5">
-  {{ content }}
+  {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
+
+{% assign paragraphs = content | split: '</p>' %}
+
+{% assign related_index = 0 %}
+
+{% for paragraph in paragraphs %}
+
+  {{ paragraph }}
+
+  {% unless forloop.last %}
+    </p>
+  {% endunless %}
+
+  {% assign paragraph_position = forloop.index %}
+
+  {% if paragraph_position == 2 or paragraph_position == 4 or paragraph_position == 6 or paragraph_position == 8 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
 
   <!-- ALSO READ -->
 
@@ -305,49 +345,77 @@ layout: default
   }
   }
   
+  
   /* INLINE ALSO READ */
+/* ==================================
+   INLINE ALSO READ
+================================== */
 
-.also-read-box {
+.inline-also-read {
+
   background: linear-gradient(135deg, #1f2937, #111827);
-  border-radius: 18px;
-  padding: 24px;
-  margin: 40px 0;
-  border: 1px solid rgba(255,255,255,0.08);
+
+  border-left: 4px solid #ef4444;
+
+  border-radius: 14px;
+
+  padding: 18px 22px;
+
+  margin: 35px 0;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.18);
 }
 
-.also-read-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.inline-also-read-label {
 
-  font-size: 20px;
+  font-size: 13px;
+
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 18px;
-}
 
-.also-read-title i {
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
   color: #ff6b6b;
+
+  margin-bottom: 10px;
 }
 
-.also-read-links {
-  margin: 0;
-  padding-left: 18px;
-}
+.inline-also-read a {
 
-.also-read-links li {
-  margin-bottom: 12px;
-}
+  color: #ffffff;
 
-.also-read-links a {
-  color: #d1d5db;
+  font-size: 18px;
+
+  font-weight: 600;
+
   text-decoration: none;
-  line-height: 1.7;
+
+  line-height: 1.6;
+
   transition: 0.3s ease;
 }
 
-.also-read-links a:hover {
+.inline-also-read a:hover {
+
   color: #ff6b6b;
-  text-decoration: underline;
 }
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .inline-also-read {
+
+    padding: 16px 18px;
+  }
+
+  .inline-also-read a {
+
+    font-size: 16px;
+  }
+
+}
+  
 </style>
