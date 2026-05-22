@@ -11,3 +11,4 @@ Disallow: /search?*
 Disallow: /*?price=
 
 Sitemap: https://www.reemaroy.com/sitemap.xml
+
