@@ -15,3 +15,8 @@ defaults:
       type: posts
     values:
       layout: post
+
+paginate: 12
+paginate_path: "/blog/page:num/"
+plugins:
+  - jekyll-paginate
