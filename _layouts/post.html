@@ -393,21 +393,24 @@ layout: default
 
 .inline-also-read {
 
-  background: #1e0e89;
+  background: linear-gradient(135deg, #1f2937, #111827);
 
   border-left: 4px solid #ef4444;
 
   border-radius: 14px;
 
-  padding: 10px 12px;
+  padding: 18px 22px;
 
-  margin: 20px 0;
+  margin: 35px 0;
 
   box-shadow:
     0 8px 25px rgba(0,0,0,0.18);
-  display: ruby-text;
-}
 
+  width: 100%;
+
+  overflow: hidden;
+}
+  
 .inline-also-read-label {
 
   font-size: 15px;
@@ -425,15 +428,23 @@ layout: default
 
 .inline-also-read a {
 
+  display: block;
+
   color: #ffffff;
 
-  font-size: 15px;
+  font-size: 18px;
 
   font-weight: 600;
 
   text-decoration: none;
 
-  line-height: 1.6;
+  line-height: 1.7;
+
+  word-break: break-word;
+
+  overflow-wrap: break-word;
+
+  white-space: normal;
 
   transition: 0.3s ease;
 }
@@ -449,14 +460,31 @@ layout: default
 
   .inline-also-read {
 
-    padding: 16px 18px;
-  }
+  background: linear-gradient(135deg, #1f2937, #111827);
 
-  .inline-also-read a {
+  border-left: 4px solid #ef4444;
 
-    font-size: 16px;
-  }
+  border-radius: 14px;
 
+  padding: 18px 22px;
+
+  margin: 35px 0;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.18);
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+ .inline-also-read a {
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+  
 }
   
 </style>
