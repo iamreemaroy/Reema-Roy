@@ -31,7 +31,7 @@ layout: default
               </div>
             </div>
           <div class="content mt-5">
-  {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
+            {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
 
 {% assign paragraphs = content | split: '</p>' %}
 
@@ -45,9 +45,79 @@ layout: default
     </p>
   {% endunless %}
 
-  {% assign paragraph_position = forloop.index %}
+  {% if forloop.index == 2 %}
 
-  {% if paragraph_position == 2 or paragraph_position == 4 or paragraph_position == 6 or paragraph_position == 8 %}
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 4 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 6 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 8 %}
 
     {% assign current_related = related_posts[related_index] %}
 
@@ -72,39 +142,7 @@ layout: default
   {% endif %}
 
 {% endfor %}
-
-  <!-- ALSO READ -->
-
-  {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
-
-  {% if related_posts.size > 0 %}
-
-  <div class="also-read-box">
-
-    <div class="also-read-title">
-      <i class="bi bi-book"></i>
-      Also Read
-    </div>
-
-    <ul class="also-read-links">
-
-      {% for post in related_posts %}
-
-      <li>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      </li>
-
-      {% endfor %}
-
-    </ul>
-
-  </div>
-
-  {% endif %}
-
-</div>
+          </div>
           <div class="author-box">
             <img src="/assets/img/profile/profile-2.webp" alt="Reema Roy">
             <div>
@@ -177,7 +215,7 @@ layout: default
       height: 675px;
     }
 
-    page.title {
+    .page-title {
       font-size: 48px;
       line-height: 1.2;
     }
@@ -246,7 +284,7 @@ layout: default
   }
 
   table th {
-    padding: 10px
+    padding: 10px;
     text-align: left;
     font-weight: 600;
   }
@@ -291,7 +329,7 @@ layout: default
       width: 500px;
       height: 300px;
     }
-    page.title {
+    .page-title {
       font-size: 32px;
       line-height: 1.3;
     }
