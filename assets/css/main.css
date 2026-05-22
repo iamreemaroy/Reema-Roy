@@ -2665,12 +2665,12 @@ section,
 }
 
 
-/* =========================
-   BLOG PAGE
-========================= */
+/* ====================================
+   BLOG PAGE UI
+==================================== */
 
 .blog-section {
-  background: #f8f9fc;
+  background: #f8fafc;
 }
 
 .blog-heading {
@@ -2689,14 +2689,14 @@ section,
   background: #fff;
   border-radius: 18px;
   overflow: hidden;
-  transition: 0.3s ease;
   height: 100%;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 .blog-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.12);
 }
 
 .blog-image {
@@ -2710,8 +2710,8 @@ section,
 }
 
 .blog-meta {
-  font-size: 14px;
   color: #ef4444;
+  font-size: 14px;
   margin-bottom: 12px;
   font-weight: 500;
 }
@@ -2723,8 +2723,8 @@ section,
 }
 
 .blog-title a {
-  color: #111827;
   text-decoration: none;
+  color: #111827;
 }
 
 .blog-title a:hover {
@@ -2733,14 +2733,19 @@ section,
 
 .blog-excerpt {
   color: #6b7280;
-  font-size: 15px;
   line-height: 1.7;
+  font-size: 15px;
   margin-bottom: 20px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .read-more-btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 18px;
   background: #ef4444;
   color: white;
   border-radius: 8px;
@@ -2751,13 +2756,12 @@ section,
 
 .read-more-btn:hover {
   background: #dc2626;
-  color: #fff;
+  color: white;
 }
 
 .pagination-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
   flex-wrap: wrap;
 }
@@ -2765,11 +2769,11 @@ section,
 .pagination-number,
 .pagination-btn {
   padding: 10px 16px;
-  border-radius: 8px;
   background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   text-decoration: none;
   color: #111827;
-  border: 1px solid #e5e7eb;
   transition: 0.3s;
 }
 
