@@ -24,12 +24,16 @@ layout: default
     <div class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="row gy-4">
         <!-- MAIN CONTENT -->
-        <div class="col-lg-8"> {% if page.thumbnail %} <div class="service-details-slider swiper">
+        <div class="col-lg-8"> 
+          {% if page.thumbnail %} 
+          <div class="service-details-slider swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <img src="{{ page.thumbnail | absolute_url }}" class="img-fluid featured-image" alt="{{ page.title }}" loading="lazy" decoding="async">
               </div>
             </div>
+            </div>
+            {% endif %}
           <div class="content mt-5">
             {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
 
