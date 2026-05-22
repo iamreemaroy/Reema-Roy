@@ -24,7 +24,7 @@ layout: default
     <div class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="row gy-4">
         <!-- MAIN CONTENT -->
-        <div class="col-lg-8"> {% if page.thumbnail %} <div class="service-details-slider swiper">
+        <div class="col-lg-8"> {% if page.thumbnail %} <div class="service-details-slider swiper featured-image">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <img src="{{ page.thumbnail | absolute_url }}" class="img-fluid" alt="{{ page.title }}" loading="lazy" decoding="async">
@@ -71,10 +71,23 @@ layout: default
     </div>
   </section>
 </main>
+
 <style>
   @media (min-width: 1200px) {
     body {
       padding-left: 0px !important;
+    }
+
+    .col-lg-8 {
+      width: 820px;
+    }
+    .col-lg-4 {
+      width: 380px;
+    }
+
+    featured-image {
+      width: 1200px;
+      height: 675px;
     }
 
     table th,
@@ -141,4 +154,10 @@ layout: default
     border-bottom: none;
   }
 
+  @media (min-width: 600px) {
+   featured-image {
+      width: 1200px;
+      height: 675px;
+    }
+  }
 </style>
