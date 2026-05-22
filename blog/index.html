@@ -9,11 +9,11 @@ pagination:
 <section class="blog-section py-5">
   <div class="container">
 
-    <!-- Section Heading -->
+    <!-- Heading -->
     <div class="text-center mb-5">
-      <h1 class="blog-heading">Latest Blogs</h1>
+      <h1 class="blog-heading">Latest Articles</h1>
       <p class="blog-subheading">
-        Insights on AI, Technology, Career Growth & Development
+        Insights on Technology, AI, Development & Career Growth
       </p>
     </div>
 
@@ -24,18 +24,22 @@ pagination:
 
       <div class="col-lg-4 col-md-6">
 
-        <div class="blog-card">
+        <article class="blog-card">
 
-          <!-- Blog Image -->
+          <!-- Thumbnail -->
           <a href="{{ post.url | relative_url }}">
+
             <img
-              src="{{ post.image | default: '/assets/img/blog/default-blog.webp' | relative_url }}"
+              src="{{ post.thumbnail | relative_url }}"
               alt="{{ post.title }}"
               class="blog-image"
+              loading="lazy"
+              onerror="this.src='{{ '/assets/img/default-blog.webp' | relative_url }}'"
             >
+
           </a>
 
-          <!-- Blog Content -->
+          <!-- Content -->
           <div class="blog-content">
 
             <!-- Date -->
@@ -53,16 +57,17 @@ pagination:
 
             <!-- Excerpt -->
             <p class="blog-excerpt">
-              {{ post.excerpt | strip_html | truncate: 120 }}
+              {{ post.excerpt | strip_html | truncate: 130 }}
             </p>
 
             <!-- Read More -->
             <a href="{{ post.url | relative_url }}" class="read-more-btn">
-              Read More
+              Read Article
             </a>
 
           </div>
-        </div>
+
+        </article>
 
       </div>
 
@@ -86,13 +91,10 @@ pagination:
         {% if page == paginator.page %}
           <span class="pagination-number active">{{ page }}</span>
         {% else %}
-          <a href="
-            {% if page == 1 %}
-              {{ '/blog/' | relative_url }}
-            {% else %}
-              {{ site.paginate_path | replace: ':num', page | relative_url }}
-            {% endif %}
-          " class="pagination-number">
+          <a
+            href="{% if page == 1 %}{{ '/blog/' | relative_url }}{% else %}{{ site.paginate_path | replace: ':num', page | relative_url }}{% endif %}"
+            class="pagination-number"
+          >
             {{ page }}
           </a>
         {% endif %}
