@@ -2,16 +2,112 @@
 layout: default
 title: Blog
 permalink: /blog
+pagination:
+  enabled: true
 ---
 
-<h1>Blog</h1>
+<section class="blog-section py-5">
+  <div class="container">
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+    <!-- Section Heading -->
+    <div class="text-center mb-5">
+      <h1 class="blog-heading">Latest Blogs</h1>
+      <p class="blog-subheading">
+        Insights on AI, Technology, Career Growth & Development
+      </p>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="row g-4">
+
+      {% for post in paginator.posts %}
+
+      <div class="col-lg-4 col-md-6">
+
+        <div class="blog-card">
+
+          <!-- Blog Image -->
+          <a href="{{ post.url | relative_url }}">
+            <img
+              src="{{ post.image | default: '/assets/img/blog/default-blog.webp' | relative_url }}"
+              alt="{{ post.title }}"
+              class="blog-image"
+            >
+          </a>
+
+          <!-- Blog Content -->
+          <div class="blog-content">
+
+            <!-- Date -->
+            <div class="blog-meta">
+              <i class="bi bi-calendar-event"></i>
+              {{ post.date | date: "%d %B %Y" }}
+            </div>
+
+            <!-- Title -->
+            <h2 class="blog-title">
+              <a href="{{ post.url | relative_url }}">
+                {{ post.title }}
+              </a>
+            </h2>
+
+            <!-- Excerpt -->
+            <p class="blog-excerpt">
+              {{ post.excerpt | strip_html | truncate: 120 }}
+            </p>
+
+            <!-- Read More -->
+            <a href="{{ post.url | relative_url }}" class="read-more-btn">
+              Read More
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+
+    <div class="pagination-wrapper mt-5">
+
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-btn">
+          ← Previous
+        </a>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+
+        {% if page == paginator.page %}
+          <span class="pagination-number active">{{ page }}</span>
+        {% else %}
+          <a href="
+            {% if page == 1 %}
+              {{ '/blog/' | relative_url }}
+            {% else %}
+              {{ site.paginate_path | replace: ':num', page | relative_url }}
+            {% endif %}
+          " class="pagination-number">
+            {{ page }}
+          </a>
+        {% endif %}
+
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-btn">
+          Next →
+        </a>
+      {% endif %}
+
+    </div>
+
+    {% endif %}
+
+  </div>
+</section>
