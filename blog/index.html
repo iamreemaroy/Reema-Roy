@@ -44,9 +44,11 @@ pagination:
 
             <!-- Date -->
             <div class="blog-meta">
-              <i class="bi bi-calendar-event"></i>
-              {{ post.date | date: "%d %B %Y" }}
-            </div>
+            <i class="bi bi-calendar-event"></i>
+            {{ post.date | date: "%d %b %Y" }}
+            •
+            {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read
+          </div>
 
             <!-- Title -->
             <h2 class="blog-title">
@@ -62,7 +64,7 @@ pagination:
 
             <!-- Read More -->
             <a href="{{ post.url | relative_url }}" class="read-more-btn">
-              Read Article
+              Read More →
             </a>
 
           </div>
