@@ -1,0 +1,13 @@
+#
+# robots.txt for https://www.reemaroy.com
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /deals/?category=
+Disallow: /cms/
+Disallow: /*?search=
+Disallow: /search/*
+Disallow: /search?*
+Disallow: /*?price=
+
+Sitemap: https://www.reemaroy.com/sitemap.xml
