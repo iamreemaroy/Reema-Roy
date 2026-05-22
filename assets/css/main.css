@@ -1401,7 +1401,7 @@ section,
   height: 200px;
   object-fit: cover;
   border: 5px solid color-mix(in srgb, var(--accent-color), transparent 85%);
-  border-radius: 50%;
+  border-radius: 100% !important;
 }
 
 .resume .resume-side h3 {
