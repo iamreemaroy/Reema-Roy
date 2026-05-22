@@ -391,62 +391,76 @@ layout: default
    INLINE ALSO READ
 ================================== */
 
+/* ==================================
+   INLINE ALSO READ
+================================== */
+
 .inline-also-read {
 
-  background: linear-gradient(135deg, #1f2937, #111827);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.08);
 
   border-left: 4px solid #ef4444;
 
   border-radius: 14px;
 
-  padding: 10px 12px;
+  padding: 16px 20px;
 
-  margin: 20px 0;
+  margin: 35px 0;
 
-  box-shadow:
-    0 8px 25px rgba(0,0,0,0.18);
-
-  width: 100%;
-
-  overflow: hidden;
+  transition: 0.3s ease;
 }
-  
+
+.inline-also-read:hover {
+
+  background: rgba(255,255,255,0.06);
+
+  border-color: rgba(239,68,68,0.25);
+}
+
+/* LABEL */
+
 .inline-also-read-label {
-
-  font-size: 15px;
-
-  font-weight: 700;
-
-  text-transform: uppercase;
-
-  letter-spacing: 1px;
 
   color: #ff6b6b;
 
-  margin-bottom: 10px;
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
 }
+
+/* LINK */
 
 .inline-also-read a {
 
-  display: block;
-
   color: #ffffff;
 
-  font-size: 15px;
+  font-size: 17px;
 
   font-weight: 600;
 
+  line-height: 1.6;
+
   text-decoration: none;
 
-  line-height: 1.7;
-
-  word-break: break-word;
+  transition: 0.3s ease;
 
   overflow-wrap: break-word;
 
-  white-space: normal;
-
-  transition: 0.3s ease;
+  word-break: break-word;
 }
 
 .inline-also-read a:hover {
@@ -460,31 +474,24 @@ layout: default
 
   .inline-also-read {
 
-  background: linear-gradient(135deg, #1f2937, #111827);
+    align-items: flex-start;
 
-  border-left: 4px solid #ef4444;
+    gap: 10px;
 
-  border-radius: 14px;
+    padding: 14px 16px;
+  }
 
-  padding: 18px 22px;
+  .inline-also-read-label {
 
-  margin: 35px 0;
+    font-size: 12px;
+  }
 
-  box-shadow:
-    0 8px 25px rgba(0,0,0,0.18);
+  .inline-also-read a {
 
-  width: 100%;
+    font-size: 15px;
 
-  overflow: hidden;
-}
+    line-height: 1.5;
+  }
 
- .inline-also-read a {
-
-  font-size: 16px;
-
-  line-height: 1.6;
-}
-  
-}
-  
+}  
 </style>
