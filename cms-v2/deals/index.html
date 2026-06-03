@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Best Tech & Fashion Deals | Reema Roy</title>
+    <meta property="og:title" content="Latest Deals on Amazon & Myntra | Reema Roy">
+    <meta property="og:description" content="Best curated deals on Amazon & Myntra. Save more daily.">
+    <meta property="og:image" content="/assets/img/og-banner.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.reemaroy.com/deals">
+    <link rel="canonical" href="https://www.reemaroy.com/deals">
+    <link rel="preconnect" href="https://m.media-amazon.com">
+
+  <!-- Favicons -->
+    <link href="/assets/img/favicon.ico" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
+<style>
+.deal-card {
+  background: #1b1b1b;
+  border-radius: 12px;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* important */
+}
+
+.deal-title {
+  min-height: 40px; /* ✅ FIX: equal title space */
+  -webkit-line-clamp: 2; /* max 2 lines */
+  overflow: hidden;
+}
+  .deal-price {
+  margin-top: auto; /* pushes everything below */
+}
+
+.deal-btn {
+  margin-top: 10px;
+}
+  .deal-title {
+  min-height: 42px;
+}
+
+.deal-price {
+  min-height: 24px;
+}
+
+  
+  /* Desktop */
+  .deals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+  /* Mobile */
+  @media (max-width: 768px) {
+  .deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+    .deal-title {
+    font-size: 14px;
+    }
+}
+
+/* ================= LAYOUT ================= */
+.deals-layout {
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.section,
+.container,
+.deals-layout {
+  overflow: visible !important;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 260px;
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  position: sticky;   
+  top: 100px;         
+  height: fit-content;
+}
+
+.sidebar input,
+.sidebar select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+}
+
+/* ================= DEAL CARDS ================= */
+.deals-content {
+  flex: 1;
+}
+
+.deal-card {
+  background: #1b1b1b;
+  border-radius: 12px;
+  padding: 18px;
+  transition: 0.2s;
+}
+
+.deal-card:hover {
+  transform: translateY(-6px);
+}
+
+.deal-img {
+  display: flex;
+  justify-content: center;
+  background: #111;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.deal-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+.deal-title {
+  color: white;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.deal-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff6600;
+  text-align: center;
+}
+
+.deal-btn {
+  background: #ff6600;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* ================= FILTER CHIPS ================= */
+.active-filters {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-chip {
+  background: #222;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-chip span {
+  cursor: pointer;
+}
+
+.clear-all {
+  background: #ff6600;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ================= MOBILE ================= */
+.mobile-filters {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-filters {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    justify-content: center;
+  }
+
+  .mobile-filters button {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+  }
+
+  .deals-layout {
+    flex-direction: column;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #1b1b1b;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 999999;
+  }
+
+  .dropdown-menu.active {
+    display: block;
+  }
+
+  .dropdown-menu div {
+    padding: 10px;
+    margin-bottom: 6px;
+    background: #222;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .dropdown-menu div:hover {
+    background: #ff6600;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+</style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+    <main class="main">
+      <section class="section">
+        <div class="container section-title" data-aos="fade-up" style="padding-bottom: 12px;">
+          <h1>Latest Deals</h1>
+          <p>Find the latest Amazon and Myntra deals curated daily. Discover discounts on electronics, fashion, home essentials, and more. Save money with verified offers and trending products updated regularly.</p>
+        </div>
+        <!-- 🔥 ONLY REPLACED MOBILE FILTER SECTION + JS LOGIC -->
+
+<div class="mobile-filters">
+
+  <!-- CATEGORY -->
+  <div class="dropdown">
+    <button onclick="toggleDropdown('catDropdown')">Category</button>
+    <div class="dropdown-menu" id="catDropdown"></div>
+  </div>
+
+  <!-- PRICE -->
+<div class="dropdown">
+  <button onclick="toggleDropdown('priceDropdown')">Price</button>
+  <div class="dropdown-menu" id="priceDropdown">
+    <div onclick="selectSingle('price','0-1000')">₹0 - ₹1000</div>
+    <div onclick="selectSingle('price','1000-5000')">₹1000 - ₹5000</div>
+    <div onclick="selectSingle('price','5000-10000')">₹5000 - ₹10000</div>
+    <div onclick="selectSingle('price','10000-999999')">₹10000+</div>
+  </div>
+</div>
+
+<!-- SORT -->
+<div class="dropdown">
+  <button onclick="toggleDropdown('sortDropdown')">Sort</button>
+  <div class="dropdown-menu" id="sortDropdown">
+    <div onclick="selectSingle('sort','low')">Price Low → High</div>
+    <div onclick="selectSingle('sort','high')">Price High → Low</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ACTIVE FILTERS -->
+<div class="active-filters" id="activeFilters"></div>
+
+        <div class="deals-layout">
+          <!-- FILTER SIDEBAR -->
+          <div class="sidebar">
+            <h3>Filter</h3>
+            <div class="filter-group">
+  <label>Search</label>
+  <input type="text" id="search" placeholder="Search product" oninput="applyDesktopFilters()">
+</div>
+
+<div class="filter-group">
+  <label>Category</label>
+  <select id="category" onchange="applyDesktopFilters()">
+    <option value="">All</option>
+    <option value="beauty-skincare">Beauty & Skincare</option>
+    <option value="daily-essentials">Daily Essentials</option>
+    <option value="electronics">Electronics</option>
+    <option value="fashion">Fashion</option>
+    <option value="home-kitchen">Home & Kitchen</option>
+    <option value="lifestyle">Lifestyle</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label>Price Range</label>
+  <select id="priceRange" onchange="applyDesktopFilters()">
+    <option value="">All</option>
+    <option value="0-1000">₹0 - ₹1000</option>
+    <option value="1000-5000">₹1000 - ₹5000</option>
+    <option value="5000-10000">₹5000 - ₹10000</option>
+    <option value="10000-20000">₹10000 - ₹20000</option>
+    <option value="20000-999999">₹20000+</option>
+  </select>
+</div>
+  
+          </div>
+          <!-- DEALS GRID -->
+          <div class="deals-content">
+            <div class="deals-grid" id="deals"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+<script>
+let allDeals = [];
+
+/* ================= LOAD ================= */
+async function loadDeals() {
+  try {
+    let res = await fetch("/data/deals.json");
+
+    if (!res.ok) throw new Error("Fetch failed");
+
+    allDeals = await res.json();
+
+    console.log("Loaded deals:", allDeals); // ✅ debug
+
+    syncDesktopFilters();
+    renderCategoryDropdown();
+    renderActiveFilters();
+    filterDeals();
+  } catch (e) {
+    console.error("Deals load error", e);
+  }
+}
+
+/* ================= FILTER ================= */
+function filterDeals() {
+  let params = new URLSearchParams(window.location.search);
+
+  let search = (params.get("search") || "").toLowerCase();
+  let category = (params.get("category") || "").toLowerCase().trim();
+  let priceRange = params.get("price");
+  let sort = params.get("sort");
+
+  let min = 0, max = 999999;
+
+  if (priceRange) {
+    let [a, b] = priceRange.split("-");
+    min = Number(a);
+    max = Number(b);
+  }
+
+  let filtered = allDeals.filter(d => {
+    let title = (d.title || "").toLowerCase();
+    let price = Number((d.price || "0").toString().replace(/\D/g, ""));
+    let cat = (d.category || "").toLowerCase().trim();
+
+    return (
+      title.includes(search) &&
+      (!category || cat.includes(category)) &&   // ✅ FIXED
+      price >= min &&
+      price <= max
+    );
+  });
+
+  /* ================= SORT ================= */
+  if (sort === "low") {
+    filtered.sort((a, b) =>
+      Number((a.price || "0").replace(/\D/g, "")) -
+      Number((b.price || "0").replace(/\D/g, ""))
+    );
+  }
+
+  if (sort === "high") {
+    filtered.sort((a, b) =>
+      Number((b.price || "0").replace(/\D/g, "")) -
+      Number((a.price || "0").replace(/\D/g, ""))
+    );
+  }
+
+  renderDeals(filtered);
+}
+
+/* ================= RENDER ================= */
+function renderDeals(deals) {
+  let container = document.getElementById("deals");
+
+  if (!deals || deals.length === 0) {
+    container.innerHTML =
+      `<p style="color:white;text-align:center;">No products found</p>`;
+    return;
+  }
+
+  let html = deals.map(d => {
+    let price = Number(String(d.price || "0").replace(/\D/g, ""));
+
+    return `
+      <div class="deal-card">
+        <div class="deal-img">
+          <img src="${d.image || '/assets/img/no-image.png'}">
+        </div>
+        <div class="deal-title">${d.title || ""}</div>
+        <div class="deal-price">₹${price}</div>
+        <a href="${d.link || '#'}" target="_blank" class="deal-btn">View Deal</a>
+      </div>
+    `;
+  }).join("");
+
+  container.innerHTML = html;
+}
+
+/* ================= DESKTOP ================= */
+function applyDesktopFilters() {
+  let params = new URLSearchParams();
+
+  let search = document.getElementById("search").value;
+  let category = document.getElementById("category").value;
+  let price = document.getElementById("priceRange").value;
+
+  if (search) params.set("search", search);
+  if (category) params.set("category", category);
+  if (price) params.set("price", price);
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* ================= SYNC ================= */
+function syncDesktopFilters() {
+  let params = new URLSearchParams(window.location.search);
+
+  document.getElementById("search").value = params.get("search") || "";
+  document.getElementById("category").value = params.get("category") || "";
+  document.getElementById("priceRange").value = params.get("price") || "";
+}
+
+/* ================= MOBILE ================= */
+function toggleDropdown(id) {
+  document.querySelectorAll(".dropdown-menu").forEach(el => {
+    if (el.id !== id) el.classList.remove("active");
+  });
+
+  let el = document.getElementById(id);
+  el.classList.toggle("active");
+
+  if (id === "catDropdown") renderCategoryDropdown();
+}
+
+function selectSingle(type, value) {
+  let params = new URLSearchParams(window.location.search);
+  params.set(type, value);
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* ================= CATEGORY ================= */
+function renderCategoryDropdown() {
+  let list = [
+    {label:"Beauty & Skincare",value:"beauty-skincare"},
+    {label:"Fashion",value:"fashion"},
+    {label:"Electronics",value:"electronics"},
+    {label:"Home & Kitchen",value:"home-kitchen"},
+    {label:"Lifestyle",value:"lifestyle"}
+  ];
+
+  let html = list.map(c => `
+    <div onclick="selectSingle('category','${c.value}')">${c.label}</div>
+  `).join("");
+
+  document.getElementById("catDropdown").innerHTML = html;
+}
+
+/* ================= FILTER CHIPS ================= */
+function renderActiveFilters() {
+  let params = new URLSearchParams(window.location.search);
+  let html = "";
+
+  params.forEach((v, k) => {
+    html += `
+      <div class="filter-chip">
+        ${k}: ${v}
+        <span onclick="removeFilter('${k}')">✕</span>
+      </div>
+    `;
+  });
+
+  if (html) {
+    html += `<div class="clear-all" onclick="clearAllFilters()">Clear All</div>`;
+  }
+
+  document.getElementById("activeFilters").innerHTML = html;
+}
+
+/* ================= REMOVE ================= */
+function removeFilter(key) {
+  let params = new URLSearchParams(window.location.search);
+  params.delete(key);
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  syncDesktopFilters();
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* ================= CLEAR ================= */
+function clearAllFilters() {
+  history.replaceState(null, "", window.location.pathname);
+
+  syncDesktopFilters();
+  renderActiveFilters();
+  filterDeals();
+}
+
+/* ================= CLICK OUTSIDE ================= */
+document.addEventListener("click", function(e) {
+  if (!e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown-menu").forEach(el => {
+      el.classList.remove("active");
+    });
+  }
+});
+
+/* ================= INIT ================= */
+loadDeals();
+</script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>
