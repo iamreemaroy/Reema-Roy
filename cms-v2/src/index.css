@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f7fb;
+  font-family: Inter, sans-serif;
+  color: #111827;
+}
+
+.app-layout {
+  padding: 40px;
+}
+
+.page-title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.cms-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.04),
+    0 12px 32px rgba(0,0,0,0.04);
+}
+
+.sidebar-card h2 {
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+}
+
+.field textarea {
+  min-height: 100px;
+}
+
+.url-preview {
+  margin-top: 20px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.publish-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 14px;
+  background: #111827;
+  color: white;
+  padding: 16px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.editor-shell {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.04),
+    0 12px 32px rgba(0,0,0,0.04);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: white;
+}
+
+.toolbar button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: #111827;
+  color: white;
+}
+
+.toolbar button.is-active {
+  background: #111827;
+  color: white;
+}
+
+.editor-content {
+  background: #f9fafb;
+  padding: 50px;
+}
+
+.ProseMirror {
+  max-width: 850px;
+  margin: auto;
+  background: white;
+  min-height: 900px;
+  padding: 80px;
+  border-radius: 24px;
+  outline: none;
+
+  font-size: 19px;
+  line-height: 1.9;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.04),
+    0 12px 32px rgba(0,0,0,0.05);
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+.ProseMirror h1 {
+  font-size: 52px;
+  margin: 48px 0 24px;
+}
+
+.ProseMirror h2 {
+  font-size: 38px;
+  margin: 40px 0 20px;
+}
+
+.ProseMirror h3 {
+  font-size: 30px;
+  margin: 32px 0 18px;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 24px;
+  margin: 20px 0;
+}
+
+.ProseMirror li {
+  margin: 8px 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #111827;
+  padding-left: 20px;
+  margin: 24px 0;
+  color: #4b5563;
+}
+
+.ProseMirror code {
+  background: #f3f4f6;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.ProseMirror pre {
+  background: #111827;
+  color: white;
+  padding: 20px;
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+.ProseMirror table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+}
+
+.ProseMirror th,
+.ProseMirror td {
+  border: 1px solid #d1d5db;
+  padding: 14px;
+}
+
+.ProseMirror th {
+  background: #111827;
+  color: white;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  border-radius: 16px;
+  margin: 24px 0;
+}
+
+@media (max-width: 1100px) {
+  .cms-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-content {
+    padding: 20px;
+  }
+
+  .ProseMirror {
+    padding: 32px;
+  }
+
+  .toolbar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}
