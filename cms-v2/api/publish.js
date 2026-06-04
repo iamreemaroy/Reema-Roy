@@ -45,9 +45,10 @@ ${content}
     const response = await fetch(githubUrl, {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+  Authorization: `token ${process.env.GITHUB_TOKEN}`,
+  Accept: "application/vnd.github+json",
+  "Content-Type": "application/json",
+},
       body: JSON.stringify({
         message: `Add blog post: ${title}`,
         content: contentEncoded,
@@ -57,10 +58,13 @@ ${content}
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(500).json({
-        error: data,
-      });
-    }
+  console.error(data);
+
+  return res.status(500).json({
+    success: false,
+    error: data,
+  });
+}
 
     return res.status(200).json({
       success: true,
