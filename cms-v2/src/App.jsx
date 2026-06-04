@@ -6,7 +6,6 @@ export default function App() {
 
   return (
     <div className="app-layout">
-      <h1 className="page-title">Headless CMS</h1>
 
       <div className="cms-layout">
 
