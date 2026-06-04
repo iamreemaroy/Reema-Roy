@@ -11,6 +11,12 @@ import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 
 export const extensions = [
+  TaskList,
+
+TaskItem.configure({
+  nested: true,
+}),
+  
   StarterKit,
 
   Underline,
