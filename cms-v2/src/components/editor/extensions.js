@@ -5,7 +5,6 @@ import Image from "@tiptap/extension-image";
 
 export const extensions = [
   StarterKit,
-
   Underline,
 
   Link.configure({
