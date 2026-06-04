@@ -108,17 +108,7 @@ export default function Toolbar({ editor }) {
         <ImageIcon size={18} />
       </button>
 
-      <button
-        onClick={() =>
-          editor.chain().focus().insertTable({
-            rows: 3,
-            cols: 3,
-            withHeaderRow: true,
-          }).run()
-        }
-      >
-        <TableIcon size={18} />
-      </button>
+      
 
     </div>
   );
