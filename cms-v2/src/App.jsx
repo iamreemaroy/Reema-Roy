@@ -3,7 +3,39 @@ import Editor from "./components/editor/Editor";
 
 export default function App() {
   const [slug, setSlug] = useState("");
+const handlePublish = async () => {
+  try {
+    const response = await fetch("/api/publish", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        slug,
+        metaTitle,
+        metaDescription,
+        keywords,
+        thumbnail,
+        content: editor?.getHTML(),
+      }),
+    });
 
+    const data = await response.json();
+
+    console.log(data);
+
+    if (data.success) {
+      alert("Blog Published Successfully!");
+    } else {
+      alert("Publishing Failed");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Error publishing blog");
+  }
+};
+  
   return (
     <div className="app-layout">
 
@@ -56,7 +88,7 @@ export default function App() {
               https://www.reemaroy.com/blog/{slug}
             </div>
 
-            <button className="publish-btn">
+            <button onClick={handlePublish}>
               Publish Blog
             </button>
 
