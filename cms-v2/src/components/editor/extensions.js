@@ -29,12 +29,5 @@ export const extensions = [
     openOnClick: false,
   }),
 
-  Table.configure({
-    resizable: true,
-  }),
-
-  TableRow,
-  TableHeader,
-  TableCell,
-];
+  
 
