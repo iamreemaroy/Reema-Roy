@@ -11,7 +11,6 @@ export default function App() {
 
         <aside className="sidebar">
           <div className="sidebar-card">
-
             <h2>Content Settings</h2>
 
             <div className="field">
