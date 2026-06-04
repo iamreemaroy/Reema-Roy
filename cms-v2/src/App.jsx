@@ -88,9 +88,23 @@ const handlePublish = async () => {
               https://www.reemaroy.com/blog/{slug}
             </div>
 
-            <button onClick={handlePublish}>
-              Publish Blog
-            </button>
+            <button
+  onClick={handlePublish}
+  style={{
+    width: "100%",
+    background: "#081225",
+    color: "#fff",
+    border: "none",
+    padding: "14px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    fontWeight: "600",
+    fontSize: "16px",
+    marginTop: "20px",
+  }}
+>
+  Publish Blog
+</button>
 
           </div>
         </aside>
