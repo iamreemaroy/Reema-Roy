@@ -87,7 +87,7 @@ ${keywords
   .join("\n")}
 
 date: "${date}"
-
+author: "Reema Roy"
 thumbnail: "${thumbnailName
   ? `/assets/blog/img/${thumbnailName}`
   : ""}"
