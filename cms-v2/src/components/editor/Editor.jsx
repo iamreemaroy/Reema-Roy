@@ -1,23 +1,23 @@
+import { forwardRef, useImperativeHandle } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
-import { extensions } from "./extensions";
-import Toolbar from "./Toolbar";
 
-export default function Editor() {
+const Editor = forwardRef((props, ref) => {
+
   const editor = useEditor({
-    extensions,
-    content: "",
+    content: "<p>Start writing...</p>",
   });
 
+  useImperativeHandle(ref, () => ({
+    getHTML: () => editor?.getHTML() || "",
+  }));
+
+  if (!editor) return null;
+
   return (
-    <main className="editor-shell">
-
-      <Toolbar editor={editor} />
-
-      <div className="editor-content">
-        <EditorContent editor={editor} />
-      </div>
-
-    </main>
+    <div className="editor-wrapper">
+      <EditorContent editor={editor} />
+    </div>
   );
-}
+});
 
+export default Editor;
