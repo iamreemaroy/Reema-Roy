@@ -31,7 +31,7 @@ ${keywords
   .join("\n")}
 author: Reema Roy
 date: ${date}
-thumbnail: `/assets/blog/img/${thumbnailName}`,
+thumbnail: "/assets/blog/img/${thumbnailName}"
 slug: ${slug}
 meta_title: "${metaTitle}"
 ---
