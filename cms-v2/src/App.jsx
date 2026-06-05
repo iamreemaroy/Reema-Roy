@@ -120,9 +120,17 @@ export default function App() {
               <label>Slug</label>
 
               <input
-                placeholder="wordpress-vs-headless-cms"
+                placeholder="add your slug"
                 value={slug}
-                onChange={(e) => setSlug(e.target.value)}
+                onChange={(e) =>
+                  setSlug(
+                    e.target.value
+                      .toLowerCase()
+                      .replace(/[^a-z0-9\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                      .replace(/-+/g, "-")
+                  )
+                }
               />
 
             </div>
