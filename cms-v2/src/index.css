@@ -40,7 +40,6 @@ body {
   height: 100vh;
   overflow-y: auto;
   top: 0;
-  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -169,7 +168,7 @@ body {
   max-width: 1200px;
   margin: auto;
   background: white;
-  min-height: 900px;
+  min-height: 750px;
   padding: 80px;
   border-radius: 24px;
   outline: none;
