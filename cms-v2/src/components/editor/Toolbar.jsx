@@ -1,10 +1,11 @@
+import imageCompression from "browser-image-compression";
+
 import {
   Bold,
   Italic,
   Underline as UnderlineIcon,
   List,
   ListOrdered,
-  CheckSquare,
   Quote,
   Code2,
   Heading1,
@@ -15,28 +16,133 @@ import {
   TableIcon,
   Undo2,
   Redo2,
+  Youtube,
+  FileVideo,
 } from "lucide-react";
 
 export default function Toolbar({ editor }) {
+
   if (!editor) return null;
 
-  const addImage = () => {
-    const url = window.prompt("Enter image URL");
+  // IMAGE UPLOAD + WEBP CONVERSION
+  const addImage = async () => {
 
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
+    const input = document.createElement("input");
+
+    input.type = "file";
+
+    input.accept = "image/*";
+
+    input.click();
+
+    input.onchange = async () => {
+
+      const file = input.files[0];
+
+      if (!file) return;
+
+      try {
+
+        const compressedFile = await imageCompression(file, {
+          maxSizeMB: 0.3,
+          maxWidthOrHeight: 1200,
+          useWebWorker: true,
+          fileType: "image/webp",
+        });
+
+        const webpFile = new File(
+          [compressedFile],
+          file.name.replace(/\.[^/.]+$/, "") + ".webp",
+          {
+            type: "image/webp",
+          }
+        );
+
+        const reader = new FileReader();
+
+        reader.readAsDataURL(webpFile);
+
+        reader.onload = () => {
+
+          editor
+            .chain()
+            .focus()
+            .setImage({
+              src: reader.result,
+            })
+            .run();
+
+        };
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Error uploading image");
+
+      }
+
+    };
+
   };
 
+  // LINK
   const addLink = () => {
+
     const url = window.prompt("Enter URL");
 
     if (url) {
-      editor.chain().focus().setLink({ href: url }).run();
+
+      editor
+        .chain()
+        .focus()
+        .setLink({ href: url })
+        .run();
+
     }
+
+  };
+
+  // EMBED CODE
+  const addEmbed = () => {
+
+    const embedCode = window.prompt(
+      "Paste iframe / embed code"
+    );
+
+    if (!embedCode) return;
+
+    editor
+      .chain()
+      .focus()
+      .insertContent(embedCode)
+      .run();
+
+  };
+
+  // VIDEO URL
+  const addVideo = () => {
+
+    const videoUrl = window.prompt(
+      "Paste video URL"
+    );
+
+    if (!videoUrl) return;
+
+    editor
+      .chain()
+      .focus()
+      .insertContent(`
+        <video controls width="100%">
+          <source src="${videoUrl}" />
+        </video>
+      `)
+      .run();
+
   };
 
   return (
+
     <div className="toolbar">
 
       <button onClick={() => editor.chain().focus().undo().run()}>
@@ -68,50 +174,78 @@ export default function Toolbar({ editor }) {
         <UnderlineIcon size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleBulletList().run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleBulletList().run()
+        }
+      >
         <List size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleOrderedList().run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleOrderedList().run()
+        }
+      >
         <ListOrdered size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleBlockquote().run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleBlockquote().run()
+        }
+      >
         <Quote size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleCodeBlock().run()
+        }
+      >
         <Code2 size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleHeading({ level: 1 }).run()
+        }
+      >
         <Heading1 size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleHeading({ level: 2 }).run()
+        }
+      >
         <Heading2 size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
+      <button
+        onClick={() =>
+          editor.chain().focus().toggleHeading({ level: 3 }).run()
+        }
+      >
         <Heading3 size={18} />
       </button>
 
       <button
-  onClick={() =>
-    editor
-      .chain()
-      .focus()
-      .insertTable({
-        rows: 3,
-        cols: 3,
-        withHeaderRow: true,
-      })
-      .run()
-  }
->
-  <TableIcon size={18} />
-</button>
-      
+        onClick={() =>
+          editor
+            .chain()
+            .focus()
+            .insertTable({
+              rows: 3,
+              cols: 3,
+              withHeaderRow: true,
+            })
+            .run()
+        }
+      >
+        <TableIcon size={18} />
+      </button>
+
       <button onClick={addLink}>
         <Link2 size={18} />
       </button>
@@ -120,9 +254,15 @@ export default function Toolbar({ editor }) {
         <ImageIcon size={18} />
       </button>
 
-      
+      <button onClick={addEmbed}>
+        <Youtube size={18} />
+      </button>
+
+      <button onClick={addVideo}>
+        <FileVideo size={18} />
+      </button>
 
     </div>
+
   );
 }
-
