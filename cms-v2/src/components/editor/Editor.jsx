@@ -43,9 +43,7 @@ const Editor = forwardRef((props, ref) => {
 
     ],
 
-    Placeholder.configure({
-  placeholder: "Start writing your blog...",
-}),
+    content: "",
   });
 
   useImperativeHandle(ref, () => ({
