@@ -60,8 +60,6 @@ export default function App() {
 
           <div className="sidebar-card">
 
-            <h2>Content Settings</h2>
-
             <div className="field">
               <label>Title</label>
 
