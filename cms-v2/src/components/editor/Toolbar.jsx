@@ -76,10 +76,6 @@ export default function Toolbar({ editor }) {
         <ListOrdered size={18} />
       </button>
 
-      <button onClick={() => editor.chain().focus().toggleTaskList().run()}>
-        <CheckSquare size={18} />
-      </button>
-
       <button onClick={() => editor.chain().focus().toggleBlockquote().run()}>
         <Quote size={18} />
       </button>
