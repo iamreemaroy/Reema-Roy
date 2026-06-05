@@ -86,8 +86,6 @@ ${keywords
   .map((k) => `  - ${k.trim()}`)
   .join("\n")}
 
-author: "Reema Roy"
-
 date: "${date}"
 
 thumbnail: "${thumbnailName
