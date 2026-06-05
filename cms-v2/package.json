@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tiptap/react": "^2.10.4",
+    "marked": "^12.0.2",
     "@tiptap/starter-kit": "^2.10.4",
     "@tiptap/extension-link": "^2.10.4",
     "@tiptap/extension-image": "^2.10.4",
