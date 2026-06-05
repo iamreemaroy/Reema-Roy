@@ -53,15 +53,18 @@ const Editor = forwardRef((props, ref) => {
   if (!editor) return null;
 
   return (
+  <div className="editor-container">
 
-    <div className="editor-container">
-
+    <div className="toolbar-wrapper">
       <Toolbar editor={editor} />
-
-      <EditorContent editor={editor} />
-
     </div>
-  );
+
+    <div className="editor-scroll-area">
+      <EditorContent editor={editor} />
+    </div>
+
+  </div>
+);
 });
 
 export default Editor;
