@@ -46,9 +46,42 @@ const Editor = forwardRef((props, ref) => {
     content: "",
   });
 
-  useImperativeHandle(ref, () => ({
-    getHTML: () => editor?.getHTML() || "",
-  }));
+useImperativeHandle(ref, () => ({
+
+  getHTML: () => editor?.getHTML() || "",
+
+  getMarkdown: () => {
+
+    const html = editor?.getHTML() || "";
+
+    return html
+
+      .replace(/<h1>(.*?)<\/h1>/g, "# $1\n")
+      .replace(/<h2>(.*?)<\/h2>/g, "## $1\n")
+      .replace(/<h3>(.*?)<\/h3>/g, "### $1\n")
+
+      .replace(/<strong>(.*?)<\/strong>/g, "**$1**")
+      .replace(/<em>(.*?)<\/em>/g, "*$1*")
+
+      .replace(/<blockquote>(.*?)<\/blockquote>/g, "> $1\n")
+
+      .replace(/<ul>/g, "")
+      .replace(/<\/ul>/g, "")
+
+      .replace(/<ol>/g, "")
+      .replace(/<\/ol>/g, "")
+
+      .replace(/<li>(.*?)<\/li>/g, "- $1\n")
+
+      .replace(/<p>(.*?)<\/p>/g, "$1\n\n")
+
+      .replace(/<br\s*\/?>/g, "\n")
+
+      .replace(/<[^>]+>/g, "");
+
+  },
+
+}));
 
   if (!editor) return null;
 
