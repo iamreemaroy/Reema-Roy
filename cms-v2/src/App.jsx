@@ -36,7 +36,12 @@ export default function App() {
       }),
       });
 
-      const data = await response.json();
+      
+      const text = await response.text();
+
+      console.log(text);
+
+      const data = JSON.parse(text);
 
       if (data.success) {
         alert("Blog published successfully!");
