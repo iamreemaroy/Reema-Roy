@@ -109,10 +109,18 @@ export default function App() {
               <label>Title</label>
 
               <input
-                placeholder="Enter blog title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+  placeholder="Enter title"
+  value={title}
+  onChange={(e) => {
+
+    const value = e.target.value;
+
+    setTitle(value);
+
+    setMetaTitle(value);
+
+  }}
+/>
 
             </div>
 
