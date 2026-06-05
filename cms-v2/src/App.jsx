@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import imageCompression from "browser-image-compression";
 import Editor from "./components/editor/Editor";
 
 export default function App() {
@@ -174,11 +175,33 @@ export default function App() {
             <div className="field">
 
               <label>Thumbnail Upload</label>
+<input
+  type="file"
+  accept="image/*"
+  onChange={async (e) => {
+    const file = e.target.files[0];
 
-              <input
-                type="file"
-                onChange={(e) => setThumbnail(e.target.files[0])}
-              />
+    if (!file) return;
+
+    const compressedFile = await imageCompression(file, {
+      maxSizeMB: 0.3,
+      maxWidthOrHeight: 1200,
+      useWebWorker: true,
+      fileType: "image/webp",
+    });
+
+    const webpFile = new File(
+      [compressedFile],
+      file.name.replace(/\.[^/.]+$/, "") + ".webp",
+      {
+        type: "image/webp",
+      }
+    );
+
+    setThumbnail(webpFile);
+  }}
+/>
+
 
             </div>
 
