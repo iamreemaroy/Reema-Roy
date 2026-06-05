@@ -64,7 +64,7 @@ export default function App() {
 
           thumbnailBase64,
 
-          content: editorRef.current?.getHTML?.() || "",
+          content: editorRef.current?.getMarkdown?.() || "",
 
         }),
       });
