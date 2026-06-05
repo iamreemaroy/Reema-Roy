@@ -1,3 +1,4 @@
+```jsx
 import { useState, useRef } from "react";
 import Editor from "./components/editor/Editor";
 
@@ -10,14 +11,40 @@ export default function App() {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [keywords, setKeywords] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
   const [youtubeUrl, setYoutubeUrl] = useState("");
+
+  // CONVERT IMAGE TO BASE64
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        resolve(reader.result.split(",")[1]);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+    });
+  };
 
   const handlePublish = async () => {
 
     try {
 
+      let thumbnailBase64 = "";
+
+      if (thumbnail) {
+        thumbnailBase64 = await convertToBase64(thumbnail);
+      }
+
       const response = await fetch("/api/publish", {
+
         method: "POST",
 
         headers: {
@@ -25,18 +52,23 @@ export default function App() {
         },
 
         body: JSON.stringify({
-        title,
-        slug,
-        metaTitle,
-        metaDescription,
-        keywords,
-        youtubeUrl,
-        thumbnailName: thumbnail?.name || "",
-        content: editorRef.current?.getHTML?.() || "",
-      }),
+
+          title,
+          slug,
+          metaTitle,
+          metaDescription,
+          keywords,
+          youtubeUrl,
+
+          thumbnailName: thumbnail?.name || "",
+
+          thumbnailBase64,
+
+          content: editorRef.current?.getHTML?.() || "",
+
+        }),
       });
 
-      
       const text = await response.text();
 
       console.log(text);
@@ -44,19 +76,26 @@ export default function App() {
       const data = JSON.parse(text);
 
       if (data.success) {
+
         alert("Blog published successfully!");
+
       } else {
+
         console.error(data);
+
         alert("Error publishing blog");
       }
 
     } catch (error) {
+
       console.error(error);
+
       alert("Error publishing blog");
     }
   };
 
   return (
+
     <div className="app-layout">
 
       <div className="cms-layout">
@@ -66,6 +105,7 @@ export default function App() {
           <div className="sidebar-card">
 
             <div className="field">
+
               <label>Title</label>
 
               <input
@@ -73,9 +113,11 @@ export default function App() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+
             </div>
 
             <div className="field">
+
               <label>Slug</label>
 
               <input
@@ -83,9 +125,11 @@ export default function App() {
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
               />
+
             </div>
 
             <div className="field">
+
               <label>Meta Title</label>
 
               <input
@@ -93,9 +137,11 @@ export default function App() {
                 value={metaTitle}
                 onChange={(e) => setMetaTitle(e.target.value)}
               />
+
             </div>
 
             <div className="field">
+
               <label>Meta Description</label>
 
               <textarea
@@ -103,9 +149,11 @@ export default function App() {
                 value={metaDescription}
                 onChange={(e) => setMetaDescription(e.target.value)}
               />
+
             </div>
 
             <div className="field">
+
               <label>Keywords</label>
 
               <input
@@ -113,18 +161,22 @@ export default function App() {
                 value={keywords}
                 onChange={(e) => setKeywords(e.target.value)}
               />
+
             </div>
 
             <div className="field">
+
               <label>Thumbnail Upload</label>
 
               <input
                 type="file"
                 onChange={(e) => setThumbnail(e.target.files[0])}
               />
+
             </div>
 
             <div className="field">
+
               <label>YouTube URL</label>
 
               <input
@@ -132,10 +184,13 @@ export default function App() {
                 value={youtubeUrl}
                 onChange={(e) => setYoutubeUrl(e.target.value)}
               />
+
             </div>
 
             <div className="url-preview">
+
               https://www.reemaroy.com/blog/{slug}
+
             </div>
 
             <button
@@ -167,3 +222,4 @@ export default function App() {
     </div>
   );
 }
+```
