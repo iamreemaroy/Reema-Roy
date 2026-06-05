@@ -7,14 +7,15 @@ export default async function handler(req, res) {
 
   try {
     const {
-      title,
-      slug,
-      metaTitle,
-      metaDescription,
-      keywords,
-      thumbnail,
-      content,
-    } = req.body;
+  title,
+  slug,
+  metaTitle,
+  metaDescription,
+  keywords,
+  youtubeUrl,
+  thumbnailName,
+  content,
+} = req.body;
 
     const date = new Date().toISOString();
 
@@ -30,7 +31,7 @@ ${keywords
   .join("\n")}
 author: Reema Roy
 date: ${date}
-thumbnail: ${thumbnail}
+thumbnail: `/assets/blog/img/${thumbnailName}`,
 slug: ${slug}
 meta_title: "${metaTitle}"
 ---
