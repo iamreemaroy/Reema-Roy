@@ -10,25 +10,24 @@ const handlePublish = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
-        title,
-        slug,
-        metaTitle,
-        metaDescription,
-        keywords,
-        thumbnail,
-        content: editor?.getHTML(),
+        title: formData.title,
+        slug: formData.slug,
+        metaTitle: formData.metaTitle,
+        metaDescription: formData.metaDescription,
+        keywords: formData.keywords,
+        content: editor.getHTML(),
       }),
     });
 
     const data = await response.json();
 
-    console.log(data);
-
     if (data.success) {
-      alert("Blog Published Successfully!");
+      alert("Blog published successfully!");
     } else {
-      alert("Publishing Failed");
+      console.error(data);
+      alert("Error publishing blog");
     }
   } catch (error) {
     console.error(error);
