@@ -1,4 +1,3 @@
-```jsx
 import { useState, useRef } from "react";
 import Editor from "./components/editor/Editor";
 
@@ -222,4 +221,3 @@ export default function App() {
     </div>
   );
 }
-```
