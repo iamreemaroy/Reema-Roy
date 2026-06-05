@@ -10,6 +10,7 @@ export default function App() {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [keywords, setKeywords] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const handlePublish = async () => {
@@ -24,14 +25,15 @@ export default function App() {
         },
 
         body: JSON.stringify({
-          title,
-          slug,
-          metaTitle,
-          metaDescription,
-          keywords,
-          youtubeUrl,
-          content: editorRef.current?.getHTML?.() || "",
-        }),
+        title,
+        slug,
+        metaTitle,
+        metaDescription,
+        keywords,
+        youtubeUrl,
+        thumbnailName: thumbnail?.name || "",
+        content: editorRef.current?.getHTML?.() || "",
+      }),
       });
 
       const data = await response.json();
@@ -113,7 +115,10 @@ export default function App() {
             <div className="field">
               <label>Thumbnail Upload</label>
 
-              <input type="file" />
+              <input
+                type="file"
+                onChange={(e) => setThumbnail(e.target.files[0])}
+              />
             </div>
 
             <div className="field">
