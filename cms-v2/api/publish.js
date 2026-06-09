@@ -75,6 +75,26 @@ export default async function handler(req, res) {
     const fileName =
       `${date.split("T")[0]}-${slug}.md`;
 
+
+// CLEAN CONTENT
+
+const cleanedContent = content
+
+  // REMOVE 3+ EMPTY LINES
+  .replace(/\n{3,}/g, "\n\n")
+
+  // FIX LIST SPACING
+  .replace(/-\s(.+?)\n\n+/g, "- $1\n")
+
+  // FIX BLOCKQUOTE SPACING
+  .replace(/>\s(.+?)\n\n+/g, "> $1\n")
+
+  // REMOVE EXTRA SPACES
+  .replace(/[ \t]+\n/g, "\n")
+
+  .trim();
+
+  
     const markdown = `---
 title: "${title}"
 
@@ -100,7 +120,7 @@ youtube_url: "${youtubeUrl || ""}"
 
 ---
 
-${content}
+${cleanedContent}
 `;
 
     const contentEncoded =
