@@ -57,7 +57,9 @@ They apply for a role without fully understanding what the company actually want
 Before your interview, paste the job description into an AI tool like ChatGPT and ask:
 
 > “Explain this JD in simple words.”
+>
 > “What skills matter most here?”
+>
 > “What interview questions can come from this role?”
 
 
