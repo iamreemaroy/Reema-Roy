@@ -1,3 +1,207 @@
+--- 
+layout: default 
+--- 
+
+<main class="main blog-details-page">
+  <!-- Page Title -->
+  <div class="page-title dark-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">{{ page.title }}</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li>
+            <a href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          <li>
+            <a href="{{ '/blog' | relative_url }}">Blog</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Blog Details Section -->
+  <section class="service-details section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row gy-4">
+        <!-- MAIN CONTENT -->
+        <div class="col-lg-8"> 
+          {% if page.thumbnail %} 
+          <div class="service-details-slider swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="{{ page.thumbnail | absolute_url }}" class="img-fluid featured-image" alt="{{ page.title }}" loading="lazy" decoding="async">
+              </div>
+            </div>
+            </div>
+            {% endif %}
+          <div class="content mt-5">
+            {% assign related_posts = site.related_posts | where_exp: "post", "post.url != page.url" | limit:4 %}
+
+{% assign paragraphs = content | split: '</p>' %}
+
+{% assign related_index = 0 %}
+
+{% for paragraph in paragraphs %}
+
+  {{ paragraph }}
+
+  {% unless forloop.last %}
+    </p>
+  {% endunless %}
+
+  {% if forloop.index == 2 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 4 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 6 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+  {% if forloop.index == 8 %}
+
+    {% assign current_related = related_posts[related_index] %}
+
+    {% if current_related %}
+
+      <div class="inline-also-read">
+
+        <div class="inline-also-read-label">
+          Also Read
+        </div>
+
+        <a href="{{ current_related.url | relative_url }}">
+          {{ current_related.title }}
+        </a>
+
+      </div>
+
+      {% assign related_index = related_index | plus: 1 %}
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+          </div>
+          <div class="author-box">
+            <img src="/assets/img/profile/profile-2.webp" alt="Reema Roy">
+            <div>
+              <h3>About Reema Roy</h3>
+              <p>
+                Reema Roy is a Technical Program Manager and digital strategist with expertise in AI, web development, SEO, CMS platforms, and enterprise technology solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+          <!-- POST INFO -->
+          <div class="service-info">
+            <h4>Article Info</h4>
+            <div class="info-item">
+              <i class="bi bi-calendar-event"></i>
+              <h5>Published</h5>
+              <p>{{ page.date | date: "%d %b %Y" }}</p>
+            </div>
+            
+            <div class="info-item">
+              <i class="bi bi-arrow-repeat"></i>
+              <h5>Last Updated</h5>
+              <p>{{ page.last_modified_at | default: page.date | date: "%d %b %Y" }}</p>
+            </div>
+            <!-- ⭐ NEW: Reading Time --> {% assign words = content | number_of_words %} {% assign reading_time = words | divided_by: 200 | plus: 1 %} <div class="info-item">
+              <i class="bi bi-clock"></i>
+              <h5>Reading Time</h5>
+              <p>{{ reading_time }} min read</p>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-person"></i>
+              <h5>Author</h5>
+              <p>Reema Roy</p>
+            </div>
+          </div>
+          <!-- RELATED POSTS -->
+          <div class="related-services mt-5">
+            <h4>Related Articles</h4> {% assign maxRelated = 4 %} {% assign minCommonTags = 1 %} {% assign maxRelatedCounter = 0 %} {% for post in site.posts %} {% if post.url != page.url %} {% if post.categories contains page.categories[0] %} {% if maxRelatedCounter < maxRelated %} <div class="service-item">
+              <i class="bi bi-file-text"></i>
+              <h5>
+                <a href="{{ post.url | relative_url }}">
+                  {{ post.title }}
+                </a>
+              </h5>
+            </div> {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %} {% endif %} {% endif %} {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
 <style>
     body {
       padding-left: 0px !important;
