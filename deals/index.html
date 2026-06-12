@@ -528,9 +528,12 @@ function renderDeals(deals) {
     return `
       <div class="deal-card">
         <div class="deal-img">
-          <img src="${d.image || '/assets/img/no-image.png'}">
+          <img 
+            src="${d.image || '/assets/img/no-image.png'}"
+            alt="${d.title}"
+            loading="lazy">
         </div>
-        <div class="deal-title">${d.title || ""}</div>
+        <h3 class="deal-title">${d.title || ""}</h3>
         <div class="deal-price">₹${price}</div>
         <a href="${d.link || '#'}" target="_blank" class="deal-btn">View Product →</a>
       </div>
